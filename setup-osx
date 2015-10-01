@@ -1,0 +1,8 @@
+#!/bin/bash
+
+$(dirname $0)/setup-common
+
+brew install stow
+stow gem
+stow fish
+stow git

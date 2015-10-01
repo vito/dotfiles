@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mkdir -p ~/bin
+
+if which nvim 2>/dev/null; then
+  ln -sf $(which nvim) ~/bin/vim
+  ln -sf $(which nvim) ~/bin/vi
+fi
