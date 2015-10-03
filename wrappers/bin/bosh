@@ -1,0 +1,9 @@
+#!/bin/bash
+
+REAL_BOSH=$(which -a bosh | tail -1)
+if [ -z "$REAL_BOSH" ] || [ "$REAL_BOSH" = "$0" ]; then
+  echo "bosh cli not installed; aborting"
+  exit 1
+fi
+
+$REAL_BOSH -c <(lpass show BOSH_CONFIG --notes) "$@"
