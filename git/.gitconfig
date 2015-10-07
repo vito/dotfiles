@@ -3,6 +3,8 @@
 	email = suraci.alex@gmail.com
 [alias]
 	ci = commit
+	co = checkout
+	st = status
 [push]
 	default = simple
 [url "git@github.com:"]
