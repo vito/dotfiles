@@ -14,3 +14,5 @@ set -x PATH $HOME/rubinius/bin $PATH
 set -x GEM_HOME $HOME/rubinius/gems
 
 set -x PATH $GEM_HOME/bin $PATH
+
+alias gst 'git status'
