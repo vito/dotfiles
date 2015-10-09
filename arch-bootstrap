@@ -2,6 +2,11 @@
 
 set -e -x
 
+if [ "$(id -u)" = "0" ]; then
+  echo "do not run as root; create the 'pilot' user and run it there"
+  exit 1
+fi
+
 cd $(dirname $0)
 
 function gimme_pacman() {
