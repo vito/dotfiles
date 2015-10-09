@@ -1,3 +1,5 @@
+set --erase fish_greeting
+
 set -x GOPATH $HOME/go
 set -x PATH $GOPATH/bin $PATH
 
