@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -e -x
+
+cd $(dirname $0)
+
+function gimme_pacman() {
+  sudo pacman --noconfirm --needed -Syu "$@"
+}
+
+function gimme_aur() {
+  sudo aura --noconfirm --needed -Ayu "$@"
+}
+
+gimme_pacman base-devel
+
+gimme_pacman xorg nvidia
+stow xorg-desktop xmonad
+
+gimme_pacman fish
+sudo chsh -s /usr/bin/fish pilot
+stow fish
+
+if ! which aura >/dev/null; then
+  git clone https://aur.archlinux.org/aura-bin.git /tmp/aura
+  pushd /tmp/aura
+    makepkg -sri
+  popd
+
+  rm -rf /tmp/aura
+fi
+
+gimme_aur ttf-iosevka
+stow termite
+
+gimme_aur neovim-git
+if ! [ -e ~/.nvim ]; then
+  git clone https://github.com/vito/dot-nvim.git ~/.nvim
+fi
+
+gimme_pacman ruby
+stow gem
+
+gem install git-duet
+stow git
+
+gimme_pacman mate-themes
+stow gtk
