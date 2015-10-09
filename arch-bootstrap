@@ -65,3 +65,5 @@ gimme_aur lastpass-cli
 gimme_pacman openssh
 
 gimme_pacman go
+
+gimme_aur direnv
