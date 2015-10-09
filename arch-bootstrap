@@ -41,7 +41,9 @@ gimme_pacman termite
 gimme_aur ttf-iosevka
 stow termite
 
-gimme_aur neovim-git python-neovim
+gimme_aur neovim-git
+gimme_pacman python-pip
+sudo pip install neovim
 if ! [ -e ~/.nvim ]; then
   git clone https://github.com/vito/dot-nvim.git ~/.nvim
 fi
@@ -57,6 +59,6 @@ stow gtk
 
 gimme_pacman the_silver_searcher
 
-gimme_aura lastpass-cli
+gimme_aur lastpass-cli
 
 gimme_pacman openssh
