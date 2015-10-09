@@ -22,6 +22,7 @@ gimme_pacman base-devel
 gimme_pacman stow
 
 gimme_pacman xorg nvidia
+gimme_pacman xmonad xmonad-contrib xmobar
 stow xorg-desktop xmonad
 
 gimme_pacman fish
