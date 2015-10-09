@@ -19,6 +19,8 @@ function gimme_aur() {
 
 gimme_pacman base-devel
 
+gimme_pacman stow
+
 gimme_pacman xorg nvidia
 stow xorg-desktop xmonad
 
@@ -35,10 +37,11 @@ if ! which aura >/dev/null; then
   rm -rf /tmp/aura
 fi
 
+gimme_pacman termite
 gimme_aur ttf-iosevka
 stow termite
 
-gimme_aur neovim-git
+gimme_aur neovim-git python-neovim
 if ! [ -e ~/.nvim ]; then
   git clone https://github.com/vito/dot-nvim.git ~/.nvim
 fi
@@ -51,3 +54,9 @@ stow git
 
 gimme_pacman mate-themes
 stow gtk
+
+gimme_pacman the_silver_searcher
+
+gimme_aura lastpass-cli
+
+gimme_pacman openssh
