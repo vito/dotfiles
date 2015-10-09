@@ -1,5 +1,5 @@
 [options]
-font = Essential PragmataPro 14
+font = Iosevka 14
 search_wrap = true
 scrollback_lines = 10000
 
