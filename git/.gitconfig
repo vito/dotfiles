@@ -1,6 +1,5 @@
-[user]
-	name = Alex Suraci
-	email = suraci.alex@gmail.com
+[include]
+	path = .gitpair
 [alias]
 	ci = commit
 	co = checkout

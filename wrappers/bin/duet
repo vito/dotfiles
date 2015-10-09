@@ -1,0 +1,3 @@
+#!/bin/bash
+export GIT_CONFIG=$HOME/.gitpair
+git duet "$@"
