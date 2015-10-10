@@ -92,3 +92,5 @@ gimme_pacman go
 gimme_aur direnv
 
 gimme_pacman xsel
+
+gimme_aur ttf-ms-fonts otf-texgyre
