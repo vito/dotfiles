@@ -3,7 +3,7 @@
 set -e -x
 
 if [ "$(id -u)" = "0" ]; then
-  echo "do not run as root; create the 'pilot' user and run it there"
+  echo "do not run as root"
   exit 1
 fi
 
@@ -26,7 +26,7 @@ gimme_pacman xmonad xmonad-contrib xmobar
 stow xorg-desktop xmonad
 
 gimme_pacman fish
-sudo chsh -s /usr/bin/fish pilot
+sudo chsh -s /usr/bin/fish $(whoami)
 stow fish
 
 if ! which aura >/dev/null; then
