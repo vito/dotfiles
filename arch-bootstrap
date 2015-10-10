@@ -25,6 +25,8 @@ gimme_pacman stow
 
 gimme_pacman xorg
 
+gimme_pacman pulseaudio pavucontrol
+
 # nouveau driver is super glitchy (missing cursor, janky multi-head), so
 # install official nvidia driver instead
 if lspci | grep VGA | grep -i nvidia; then
