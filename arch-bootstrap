@@ -17,6 +17,8 @@ function gimme_aur() {
   sudo aura --noconfirm --needed -Ay "$@"
 }
 
+sudo timedatectl set-ntp true
+
 gimme_pacman base-devel
 
 gimme_pacman stow
