@@ -10,11 +10,11 @@ fi
 cd $(dirname $0)
 
 function gimme_pacman() {
-  sudo pacman --noconfirm --needed -Syu "$@"
+  sudo pacman --noconfirm --needed -Sy "$@"
 }
 
 function gimme_aur() {
-  sudo aura --noconfirm --needed -Ayu "$@"
+  sudo aura --noconfirm --needed -Ay "$@"
 }
 
 gimme_pacman base-devel
