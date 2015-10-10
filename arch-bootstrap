@@ -30,6 +30,7 @@ if lspci | grep VGA | grep -i nvidia; then
 fi
 
 gimme_pacman xmonad xmonad-contrib xmobar
+gimme_aur dmenu-xft
 
 # TODO: better method for detecting laptop
 if [ "$(hostname)" = "think" ]; then
