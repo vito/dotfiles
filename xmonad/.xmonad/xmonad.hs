@@ -14,7 +14,8 @@ main = do
     , layoutHook = avoidStruts $ layoutHook defaultConfig
     , logHook = dynamicLogWithPP xmobarPP
                   { ppOutput = hPutStrLn xmproc
-                  , ppTitle = xmobarColor "green" "" . shorten 50
+                  , ppCurrent = xmobarColor "#6eb5f3" ""
+                  , ppTitle = xmobarColor "#96a967" "" . shorten 50
                   }
     , borderWidth        = 2
     , terminal           = "termite"
