@@ -65,7 +65,7 @@ if ! [ -e ~/.nvim ]; then
   git clone https://github.com/vito/dot-nvim.git ~/.nvim
 fi
 
-mkdir ~/bin
+mkdir -p ~/bin
 stow wrappers
 
 gimme_pacman ruby
