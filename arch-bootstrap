@@ -30,7 +30,15 @@ if lspci | grep VGA | grep -i nvidia; then
 fi
 
 gimme_pacman xmonad xmonad-contrib xmobar
-stow xorg-desktop xmonad
+
+# TODO: better method for detecting laptop
+if [ "$(hostname)" = "think" ]; then
+  stow xorg-laptop
+else
+  stow xorg-desktop
+fi
+
+stow xmonad
 
 gimme_pacman fish
 sudo chsh -s /usr/bin/fish $(whoami)
