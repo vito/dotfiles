@@ -4,12 +4,25 @@ Config { font = "xft:Iosevka"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 100
-       , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+       , commands = [ Run Cpu
+                        [ "-L", "3"
+                        , "-H", "50"
+                        , "--normal", "#96a967"
+                        , "--high","#ca674a"
+                        ] 10
+                    , Run Memory ["-t", "Mem: <usedratio>%"] 10
                     , Run Date "%a %b %d %Y %I:%M:%S %p" "date" 10
+                    , Run Battery
+                        [ "-t", "Batt: <left>% (<timeleft>)"
+                        , "-L", "25"
+                        , "-H", "75"
+                        , "-l", "#ca674a"
+                        , "-n", "#d3a94a"
+                        , "-h", "#96a967"
+                        ] 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{%cpu% | %memory% | <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{%battery% | %cpu% | %memory% | <fc=#a9a9a9>%date%</fc>"
        }
