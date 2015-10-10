@@ -21,7 +21,14 @@ gimme_pacman base-devel
 
 gimme_pacman stow
 
-gimme_pacman xorg nvidia
+gimme_pacman xorg
+
+# nouveau driver is super glitchy (missing cursor, janky multi-head), so
+# install official nvidia driver instead
+if lspci | grep VGA | grep -i nvidia; then
+  gimme_pacman nvidia
+fi
+
 gimme_pacman xmonad xmonad-contrib xmobar
 stow xorg-desktop xmonad
 
