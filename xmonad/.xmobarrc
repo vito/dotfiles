@@ -15,7 +15,7 @@ Config { font = "xft:Iosevka"
                     , Run Battery
                         [ "-t", "Batt: <left>% (<timeleft>)"
                         , "-L", "25"
-                        , "-H", "75"
+                        , "-H", "50"
                         , "-l", "#ca674a"
                         , "-n", "#d3a94a"
                         , "-h", "#96a967"
