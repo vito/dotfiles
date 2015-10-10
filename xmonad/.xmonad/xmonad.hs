@@ -21,6 +21,7 @@ main = do
     , terminal           = "termite"
     , normalBorderColor  = "#393939"
     , focusedBorderColor = "#ca674a"
+    , keys               = myKeys
     }
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
