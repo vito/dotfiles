@@ -67,3 +67,5 @@ gimme_pacman openssh
 gimme_pacman go
 
 gimme_aur direnv
+
+gimme_pacman xsel
