@@ -14,7 +14,7 @@ lowdpiy=1440
 scale=2
 
 xrandr \
-  --output VIRTUAL1 --off
+  --output VIRTUAL1 --off \
   --output DP1 --mode ${lowdpix}x${lowdpiy} \
     --right-of eDP1 --primary \
     --scale ${scale}x${scale} \
