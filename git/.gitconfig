@@ -1,7 +1,7 @@
 [include]
 	path = .gitpair
 [alias]
-	ci = commit
+	ci = duet-commit
 	co = checkout
 	st = status
 [push]
