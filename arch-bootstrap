@@ -26,6 +26,7 @@ gimme_pacman stow
 gimme_pacman xorg
 
 gimme_pacman pulseaudio pavucontrol
+sudo usermod -aG audio $(whoami)
 
 # nouveau driver is super glitchy (missing cursor, janky multi-head), so
 # install official nvidia driver instead
