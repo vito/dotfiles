@@ -95,3 +95,8 @@ gimme_aur direnv
 gimme_pacman xsel
 
 gimme_aur ttf-ms-fonts otf-texgyre
+
+# Virtualbox still shells out to `ifconfig' and `route'
+# ...and silently fails if they're not there >:(
+gimme_pacman net-tools
+sudo usermod -aG vboxusers $(whoami)
