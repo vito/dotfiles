@@ -100,3 +100,6 @@ gimme_aur ttf-ms-fonts otf-texgyre
 # ...and silently fails if they're not there >:(
 gimme_pacman net-tools
 sudo usermod -aG vboxusers $(whoami)
+
+# add us to the postgres group so we can run postgres as a regular user
+sudo usermod -aG postgres $(whoami)
