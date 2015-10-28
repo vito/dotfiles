@@ -1,6 +1,7 @@
 #!/bin/bash
 
-REAL_BOSH=$(which -a bosh | tail -1)
+SELF=$(cd $(dirname $0) && pwd)/$(basename $0)
+REAL_BOSH=$(which -a bosh | grep -v $SELF)
 if [ -z "$REAL_BOSH" ] || [ "$REAL_BOSH" = "$0" ]; then
   echo "bosh cli not installed; aborting"
   exit 1
