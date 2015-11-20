@@ -2,6 +2,7 @@
 font = Iosevka 14
 search_wrap = true
 scrollback_lines = 10000
+urgent_on_bell = true
 
 [colors]
 background = #121212

@@ -1,8 +1,10 @@
+import System.IO (hPutStrLn)
+
 import XMonad
 import XMonad.Hooks.DynamicLog
-import XMonad.Util.Run (spawnPipe)
 import XMonad.Hooks.ManageDocks
-import System.IO (hPutStrLn)
+import XMonad.Util.CustomKeys
+import XMonad.Util.Run (spawnPipe)
 
 import qualified Data.Map as M
 
@@ -15,18 +17,18 @@ main = do
     , logHook = dynamicLogWithPP xmobarPP
                   { ppOutput = hPutStrLn xmproc
                   , ppCurrent = xmobarColor "#6eb5f3" ""
-                  , ppTitle = xmobarColor "#96a967" "" . shorten 50
+                  , ppUrgent = xmobarColor "#000000" "#ca674a"
+                  , ppTitle = xmobarColor "#96a967" "" . shorten 100
                   }
     , borderWidth        = 2
     , terminal           = "termite"
     , normalBorderColor  = "#393939"
     , focusedBorderColor = "#ca674a"
-    , keys               = myKeys
+    , keys               = customKeys (const []) insKeys
     }
 
-myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys c@(XConfig { modMask = modMask }) =
-  M.insert
-    (modMask, xK_p)
-    (spawn "dmenu_run -fn 'Iosevka:14'")
-    ((keys defaultConfig) c)
+insKeys :: XConfig l -> [((KeyMask, KeySym), X ())]
+insKeys conf@(XConfig {modMask = modm}) =
+   [ ((modm              , xK_p ), spawn "dmenu_run -fn 'Iosevka:10'")
+   , ((modm .|. shiftMask, xK_l ), spawn "slock")
+   ]
