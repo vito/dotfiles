@@ -1,4 +1,4 @@
-Config { font = "xft:Iosevka"
+Config { font = "xft:Iosevka:size=14:antialias=true"
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"

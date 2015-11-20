@@ -29,6 +29,6 @@ main = do
 
 insKeys :: XConfig l -> [((KeyMask, KeySym), X ())]
 insKeys conf@(XConfig {modMask = modm}) =
-   [ ((modm              , xK_p ), spawn "dmenu_run -fn 'Iosevka:10'")
+   [ ((modm              , xK_p ), spawn "dmenu_run -fn 'Iosevka:14'")
    , ((modm .|. shiftMask, xK_l ), spawn "slock")
    ]
