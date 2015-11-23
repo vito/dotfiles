@@ -25,7 +25,7 @@ gimme_pacman stow
 
 gimme_pacman xorg
 
-gimme_pacman pulseaudio pavucontrol
+gimme_pacman pulseaudio pulseaudio-alsa pavucontrol
 sudo usermod -aG audio $(whoami)
 
 # nouveau driver is super glitchy (missing cursor, janky multi-head), so
