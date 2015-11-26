@@ -69,6 +69,7 @@ stow fish
 
 # better fonts + font config
 stow fonts
+gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 12'
 
 # ruby + gem config
 gimme ruby
