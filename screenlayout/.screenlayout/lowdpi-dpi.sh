@@ -3,7 +3,7 @@
 set -e -x
 
 xrandr --dpi 96
-xrdb -merge -I$HOME ~/.Xresources-lowdpi
+xrdb -merge -I$HOME $(dirname $0)/.Xresources-lowdpi
 
 lowdpix=2560
 lowdpiy=1440

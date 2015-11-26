@@ -3,7 +3,7 @@
 set -e -x
 
 xrandr --dpi 192
-xrdb -merge -I$HOME ~/.Xresources-hidpi
+xrdb -merge -I$HOME $(dirname $0)/.Xresources-hidpi
 
 hidpix=2560
 hidpiy=1440
