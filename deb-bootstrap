@@ -1,0 +1,104 @@
+#!/bin/bash
+
+set -e -x
+
+SLACK_DEB='https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-1.2.6-amd64.deb'
+NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
+
+function gimme() {
+  sudo apt-get -y install "$@"
+}
+
+gimme software-properties-common
+
+# provides neovim
+if ! [ -e /etc/apt/sources.list.d/neovim-ppa-ubuntu-unstable-xenial.list ]; then
+  sudo add-apt-repository -y ppa:neovim-ppa/unstable
+fi
+
+# provides virtualbox
+sudo apt-add-repository -y contrib
+
+sudo apt-get update
+
+# install neovim
+gimme neovim
+gimme python-dev python-pip python3-dev python3-pip
+
+# support for python3 plugins
+sudo pip3 install neovim
+
+# set up neovim as vi/vim/editor
+sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+sudo update-alternatives --set vi /usr/bin/nvim
+sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+sudo update-alternatives --set vim /usr/bin/nvim
+sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+sudo update-alternatives --set editor /usr/bin/nvim
+
+# for neovim copy/paste
+gimme xsel
+
+# install neovim config
+if ! [ -e ~/.config/nvim ]; then
+  git clone "$NEOVIM_CONFIG" ~/.config/nvim --recursive
+fi
+
+# for installing slack
+gimme curl
+
+# install slack client
+if ! which slack 2>&1 >/dev/null; then
+  curl "$SLACK_DEB" > /tmp/slack.deb
+  sudo gdebi -n /tmp/slack.deb
+fi
+
+# sound settings
+gimme pavucontrol
+
+# config orchestration
+gimme stow
+
+# tiling window manager
+gimme i3
+
+# shell
+gimme fish
+sudo chsh -s /usr/bin/fish $(whoami)
+stow fish
+
+# better fonts + font config
+stow fonts
+
+# terminal emulator with pretty good search
+# normally quake-style but with i3 it acts as regular window
+gimme tilda
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/tilda 60
+sudo update-alternatives --set x-terminal-emulator /usr/bin/tilda
+
+# ruby + gem config
+gimme ruby
+stow gem
+
+# git
+gimme git
+GEM_HOME=$HOME/.gems gem install git-duet
+stow git
+
+# ag
+gimme silversearcher-ag
+
+# lastpass
+gimme lastpass-cli
+
+# golang + related golang dev tools
+gimme golang direnv
+
+# postgresql
+gimme postgresql
+sudo usermod -aG postgres $(whoami)
+
+# NB: virtualbox shells out to `ifconfig` and `route` and silently fails if
+# they're not available. do we need to install it?
+gimme virtualbox
+sudo usermod -aG vboxusers $(whoami)
