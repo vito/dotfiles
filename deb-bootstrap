@@ -71,6 +71,9 @@ stow fish
 stow fonts
 gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 12'
 
+# install Microsoft fonts
+gimme ttf-mscorefonts-installer
+
 # ruby + gem config
 gimme ruby
 stow gem
