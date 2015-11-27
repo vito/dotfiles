@@ -76,6 +76,7 @@ GEM_HOME=$HOME/.gems gem install git-duet
 
 # golang
 gimme golang
+GOPATH=$HOME/go vim --headless +GoInstallBinaries +qa
 
 # postgresql
 gimme postgresql
