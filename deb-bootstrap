@@ -83,7 +83,7 @@ gimme postgresql
 sudo usermod -aG postgres $(whoami)
 
 # create superuser role for current user with empty password
-yes "" | sudo su postgres -c "createuser -s -P $(whoami)"
+yes "" | sudo su postgres -c "createuser -s -P $(whoami)" || true
 
 # NB: virtualbox shells out to `ifconfig` and `route` and silently fails if
 # they're not available. do we need to install it?
