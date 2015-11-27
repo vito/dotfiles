@@ -187,7 +187,6 @@ bar {
     }
 }
 
-assign [class="Gnome-terminal"] 1: main
 assign [class="google-chrome"] 2: web
 assign [class="Slack"] 3: chat
-assign [class="Vlc"] 4: media
+assign [class="vlc"] 9: media
