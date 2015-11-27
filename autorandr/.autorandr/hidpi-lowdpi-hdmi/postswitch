@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xrandr --dpi 192
+xrdb -merge -I$HOME $HOME/.Xresources-hidpi
