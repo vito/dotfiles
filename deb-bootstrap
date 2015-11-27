@@ -83,7 +83,7 @@ sudo usermod -aG postgres $(whoami)
 
 # NB: virtualbox shells out to `ifconfig` and `route` and silently fails if
 # they're not available. do we need to install it?
-gimme virtualbox
+gimme virtualbox vagrant
 sudo usermod -aG vboxusers $(whoami)
 
 # misc tooling
