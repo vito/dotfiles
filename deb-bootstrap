@@ -9,6 +9,8 @@ function gimme() {
   sudo apt-get -y install "$@"
 }
 
+gimme ntp
+
 gimme software-properties-common
 
 # provides neovim
