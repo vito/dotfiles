@@ -8,8 +8,8 @@ off
 output HDMI1
 off
 output HDMI2
-mode primary
-pos x
-rotate 2560x1440+2560+0
+mode 2560x1440
+primary
+right-of eDP1
 output VIRTUAL1
 off
