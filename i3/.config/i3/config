@@ -195,4 +195,3 @@ bar {
 
 assign [class="google-chrome"] 2: web
 assign [class="Slack"] 3: chat
-assign [class="vlc"] 9: media
