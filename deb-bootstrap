@@ -94,3 +94,9 @@ if ! which slack 2>&1 >/dev/null; then
   curl "$SLACK_DEB" > /tmp/slack.deb
   sudo gdebi -n /tmp/slack.deb
 fi
+
+# gnome-terminal palette
+profile=$(dconf read /org/gnome/terminal/legacy/profiles:/)
+dcont write ${profile}/palette "['rgb(48,48,48)', 'rgb(211,112,163)', 'rgb(109,158,63)', 'rgb(181,136,88)', 'rgb(96,149,197)', 'rgb(172,123,222)', 'rgb(59,162,117)', 'rgb(207,207,207)', 'rgb(104,104,104)', 'rgb(255,167,218)', 'rgb(163,213,114)', 'rgb(239,189,139)', 'rgb(152,203,254)', 'rgb(229,176,255)', 'rgb(117,218,169)', 'rgb(255,255,255)']"
+dcont write ${profile}/foreground-color "'rgb(207,207,207)'"
+dcont write ${profile}/background-color "'rgb(35,35,35)'"
