@@ -33,8 +33,8 @@ set fish_color_history_current cyan
 set fish_color_match cyan
 set fish_color_normal normal
 set fish_color_operator cyan
-set fish_color_param cyan
-set fish_color_quote green
+set fish_color_param green
+set fish_color_quote cyan
 set fish_color_redirection red
 set fish_color_search_match \x2d\x2dbackground\x3dpurple
 set fish_color_selection \x2d\x2dbackground\x3dpurple
