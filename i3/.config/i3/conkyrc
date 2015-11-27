@@ -1,0 +1,22 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+# Update interval in seconds
+update_interval 2.0
+total_run_times 0
+override_utf8_locale yes
+
+TEXT
+
+[{ "full_text": "HD", "color": "\#7996a9" },
+ { "full_text": "${fs_free /}/${fs_size /}" },
+ { "full_text": "Ram", "color": "\#b492b6" },
+ { "full_text": "${mem}" },
+ { "full_text": "Wifi", "color": "\#b72f62" },
+ { "full_text": "${wireless_essid wlp4s0}(${wireless_link_qual wlp4s0}/${wireless_link_qual_max wlp4s0})" },
+ { "full_text": "Bat", "color": "\#7996a9" },
+ { "full_text": "${battery BAT0}", "color": ${if_match ${battery_percent BAT0}<20}"\#b95670"${else}"\#5f5f5f"${endif} },
+ { "full_text": "Time", "color": "\#b492b6" },
+ { "full_text": "${time %b %d %Y %I:%M%P}" }],

@@ -52,7 +52,8 @@ fi
 gimme stow
 
 # tiling window manager
-gimme i3
+gimme i3 conky
+stow i3
 
 # shell
 gimme fish
