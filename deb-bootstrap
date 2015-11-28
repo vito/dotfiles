@@ -78,6 +78,11 @@ GEM_HOME=$HOME/.gems gem install git-duet
 gimme golang
 GOPATH=$HOME/go vim --headless +GoInstallBinaries +qa
 
+# node, npm, elm
+# nodejs-legacy to provide 'node' binary which many packages assume
+gimme nodejs nodejs-legacy npm
+sudo npm install -g uglify-js less less-plugin-clean-css elm elm-oracle elm-test
+
 # postgresql
 gimme postgresql
 sudo usermod -aG postgres $(whoami)
@@ -91,7 +96,7 @@ gimme virtualbox vagrant
 sudo usermod -aG vboxusers $(whoami)
 
 # misc tooling
-gimme htop silversearcher-ag direnv lastpass-cli pavucontrol curl
+gimme htop silversearcher-ag direnv lastpass-cli pavucontrol curl jq
 
 # install slack client
 if ! which slack 2>&1 >/dev/null; then
