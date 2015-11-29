@@ -1,6 +1,6 @@
 #!/bin/bash
 
-i3-msg "workspace 9: media; append_layout ~/.config/i3/workspace-9.json"
+i3-msg "append_layout ~/.config/i3/workspace-9.json"
 
 mpv --hwdec=auto http://twitch.tv/$1 source &
 
