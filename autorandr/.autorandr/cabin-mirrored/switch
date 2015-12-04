@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+xrandr --dpi 96
+xrdb -merge -I$HOME $HOME/.Xresources-lowdpi
+
+xrandr \
+  --output DP-0 --off \
+  --output DP-1 --off \
+  --output DP-2 --mode 2560x1440 --pos 0x0 \
+  --output DP-3 --mode 2560x1440 --pos 0x0 \
+  --output DP-4 --off
