@@ -1,8 +1,9 @@
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-#
+
 exec --no-startup-id xsetroot -solid "#000000"
+exec --no-startup-id compton -b --backend glx --vsync opengl
 
 new_window pixel 2
 new_float  pixel 2

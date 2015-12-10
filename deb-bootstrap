@@ -54,7 +54,7 @@ fi
 gimme stow
 
 # tiling window manager
-gimme i3 conky
+gimme compton i3 conky
 stow i3
 
 # shell
