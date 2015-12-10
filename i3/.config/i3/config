@@ -2,8 +2,20 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# black background
 exec --no-startup-id xsetroot -solid "#000000"
+
+# compositor for forcing vsync
 exec --no-startup-id compton -b --backend glx --vsync opengl
+
+# tap to left click
+exec --no-startup-id synclient TapButton1=1
+
+# double tap for right click
+exec --no-startup-id synclient TapButton2=3
+
+# triple tap for middle click
+exec --no-startup-id synclient TapButton3=2
 
 new_window pixel 2
 new_float  pixel 2
