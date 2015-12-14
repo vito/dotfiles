@@ -108,7 +108,7 @@ fi
 
 # gnome-terminal palette
 profiles=/org/gnome/terminal/legacy/profiles:/
-profile_name="$(dconf list ${profiles})"
+profile_name="$(dconf list ${profiles} | grep : | head -n1)"
 if [ -n "$profile_name" ]; then
   profile="${profiles}${profile_name}"
 
