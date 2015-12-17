@@ -210,3 +210,10 @@ bar {
 
 assign [class="google-chrome"] 2: web
 assign [class="Slack"] 3: chat
+
+bindsym F10 exec --no-startup-id pactl set-sink-volume 1 +5%
+bindsym F9 exec --no-startup-id pactl set-sink-volume 1 -5%
+bindsym F8 exec --no-startup-id pactl set-sink-mute 1 toggle
+
+bindsym F7 exec --no-startup-id sudo /home/alex/bin/brightness --increase
+bindsym F6 exec --no-startup-id sudo /home/alex/bin/brightness --decrease
