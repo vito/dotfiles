@@ -1,0 +1,62 @@
+#!/bin/bash
+
+set -e -x
+
+# global assumptions
+mkdir -p ~/bin ~/.config
+
+# install homebrew
+if ! which brew >/dev/null; then
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+# install cask
+brew tap caskroom/cask
+
+# install simple config manager
+brew install stow
+
+# install and switch to fish
+brew install fish
+grep "$(which fish)" /etc/shells || sudo sh -c "echo $(which fish) >> /etc/shells"
+sudo chsh -s "$(which fish)" $(whoami)
+stow fish
+
+# install neovim as ~/bin/vim, + python support
+brew install neovim/neovim/neovim python3
+pip3 install neovim
+ln -sf "$(which nvim)" ~/bin/vim
+
+# bootstrap neovim config (`git pull` on your own)
+if ! [ -e ~/.config/nvim ]; then
+  git clone "$NEOVIM_CONFIG" ~/.config/nvim --recursive
+fi
+
+# install ruby + sane gem config
+brew install ruby
+stow gem
+
+# install git + git config + sane git duet
+brew install git
+stow git
+GEM_HOME=$HOME/.gems gem install git-duet
+
+# install golang toolchain
+brew install go
+GOPATH=$HOME/go nvim --headless +GoInstallBinaries +qa
+
+# install node/elm/etc toolchain
+brew install nodejs
+npm install -g uglify-js less less-plugin-clean-css elm elm-oracle elm-test
+
+# install postgres
+brew install postgresql
+ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+
+# install gui livelihood
+brew cask install google-chrome iterm2 slack
+
+# install cli livelihood
+brew install jq htop stress direnv the_silver_searcher
+brew install lastpass-cli --with-pinentry --with-doc
+brew cask install vagrant virtualbox
