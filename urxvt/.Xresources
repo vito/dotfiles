@@ -1,7 +1,7 @@
 ! vim: set filetype=xdefaults :
 
 URxvt.scrollBar: false
-URxvt.font: xft:Iosevka:size=24
+URxvt.font: xft:Iosevka:size=12
 
 URxvt.perl-ext-common: font-size
 URxvt.keysym.C-Up:     font-size:increase
@@ -9,37 +9,44 @@ URxvt.keysym.C-Down:   font-size:decrease
 URxvt.keysym.C-S-Up:   font-size:incglobal
 URxvt.keysym.C-S-Down: font-size:decglobal
 
-*foreground: #D7D0C7
-*background: #151515
+! B E T A M A X
+! svbtext 2016
 
-!black
-! *color0:     #AF875F
-! *color8:     #AF875F
-*color0:     #101010
-*color8:     #404040
-!red
-*color1:     #E84F4F
-*color9:     #D23D3D
-!green
-*color2:     #B8D68C
-*color10:    #A0CF5D
-!yellow
-*color3:     #E1AA5D
-*color11:    #F39D21
-!blue
-*color4:     #7DC1CF
-*color12:    #4E9FB1
-!magenta
-*color5:     #9B64FB
-*color13:    #8542FF
-!cyan
-*color6:     #6D878D
-*color14:    #42717B
-!white
-*color7:     #dddddd
-*color15:    #dddddd
+! special
+*.foreground:   #2a2a20
+*.background:   #fef1ce
+! sun-bleached white bg
+!*.background:   #faeeb0
+*.cursorColor:  #2a2a20
 
-URxvt*borderColor:        #151515
-URxvt*colorBD:            #ffffff
-URxvt*cursorColor:        #ff8939
-URxvt*cursorColor2:       #151515
+! black
+*.color0:       #b6a974
+*.color8:       #887f57
+
+!! red
+*.color1:       #ebbe39
+*.color9:       #c39d2f
+
+! green
+*.color2:       #ea8235
+*.color10:      #c36c2c
+
+! yellow
+*.color3:       #df5029
+*.color11:      #c54724
+
+! blue
+*.color4:       #b4171e
+*.color12:      #9b141a
+
+! magenta
+*.color5:       #850f25
+*.color13:      #660c1d
+
+! cyan
+*.color6:       #550c27
+*.color14:      #39081a
+
+! white
+*.color7:       #421439
+*.color15:      #280c22
