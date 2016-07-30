@@ -15,6 +15,9 @@ set -x PATH $GEM_HOME/bin $PATH
 
 alias gst 'git status'
 
+# i have never ever wanted to run ghostscript
+alias gs 'git status'
+
 set -x PATH $HOME/bin $PATH
 
 if which keychain >/dev/null
@@ -25,6 +28,7 @@ if test -e /usr/local/share/chruby/chruby.fish
   source /usr/local/share/chruby/chruby.fish
 end
 
+# override fish colors to use the stock 16 colors, so that it can be themed with .Xresources
 set fish_color_autosuggestion white
 set fish_color_command blue
 set fish_color_comment yellow
