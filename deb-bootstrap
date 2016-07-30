@@ -109,3 +109,7 @@ fi
 # configure terminal
 gimme rxvt-unicode-256color
 stow urxvt
+
+# configure tmux
+gimme tmux
+stow tmux
