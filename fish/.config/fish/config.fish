@@ -21,6 +21,10 @@ if which keychain >/dev/null
   eval (keychain --eval --quiet)
 end
 
+if test -e /usr/local/share/chruby/chruby.fish
+  source /usr/local/share/chruby/chruby.fish
+end
+
 set fish_color_autosuggestion white
 set fish_color_command blue
 set fish_color_comment yellow
