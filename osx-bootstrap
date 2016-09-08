@@ -5,6 +5,26 @@ set -e -x
 # global assumptions
 mkdir -p ~/bin ~/.config
 
+function gimme() {
+  for x in "$@"; do
+    if brew list | grep "\\<$x\\>"; then
+      brew outdated "$x" || brew upgrade "$x"
+    else
+      brew install "$x"
+    fi
+  done
+}
+
+function gimme_cask() {
+  for x in "$@"; do
+    if brew cask list | grep "\\<$x\\>"; then
+      brew cask upgrade "$x"
+    else
+      brew cask install "$x"
+    fi
+  done
+}
+
 # install homebrew
 if ! which brew >/dev/null; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -14,16 +34,16 @@ fi
 brew tap caskroom/cask
 
 # install simple config manager
-brew install stow
+gimme stow
 
 # install and switch to fish
-brew install fish
+gimme fish
 grep "$(which fish)" /etc/shells || sudo sh -c "echo $(which fish) >> /etc/shells"
 sudo chsh -s "$(which fish)" $(whoami)
 stow fish
 
 # install neovim as ~/bin/vim, + python support
-brew install neovim/neovim/neovim python3
+gimme neovim/neovim/neovim python3
 pip3 install neovim
 ln -sf "$(which nvim)" ~/bin/vim
 
@@ -33,33 +53,33 @@ if ! [ -e ~/.config/nvim ]; then
 fi
 
 # install ruby + sane gem config
-brew install ruby
+gimme ruby
 stow gem
 
 # install git + git config + sane git duet
-brew install git
+gimme git
 stow git
 GEM_HOME=$HOME/.gems gem install git-duet
 
 # install golang toolchain
-brew install go
+gimme go
 GOPATH=$HOME/go nvim --headless +GoInstallBinaries +qa
 
 # install node/elm/etc toolchain
-brew install nodejs
+gimme nodejs
 npm install -g uglify-js less less-plugin-clean-css elm elm-oracle elm-test
 
 # install postgres
-brew install postgresql
+gimme postgresql
 ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 
 # install phantojs
-brew install phantomjs
+gimme phantomjs
 
 # install gui livelihood
-brew cask install google-chrome iterm2 slack
+gimme_cask google-chrome iterm2 slack
 
 # install cli livelihood
-brew install jq htop stress direnv the_silver_searcher
-brew install lastpass-cli --with-pinentry --with-doc
-brew cask install vagrant virtualbox
+gimme jq htop stress direnv the_silver_searcher
+gimme lastpass-cli --with-pinentry --with-doc
+gimme_cask vagrant virtualbox
