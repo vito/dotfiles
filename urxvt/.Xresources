@@ -15,44 +15,36 @@ URxvt.keysym.C-S-Down: font-size:decglobal
 
 URxvt.iso14755: false
 
-! B E T A M A X
-! svbtext 2016
+*foreground: #DDCCBB
 
-! special
-*.foreground:   #2a2a20
-*.background:   #fef1ce
-! sun-bleached white bg
-!*.background:   #faeeb0
-*.cursorColor:  #2a2a20
+! Brown BG
+*background: #30251D
 
-! black
-*.color0:       #b6a974
-*.color8:       #887f57
+! Grey BG
+!*background: #151515
 
-!! red
-*.color1:       #ebbe39
-*.color9:       #c39d2f
 
-! green
-*.color2:       #ea8235
-*.color10:      #c36c2c
-
-! yellow
-*.color3:       #df5029
-*.color11:      #c54724
-
-! blue
-*.color4:       #b4171e
-*.color12:      #9b141a
-
-! magenta
-*.color5:       #850f25
-*.color13:      #660c1d
-
-! cyan
-*.color6:       #550c27
-*.color14:      #39081a
-
-! white
-*.color7:       #421439
-*.color15:      #280c22
+!black
+*color0:     #393939
+*color8:     #AF875F
+!red
+*color1:     #BF1E2D
+*color9:     #E7212A
+!green
+*color2:     #9DBA3A
+*color10:    #A9C938
+!yellow
+*color3:     #F5B915
+*color11:    #F7D325
+!blue
+*color4:     #1CA1DB
+*color12:    #00AFDA
+!magenta
+*color5:     #652F90
+*color13:    #894E9F
+!cyan
+*color6:     #EA7D24
+*color14:    #F79321
+!white
+*color7:     #E7E8E9
+*color15:    #F3F3F4
