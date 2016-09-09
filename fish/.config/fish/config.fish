@@ -13,6 +13,10 @@ end
 set -x GEM_HOME $HOME/.gems
 set -x PATH $GEM_HOME/bin $PATH
 
+set -x PATH /opt/google-cloud-sdk/bin $PATH
+
+set -x PATH /usr/lib/postgresql/9.5/bin $PATH
+
 alias gst 'git status'
 
 # i have never ever wanted to run ghostscript
