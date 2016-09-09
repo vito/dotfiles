@@ -2,7 +2,7 @@
 
 set -e
 
-xrandr --dpi 192
+xrandr --dpi 210
 xrdb -merge -I$HOME $HOME/.Xresources-hidpi
 
 hidpix=2560
@@ -14,12 +14,12 @@ lowdpiy=1440
 scale=2
 
 xrandr \
-  --output VIRTUAL1 --off \
-  --output DP1 --off \
-  --output DP2 --off \
-  --output eDP1 --mode ${hidpix}x${hidpiy} \
-  --output HDMI1 --off \
-  --output HDMI2 --mode ${lowdpix}x${lowdpiy} \
-    --right-of eDP1 --primary \
+  --output DP-1 --off \
+  --output DP-2 --off \
+  --output eDP-1 --mode ${hidpix}x${hidpiy} \
+    --primary \
+  --output HDMI-1 --off \
+  --output HDMI-2 --mode ${lowdpix}x${lowdpiy} \
+    --right-of eDP-1 \
     --scale ${scale}x${scale} \
     --panning "$(expr $lowdpix \* $scale)x$(expr $lowdpiy \* $scale)+${hidpix}+0" \
