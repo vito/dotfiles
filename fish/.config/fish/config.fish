@@ -1,7 +1,10 @@
 set --erase fish_greeting
 
 set -x GOPATH $HOME/go
-set -x PATH $GOPATH/bin $PATH
+
+if test -d $GEM_HOME/bin
+  set -x PATH $GOPATH/bin $PATH
+end
 
 set -x EDITOR nvim
 set -x GIT_EDITOR $EDITOR
@@ -11,18 +14,27 @@ if which direnv >/dev/null
 end
 
 set -x GEM_HOME $HOME/.gems
-set -x PATH $GEM_HOME/bin $PATH
 
-set -x PATH /opt/google-cloud-sdk/bin $PATH
+if test -d $GEM_HOME/bin
+  set -x PATH $GEM_HOME/bin $PATH
+end
 
-set -x PATH /usr/lib/postgresql/9.5/bin $PATH
+if test -d /opt/google-cloud-sdk/bin
+  set -x PATH /opt/google-cloud-sdk/bin $PATH
+end
+
+if test -d /usr/lib/postgresql/9.5/bin
+  set -x PATH /usr/lib/postgresql/9.5/bin $PATH
+end
 
 alias gst 'git status'
 
 # i have never ever wanted to run ghostscript
 alias gs 'git status'
 
-set -x PATH $HOME/bin $PATH
+if test -d $HOME/bin
+  set -x PATH $HOME/bin $PATH
+end
 
 if which keychain >/dev/null
   eval (keychain --eval --quiet)
@@ -57,9 +69,11 @@ set fish_pager_color_description 555\x1eyellow
 set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
 
-# automatically run tmux
-if which tmux >/dev/null; and status --is-interactive
+# automatically run tmux when in st
+if test $TERM = "st-256color"
+  if which tmux >/dev/null; and status --is-interactive
     if test -z (echo $TMUX)
-        exec tmux
+      exec tmux
     end
+  end
 end
