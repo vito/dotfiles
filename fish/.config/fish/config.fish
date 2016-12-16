@@ -2,7 +2,7 @@ set --erase fish_greeting
 
 set -x GOPATH $HOME/go
 
-if test -d $GEM_HOME/bin
+if test -d $GOPATH/bin
   set -x PATH $GOPATH/bin $PATH
 end
 
