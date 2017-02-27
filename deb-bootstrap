@@ -16,15 +16,12 @@ function gimme() {
 # ntp setup (be sure to configure the timezone yourself)
 gimme ntp
 
-# tooling for managing apt repositories
-gimme software-properties-common
-
 # provides virtualbox
-sudo apt-add-repository -y contrib
-
-# provides neovim (conditional; adding ppas repeatedly adds duplicate lines)
-if ! [ -e /etc/apt/sources.list.d/neovim-ppa-ubuntu-unstable-xenial.list ]; then
-  sudo add-apt-repository -y ppa:neovim-ppa/unstable
+vbox_apt_list=/etc/apt/sources.list.d/virtualbox.list
+if ! [ -e $vbox_apt_list ]; then
+  echo 'deb http://download.virtualbox.org/virtualbox/debian stretch contrib' | sudo tee $vbox_apt_list >/dev/null
+  wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+  wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 fi
 
 # useful for installing .deb with deps with -n; used for Slack install
@@ -99,7 +96,7 @@ yes "" | sudo su postgres -c "createuser -s -P $(whoami)" || true
 
 # NB: virtualbox shells out to `ifconfig` and `route` and silently fails if
 # they're not available. do we need to install it?
-gimme virtualbox vagrant
+gimme virtualbox-5.1 vagrant
 sudo usermod -aG vboxusers $(whoami)
 
 # misc tooling
