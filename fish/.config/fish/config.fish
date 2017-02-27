@@ -19,6 +19,10 @@ if test -d $GEM_HOME/bin
   set -x PATH $GEM_HOME/bin $PATH
 end
 
+if test -d $HOME/.cargo/bin
+  set -x PATH $HOME/.cargo/bin $PATH
+end
+
 if test -d /opt/google-cloud-sdk/bin
   set -x PATH /opt/google-cloud-sdk/bin $PATH
 end
