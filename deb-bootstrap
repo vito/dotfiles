@@ -4,7 +4,9 @@ set -e -x
 
 cd $(dirname $0)
 
-SLACK_DEB='https://downloads.slack-edge.com/linux_releases/slack-desktop-2.1.0-amd64.deb'
+SLACK_VERSION=2.4.2
+SLACK_DEB="https://downloads.slack-edge.com/linux_releases/slack-desktop-${SLACK_VERSION}-amd64.deb"
+
 NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
 
 function gimme() {
@@ -24,6 +26,9 @@ sudo apt-add-repository -y contrib
 if ! [ -e /etc/apt/sources.list.d/neovim-ppa-ubuntu-unstable-xenial.list ]; then
   sudo add-apt-repository -y ppa:neovim-ppa/unstable
 fi
+
+# useful for installing .deb with deps with -n; used for Slack install
+gimme gdebi
 
 # sync up everything
 sudo apt-get update
@@ -101,7 +106,7 @@ sudo usermod -aG vboxusers $(whoami)
 gimme htop silversearcher-ag direnv lastpass-cli pavucontrol curl jq
 
 # install slack client
-if ! which slack 2>&1 >/dev/null; then
+if ! which slack 2>&1 >/dev/null || [ "$(slack --version)" != "$SLACK_VERSION" ]; then
   curl "$SLACK_DEB" > /tmp/slack.deb
   sudo gdebi -n /tmp/slack.deb
 fi
