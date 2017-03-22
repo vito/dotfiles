@@ -19,9 +19,7 @@ function gimme() {
 
 function gimme_cask() {
   for x in "$@"; do
-    if brew cask list | grep "\\<$x\\>"; then
-      brew cask upgrade "$x"
-    else
+    if ! brew cask list | grep "\\<$x\\>"; then
       brew cask install "$x"
     fi
   done
