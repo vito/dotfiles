@@ -81,5 +81,5 @@ gimme_cask google-chrome iterm2 slack
 
 # install cli livelihood
 gimme jq htop stress direnv the_silver_searcher
-gimme lastpass-cli --with-pinentry --with-doc
+gimme lastpass-cli
 gimme_cask vagrant virtualbox
