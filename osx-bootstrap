@@ -5,6 +5,8 @@ set -e -x
 # global assumptions
 mkdir -p ~/bin ~/.config
 
+NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
+
 function gimme() {
   for x in "$@"; do
     if brew list | grep "\\<$x\\>"; then
