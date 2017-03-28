@@ -16,4 +16,9 @@ bosh -e ${bosh_url} alias-env ${bosh_alias}
   lpass show "${env_name} BOSH Director" --password
 } | bosh -e ${bosh_alias} login
 
-ssh-add -t8h <(lpass show "${env_name} GCP Key" --notes)
+mkfifo -m600 /tmp/authbosh.fifo
+trap "rm /tmp/authbosh.fifo" EXIT
+
+lpass show "${env_name} GCP Key" --notes >/tmp/authbosh.fifo &
+
+ssh-add -t8h /tmp/authbosh.fifo
