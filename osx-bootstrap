@@ -92,5 +92,8 @@ fi
 
 # install cli livelihood
 gimme_all jq htop stress direnv the_silver_searcher lastpass-cli
-gimme cloudfoundry/tap/bosh-cli --without-bosh2
 gimme_cask vagrant virtualbox
+
+# install bosh + tooling
+gimme cloudfoundry/tap/bosh-cli --without-bosh2
+stow bosh
