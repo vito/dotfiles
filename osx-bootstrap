@@ -8,12 +8,17 @@ mkdir -p ~/bin ~/.config
 NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
 
 function gimme() {
+  local name=$(basename $1)
+  if brew list | grep "\\<$name\\>"; then
+    brew outdated "$name" || brew install "$@"
+  else
+    brew install "$@"
+  fi
+}
+
+function gimme_all() {
   for x in "$@"; do
-    if brew list | grep "\\<$x\\>"; then
-      brew outdated "$x" || brew upgrade "$x"
-    else
-      brew install "$x"
-    fi
+    gimme "$x"
   done
 }
 
@@ -43,7 +48,7 @@ sudo chsh -s "$(which fish)" $(whoami)
 stow fish
 
 # install neovim as ~/bin/vim, + python support
-gimme neovim/neovim/neovim python3
+gimme_all neovim/neovim/neovim python3
 pip3 install neovim
 ln -sf "$(which nvim)" ~/bin/vim
 
@@ -86,6 +91,6 @@ if ! [ -e /Applications/ShiftIt.app ]; then
 fi
 
 # install cli livelihood
-gimme jq htop stress direnv the_silver_searcher
-gimme lastpass-cli
+gimme_all jq htop stress direnv the_silver_searcher lastpass-cli
+gimme cloudfoundry/tap/bosh-cli --without-bosh2
 gimme_cask vagrant virtualbox
