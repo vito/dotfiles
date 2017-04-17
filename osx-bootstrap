@@ -79,6 +79,12 @@ gimme phantomjs
 # install gui livelihood
 gimme_cask google-chrome iterm2 slack
 
+# install Onsi's ShiftIt which supports sizing in thirds
+if ! [ -e /Applications/ShiftIt.app ]; then
+  curl -fsSL https://raw.github.com/onsi/ShiftIt/master/ShiftIt.zip -o /tmp/ShiftIt.zip
+  unzip /tmp/ShiftIt.zip -d /Applications
+fi
+
 # install cli livelihood
 gimme jq htop stress direnv the_silver_searcher
 gimme lastpass-cli
