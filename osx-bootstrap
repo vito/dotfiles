@@ -43,8 +43,8 @@ gimme stow
 
 # install and switch to fish
 gimme fish
-grep "$(which fish)" /etc/shells || sudo sh -c "echo $(which fish) >> /etc/shells"
-sudo chsh -s "$(which fish)" $(whoami)
+grep "$(which fish)" /etc/shells >/dev/null || sudo sh -c "echo $(which fish) >> /etc/shells"
+finger $USER | grep "$(which fish)" >/dev/null || sudo chsh -s "$(which fish)" $(whoami)
 stow fish
 
 # install neovim as ~/bin/vim, + python support
