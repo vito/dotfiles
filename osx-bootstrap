@@ -53,6 +53,7 @@ stow fish
 # install neovim as ~/bin/vim, + python support
 gimme_all neovim/neovim/neovim python3
 pip3 install neovim
+GOPATH=$HOME/go nvim --headless +UpdateRemotePlugins +qa
 ln -sf "$(which nvim)" ~/bin/vim
 
 # bootstrap neovim config (`git pull` on your own)
