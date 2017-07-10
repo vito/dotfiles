@@ -2,6 +2,9 @@
 
 set -e -x
 
+# stow is relative to this directory
+cd $(dirname $0)
+
 # global assumptions
 mkdir -p ~/bin ~/.config
 
