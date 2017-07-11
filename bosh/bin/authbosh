@@ -12,7 +12,7 @@ bosh_url=$(lpass show "${env_name} BOSH Director" --url)
 {
   lpass show "${env_name} BOSH Director" --username
   lpass show "${env_name} BOSH Director" --password
-} | bosh -e ${bosh_alias} login
+} | bosh -e ${bosh_url} login
 
 bosh -e ${bosh_url} alias-env ${bosh_alias}
 
