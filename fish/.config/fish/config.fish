@@ -40,6 +40,10 @@ if test -d $HOME/bin
   set -x PATH $HOME/bin $PATH
 end
 
+if test -d $HOME/.local/bin
+  set -x PATH $HOME/.local/bin $PATH
+end
+
 if which keychain >/dev/null
   eval (keychain --eval --quiet)
 end
