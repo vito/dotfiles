@@ -14,13 +14,22 @@ map global normal '#' :comment-line<ret>
 map global normal <ret> :w<ret>
 
 # x11 clipboard interop
-map global user y '<a-|>xsel --input --clipboard<ret>; :echo -color Information "copied selection to X11 clipboard"<ret>'
-map global user P '!xsel --output --clipboard<ret>'
-map global user p '<a-!>xsel --output --clipboard<ret>'
+map global user y '<a-|>xsel --input --clipboard<ret>; :echo -color Information "copied selection to X11 clipboard"<ret>' \
+	-docstring "clipboard: copy"
+map global user P '!xsel --output --clipboard<ret>' \
+	-docstring "clipboard: paste before"
+map global user p '<a-!>xsel --output --clipboard<ret>' \
+	-docstring "clipboard: paste after"
 
 # use <tab> to cycle through complete suggestions
-hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <backtab> <c-p> }
+hook global InsertCompletionShow .* %{   map window insert <tab> <c-n>;   map window insert <backtab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <backtab> <c-p> }
+
+# linting
+map global user n ':lint-next-error<ret>' \
+	-docstring "lint: next error"
+map global user N ':lint-previous-error<ret>' \
+	-docstring "lint: previous error"
 
 # go: autocomplete by default and auto-fmt on save
 hook global WinSetOption filetype=go %{
@@ -32,7 +41,3 @@ hook global WinSetOption filetype=go %{
   hook buffer BufWritePre .+\.go %{ go-format -use-goimports }
   hook buffer BufWritePost .+\.go %{ lint }
 }
-
-# linting
-map global user n ':lint-next-error<ret>'
-map global user N ':lint-previous-error<ret>'
