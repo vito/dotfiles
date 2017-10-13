@@ -1,7 +1,11 @@
 colorscheme zenburn
 
-# ag instead of grep
-set global grepcmd 'ag --follow --column'
+# indent using 2 spaces by default
+set global tabstop 2
+set global indentwidth 2
+
+# show contextual lines,columns when panning around
+set global scrolloff 3,5
 
 # map jk and kj to <esc>
 hook global InsertChar k %{ try %{ exec -draft hH <a-k>jk<ret> d; exec <esc> }}
@@ -13,13 +17,16 @@ map global normal '#' :comment-line<ret>
 # save on enter
 map global normal <ret> :w<ret>
 
+# ag instead of grep
+set global grepcmd 'ag --follow --column'
+
 # x11 clipboard interop
 map global user y '<a-|>xsel --input --clipboard<ret>; :echo -color Information "copied selection to X11 clipboard"<ret>' \
-	-docstring "clipboard: copy"
+  -docstring "clipboard: copy"
 map global user P '!xsel --output --clipboard<ret>' \
-	-docstring "clipboard: paste before"
+  -docstring "clipboard: paste before"
 map global user p '<a-!>xsel --output --clipboard<ret>' \
-	-docstring "clipboard: paste after"
+  -docstring "clipboard: paste after"
 
 # use <tab> to cycle through complete suggestions
 hook global InsertCompletionShow .* %{   map window insert <tab> <c-n>;   map window insert <backtab> <c-p> }
@@ -31,13 +38,26 @@ map global user n ':lint-next-error<ret>' \
 map global user N ':lint-previous-error<ret>' \
 	-docstring "lint: previous error"
 
-# go: autocomplete by default and auto-fmt on save
+# go
 hook global WinSetOption filetype=go %{
+  # autocomplete by default
   go-enable-autocomplete
 
-  set window lintcmd 'go-kakoune-lint'
+  # auto-lint by building
   lint-enable
-
-  hook buffer BufWritePre .+\.go %{ go-format -use-goimports }
+  set window lintcmd 'go-kakoune-lint'
   hook buffer BufWritePost .+\.go %{ lint }
+
+  # auto-format on save
+  hook buffer BufWritePre .+\.go %{ go-format -use-goimports }
+
+  # indent using tabs
+  set global indentwidth 0
+}
+
+# elm
+hook global WinSetOption filetype=elm %{
+  # auto-format on save
+  set window formatcmd 'elm-format --stdin'
+  hook buffer BufWritePre .+\.elm %{ format }
 }
