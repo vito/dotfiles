@@ -1,0 +1,38 @@
+colorscheme zenburn
+
+# ag instead of grep
+set global grepcmd 'ag --follow --column'
+
+# map jk and kj to <esc>
+hook global InsertChar k %{ try %{ exec -draft hH <a-k>jk<ret> d; exec <esc> }}
+hook global InsertChar j %{ try %{ exec -draft hH <a-k>kj<ret> d; exec <esc> }}
+
+# commenting
+map global normal '#' :comment-line<ret>
+
+# save on enter
+map global normal <ret> :w<ret>
+
+# x11 clipboard interop
+map global user y '<a-|>xsel --input --clipboard<ret>; :echo -color Information "copied selection to X11 clipboard"<ret>'
+map global user P '!xsel --output --clipboard<ret>'
+map global user p '<a-!>xsel --output --clipboard<ret>'
+
+# use <tab> to cycle through complete suggestions
+hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <backtab> <c-p> }
+hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <backtab> <c-p> }
+
+# go: autocomplete by default and auto-fmt on save
+hook global WinSetOption filetype=go %{
+  go-enable-autocomplete
+
+  set window lintcmd 'go-kakoune-lint'
+  lint-enable
+
+  hook buffer BufWritePre .+\.go %{ go-format -use-goimports }
+  hook buffer BufWritePost .+\.go %{ lint }
+}
+
+# linting
+map global user n ':lint-next-error<ret>'
+map global user N ':lint-previous-error<ret>'

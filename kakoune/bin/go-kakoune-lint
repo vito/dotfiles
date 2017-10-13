@@ -1,0 +1,18 @@
+#!/bin/bash
+
+file="$(basename $kak_buffile)"
+pkgpath="$(dirname $kak_buffile)"
+
+pkg=""
+for gopath in $(echo $GOPATH | tr ':' ' '); do
+  if echo "$pkgpath" | grep "$gopath"; then
+    pkg=$(echo $pkgpath | sed -e "s|$GOPATH/src/||")
+  fi
+done
+
+go build $pkg 2>&1 | grep -v '^#' | grep "$file" | while read loc rest; do
+  buildfile=$(echo $loc | cut -d: -f1)
+  buildline=$(echo $loc | cut -d: -f2)
+  buildcol=$(echo $loc | cut -d: -f3)
+  echo "$(basename $buildfile):$buildline:$buildcol: error: $rest";
+done
