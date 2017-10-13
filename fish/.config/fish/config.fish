@@ -27,7 +27,7 @@ if test -d /opt/google-cloud-sdk/bin
   set -x PATH /opt/google-cloud-sdk/bin $PATH
 end
 
-if test -d /usr/lib/postgresql/*/bin
+if test -d /usr/lib/postgresql
   set -x PATH /usr/lib/postgresql/*/bin $PATH
 end
 
