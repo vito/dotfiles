@@ -10,7 +10,7 @@ for gopath in $(echo $GOPATH | tr ':' ' '); do
   fi
 done
 
-go build $pkg 2>&1 | grep -v '^#' | grep "$file" | while read loc rest; do
+go build -o /dev/null $pkg 2>&1 | grep -v '^#' | grep "$file" | while read loc rest; do
   buildfile=$(echo $loc | cut -d: -f1)
   buildline=$(echo $loc | cut -d: -f2)
   buildcol=$(echo $loc | cut -d: -f3)
