@@ -27,8 +27,8 @@ if test -d /opt/google-cloud-sdk/bin
   set -x PATH /opt/google-cloud-sdk/bin $PATH
 end
 
-if test -d /usr/lib/postgresql/9.5/bin
-  set -x PATH /usr/lib/postgresql/9.5/bin $PATH
+if test -d /usr/lib/postgresql/*/bin
+  set -x PATH /usr/lib/postgresql/*/bin $PATH
 end
 
 alias gst 'git status'
