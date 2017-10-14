@@ -58,6 +58,10 @@ hook global WinSetOption filetype=go %{
 
   # indent using tabs
   set global indentwidth 0
+
+  # goto-definition
+  map global goto d '<esc>:go-jump<ret>' \
+    -docstring "jump to definition"
 }
 
 # elm
