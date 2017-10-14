@@ -70,3 +70,8 @@ hook global WinSetOption filetype=elm %{
   set window formatcmd 'elm-format --stdin'
   hook buffer BufWritePre .+\.elm %{ format }
 }
+
+# auto-mkdir parent dirs when saving a file
+hook global BufWritePre .* %{ nop %sh{ dir=$(dirname $kak_buffile)
+  [ -d $dir ] || mkdir --parents $dir
+}}
