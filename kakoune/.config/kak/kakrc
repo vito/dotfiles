@@ -75,3 +75,14 @@ hook global WinSetOption filetype=elm %{
 hook global BufWritePre .* %{ nop %sh{ dir=$(dirname $kak_buffile)
   [ -d $dir ] || mkdir --parents $dir
 }}
+
+# highlight search matches
+face search +r
+
+hook global NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
+  add-highlighter dynregex '%reg{/}' 0:search
+}}
+
+hook global NormalKey <esc> %{ try %{
+  remove-highlighter dynregex_%reg{<slash>}
+}}
