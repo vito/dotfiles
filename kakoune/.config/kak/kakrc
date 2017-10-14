@@ -1,4 +1,4 @@
-colorscheme zenburn
+colorscheme gruvbox
 
 # indent using 2 spaces by default
 set global tabstop 2
