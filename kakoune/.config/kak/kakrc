@@ -4,6 +4,11 @@ colorscheme gruvbox
 set global tabstop 2
 set global indentwidth 2
 
+# <tab> expands to spaces instead
+hook global InsertChar \t %{
+  exec -draft -itersel h@
+}
+
 # show contextual lines,columns when panning around
 set global scrolloff 3,5
 
