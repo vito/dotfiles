@@ -76,7 +76,8 @@ hook global WinSetOption filetype=elm %{
 }
 
 # auto-mkdir parent dirs when saving a file
-hook global BufWritePre .* %{ nop %sh{ dir=$(dirname $kak_buffile)
+hook global BufWritePre .* %{ nop %sh{
+  dir=$(dirname $kak_buffile)
   [ -d $dir ] || mkdir --parents $dir
 }}
 
