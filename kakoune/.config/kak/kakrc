@@ -91,3 +91,34 @@ hook global NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
 hook global NormalKey <esc> %{ try %{
   remove-highlighter dynregex_%reg{<slash>}
 }}
+
+# launch ide; opens window for tool output (i.e. :grep)
+def ide %{
+  rename-client main
+  set global jumpclient main
+
+  new rename-client tools
+  set global toolsclient tools
+
+  focus main
+}
+
+# nicer window splitting
+def split -params 0..1 -file-completion %{ %sh{
+  if [ $# = "0" ]; then
+    echo tmux-new-vertical
+  else
+		echo tmux-new-vertical edit "$@"
+	fi
+}}
+
+def vsplit -params 0..1 -file-completion %{ %sh{
+  if [ $# = "0" ]; then
+    echo tmux-new-horizontal
+  else
+		echo tmux-new-horizontal edit "$@"
+	fi
+}}
+
+alias global sp split
+alias global vsp vsplit
