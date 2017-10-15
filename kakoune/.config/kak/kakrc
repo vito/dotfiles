@@ -43,9 +43,9 @@ hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap wi
 
 # linting
 map global user n ':lint-next-error<ret>' \
-	-docstring "lint: next error"
+  -docstring "lint: next error"
 map global user N ':lint-previous-error<ret>' \
-	-docstring "lint: previous error"
+  -docstring "lint: previous error"
 
 # go
 hook global WinSetOption filetype=go %{
@@ -108,16 +108,16 @@ def split -params 0..1 -file-completion %{ %sh{
   if [ $# = "0" ]; then
     echo tmux-new-vertical
   else
-		echo tmux-new-vertical edit "$@"
-	fi
+    echo tmux-new-vertical edit "$@"
+  fi
 }}
 
 def vsplit -params 0..1 -file-completion %{ %sh{
   if [ $# = "0" ]; then
     echo tmux-new-horizontal
   else
-		echo tmux-new-horizontal edit "$@"
-	fi
+    echo tmux-new-horizontal edit "$@"
+  fi
 }}
 
 alias global sp split
