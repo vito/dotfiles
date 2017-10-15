@@ -21,6 +21,10 @@ map global normal '#' :comment-line<ret>
 
 # save on enter
 map global normal <ret> :w<ret>
+# ...except in grep result panes
+hook global WinSetOption filetype=grep %{
+  unmap global normal <ret> :w<ret>
+}
 
 # ag instead of grep
 set global grepcmd 'ag --follow --column'
