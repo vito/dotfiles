@@ -29,12 +29,12 @@ hook global WinSetOption filetype=grep %{
 # ag instead of grep
 set global grepcmd 'ag --follow --column'
 
-# x11 clipboard interop
-map global user y '<a-|>xsel --input --clipboard<ret>; :echo -color Information "copied selection to X11 clipboard"<ret>' \
+# clipboard interop
+map global user y '<a-|>kakoune-pbcopy<ret>; :echo "copied selection to clipboard"<ret>' \
   -docstring "clipboard: copy"
-map global user P '!xsel --output --clipboard<ret>' \
+map global user P '!kakoune-pbpaste<ret>' \
   -docstring "clipboard: paste before"
-map global user p '<a-!>xsel --output --clipboard<ret>' \
+map global user p '<a-!>kakoune-pbpaste<ret>' \
   -docstring "clipboard: paste after"
 
 # use <tab> to cycle through complete suggestions
@@ -105,19 +105,31 @@ def ide %{
 
 # nicer window splitting
 def split -params 0..1 -file-completion %{ %sh{
-  if [ $# = "0" ]; then
-    echo tmux-new-vertical
+  if [ -n "$TMUX" ]; then
+    echo -n tmux-new-vertical
   else
-    echo tmux-new-vertical edit "$@"
+    echo -n iterm-new-vertical
   fi
+
+  if [ $# = "1" ]; then
+    echo -n " edit" "$@"
+  fi
+
+  echo
 }}
 
 def vsplit -params 0..1 -file-completion %{ %sh{
-  if [ $# = "0" ]; then
-    echo tmux-new-horizontal
+  if [ -n "$TMUX" ]; then
+    echo -n tmux-new-horizontal
   else
-    echo tmux-new-horizontal edit "$@"
+    echo -n iterm-new-horizontal
   fi
+
+  if [ $# = "1" ]; then
+    echo -n " edit" "$@"
+  fi
+
+  echo
 }}
 
 alias global sp split

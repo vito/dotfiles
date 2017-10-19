@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if which pbpaste >/dev/null 2>&1; then
+  exec pbpaste
+else
+  exec xsel --output --clipboard
+fi
