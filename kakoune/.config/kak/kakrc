@@ -105,31 +105,29 @@ def ide %{
 
 # nicer window splitting
 def split -params 0..1 -file-completion %{ %sh{
-  if [ -n "$TMUX" ]; then
-    echo -n tmux-new-vertical
-  else
-    echo -n iterm-new-vertical
-  fi
-
+  args=""
   if [ $# = "1" ]; then
-    echo -n " edit" "$@"
+    args=" edit $@"
   fi
 
-  echo
+  if [ -n "$TMUX" ]; then
+    echo tmux-new-vertical$args
+  else
+    echo iterm-new-horizontal$args
+  fi
 }}
 
 def vsplit -params 0..1 -file-completion %{ %sh{
-  if [ -n "$TMUX" ]; then
-    echo -n tmux-new-horizontal
-  else
-    echo -n iterm-new-horizontal
-  fi
-
+  args=""
   if [ $# = "1" ]; then
-    echo -n " edit" "$@"
+    args=" edit $@"
   fi
 
-  echo
+  if [ -n "$TMUX" ]; then
+    echo tmux-new-horizontal$args
+  else
+    echo iterm-new-vertical$args
+  fi
 }}
 
 alias global sp split
