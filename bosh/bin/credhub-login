@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e -u
+
+echo "checking for lastpass target..."
+lpass sync
+
+echo "targeting credhub..."
+credhub api "$(lpass show 'Shared-Concourse/Prod CredHub' --url)"
+credhub login -u "$(lpass show 'Shared-Concourse/Prod CredHub' --username)" -p "$(lpass show 'Shared-Concourse/Prod CredHub' --password)"
