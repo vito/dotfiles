@@ -4,31 +4,17 @@ set -e -x
 
 cd $(dirname $0)
 
-SLACK_VERSION=2.4.2
-SLACK_DEB="https://downloads.slack-edge.com/linux_releases/slack-desktop-${SLACK_VERSION}-amd64.deb"
-
 NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
 
 function gimme() {
-  sudo apt-get -y install "$@"
+  sudo apt -y install "$@"
 }
-
-# ntp setup (be sure to configure the timezone yourself)
-gimme ntp
-
-# provides virtualbox
-vbox_apt_list=/etc/apt/sources.list.d/virtualbox.list
-if ! [ -e $vbox_apt_list ]; then
-  echo 'deb http://download.virtualbox.org/virtualbox/debian stretch contrib' | sudo tee $vbox_apt_list >/dev/null
-  wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-  wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-fi
 
 # useful for installing .deb with deps with -n; used for Slack install
 gimme gdebi
 
 # sync up everything
-sudo apt-get update
+sudo apt update
 
 # install neovim, + python for plugins, + xclip for copy/paste
 gimme \
@@ -55,19 +41,10 @@ fi
 # config orchestration
 gimme stow
 
-# tiling window manager
-gimme compton i3 conky
-stow i3
-
 # shell
 gimme fish
 stow fish
 sudo chsh -s /usr/bin/fish $(whoami)
-
-# ms fonts, Iosevka for monospace, font hinting config/etc.
-gimme ttf-mscorefonts-installer
-stow fonts
-gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka 12'
 
 # ruby + gem config
 gimme ruby
@@ -82,11 +59,6 @@ GEM_HOME=$HOME/.gems gem install git-duet
 gimme golang
 GOPATH=$HOME/go vim --headless +GoInstallBinaries +qa
 
-# node, npm, elm
-# nodejs-legacy to provide 'node' binary which many packages assume
-gimme nodejs nodejs-legacy npm
-sudo npm install -g uglify-js less less-plugin-clean-css elm elm-oracle elm-test
-
 # postgresql
 gimme postgresql
 sudo usermod -aG postgres $(whoami)
@@ -94,24 +66,5 @@ sudo usermod -aG postgres $(whoami)
 # create superuser role for current user with empty password
 yes "" | sudo su postgres -c "createuser -s -P $(whoami)" || true
 
-# NB: virtualbox shells out to `ifconfig` and `route` and silently fails if
-# they're not available. do we need to install it?
-gimme virtualbox-5.1 vagrant
-sudo usermod -aG vboxusers $(whoami)
-
 # misc tooling
 gimme htop silversearcher-ag direnv lastpass-cli pavucontrol curl jq
-
-# install slack client
-if ! which slack 2>&1 >/dev/null || [ "$(slack --version)" != "$SLACK_VERSION" ]; then
-  curl "$SLACK_DEB" > /tmp/slack.deb
-  sudo gdebi -n /tmp/slack.deb
-fi
-
-# configure terminal
-gimme rxvt-unicode-256color
-stow urxvt
-
-# configure tmux
-gimme tmux
-stow tmux
