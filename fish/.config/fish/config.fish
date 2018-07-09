@@ -31,6 +31,10 @@ if test -d /usr/lib/postgresql
   set -x PATH /usr/lib/postgresql/*/bin $PATH
 end
 
+if test -d /opt/node/bin
+  set -x PATH /opt/node/bin $PATH
+end
+
 alias gst 'git status'
 
 # i have never ever wanted to run ghostscript
