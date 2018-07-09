@@ -5,3 +5,4 @@ xmonad/.xmonad/xmonad.o
 fish/.config/fish/fish_history
 fish/.config/fish/fishd.*
 tmux/.tmux/plugins/*
+fonts/.fonts/.uuid
