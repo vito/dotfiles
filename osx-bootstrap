@@ -82,9 +82,6 @@ npm install -g uglify-js less less-plugin-clean-css elm elm-oracle elm-test
 gimme postgresql
 ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 
-# install phantojs
-gimme phantomjs
-
 # install gui livelihood
 gimme_cask google-chrome iterm2 slack
 
