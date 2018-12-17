@@ -1,5 +1,3 @@
-[include]
-	path = .gitpair
 [alias]
 	ci = duet-commit
 	co = checkout
