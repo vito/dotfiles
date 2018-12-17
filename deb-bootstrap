@@ -55,7 +55,7 @@ curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 # golang
 gimme golang
-GOPATH=$HOME/go vim --headless +GoInstallBinaries +qa
+vim --headless +GoInstallBinaries +qa
 
 # postgresql
 gimme postgresql

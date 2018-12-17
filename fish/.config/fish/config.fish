@@ -1,11 +1,5 @@
 set --erase fish_greeting
 
-set -x GOPATH $HOME/go
-
-if test -d $GOPATH/bin
-  set -x PATH $GOPATH/bin $PATH
-end
-
 set -x EDITOR nvim
 set -x GIT_EDITOR $EDITOR
 
@@ -21,6 +15,14 @@ end
 
 if test -d $HOME/.cargo/bin
   set -x PATH $HOME/.cargo/bin $PATH
+end
+
+if test -d $HOME/go/bin
+  set -x PATH $HOME/go/bin $PATH
+end
+
+if test -d /usr/local/go/bin
+  set -x PATH /usr/local/go/bin $PATH
 end
 
 if test -d /opt/google-cloud-sdk/bin
