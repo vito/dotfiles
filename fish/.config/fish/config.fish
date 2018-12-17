@@ -13,6 +13,10 @@ if test -d $GEM_HOME/bin
   set -x PATH $GEM_HOME/bin $PATH
 end
 
+if test -d $HOME/.local/bin
+  set -x PATH $HOME/.local/bin $PATH
+end
+
 if test -d $HOME/.cargo/bin
   set -x PATH $HOME/.cargo/bin $PATH
 end
@@ -35,6 +39,10 @@ end
 
 if test -d /opt/node/bin
   set -x PATH /opt/node/bin $PATH
+end
+
+if test -d /opt/datagrip/bin
+  set -x PATH /opt/datagrip/bin $PATH
 end
 
 set -x GIT_DUET_CO_AUTHORED_BY true
