@@ -10,6 +10,8 @@ mkdir -p ~/bin ~/.config
 
 NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
 
+GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
+
 function gimme() {
   local name=$(basename $1)
   if brew list | grep "\\<$name\\>"; then
@@ -53,7 +55,7 @@ stow fish
 # install neovim as ~/bin/vim, + python support
 gimme_all neovim/neovim/neovim python3
 pip3 install neovim
-GOPATH=$HOME/go nvim --headless +UpdateRemotePlugins +qa
+nvim --headless +UpdateRemotePlugins +qa
 ln -sf "$(which nvim)" ~/bin/vim
 
 # bootstrap neovim config (`git pull` on your own)
@@ -61,22 +63,17 @@ if ! [ -e ~/.config/nvim ]; then
   git clone "$NEOVIM_CONFIG" ~/.config/nvim --recursive
 fi
 
-# install ruby + sane gem config
-gimme ruby
-stow gem
-
 # install git + git config + sane git duet
 gimme git
 stow git
-GEM_HOME=$HOME/.gems gem install git-duet
+curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 # install golang toolchain
 gimme go
-GOPATH=$HOME/go nvim --headless +GoInstallBinaries +qa
+nvim --headless +GoInstallBinaries +qa
 
 # install node/elm/etc toolchain
 gimme node
-npm install -g uglify-js less less-plugin-clean-css elm elm-oracle elm-test
 
 # install postgres
 gimme postgresql
