@@ -35,6 +35,8 @@ if test -d /opt/node/bin
   set -x PATH /opt/node/bin $PATH
 end
 
+set -x GIT_DUET_CO_AUTHORED_BY true
+
 alias gst 'git status'
 
 # i have never ever wanted to run ghostscript

@@ -6,6 +6,8 @@ cd $(dirname $0)
 
 NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
 
+GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
+
 function gimme() {
   sudo apt -y install "$@"
 }
@@ -46,14 +48,10 @@ gimme fish
 stow fish
 sudo chsh -s /usr/bin/fish $(whoami)
 
-# ruby + gem config
-gimme ruby
-stow gem
-
 # git
 gimme git
 stow git
-GEM_HOME=$HOME/.gems gem install git-duet
+curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 # golang
 gimme golang
