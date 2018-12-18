@@ -15,7 +15,7 @@ GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/l
 function gimme() {
   local name=$(basename $1)
   if brew list | grep "\\<$name\\>"; then
-    brew outdated "$name" || brew install "$@"
+    brew outdated "$name" || brew upgrade "$@"
   else
     brew install "$@"
   fi
