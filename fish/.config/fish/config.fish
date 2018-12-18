@@ -45,7 +45,11 @@ if test -d /opt/datagrip/bin
   set -x PATH /opt/datagrip/bin $PATH
 end
 
+# use 'Co-authored-by:'
 set -x GIT_DUET_CO_AUTHORED_BY true
+
+# set user.name and user.email because we have to use regular 'git commit'
+set -x GIT_DUET_SET_GIT_USER_CONFIG true
 
 alias gst 'git status'
 
