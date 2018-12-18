@@ -53,7 +53,7 @@ finger $USER | grep "$(which fish)" >/dev/null || sudo chsh -s "$(which fish)" $
 stow fish
 
 # install neovim as ~/bin/vim, + python support
-gimme_all neovim/neovim/neovim python3
+gimme_all neovim/neovim/neovim python
 pip3 install neovim
 nvim --headless +UpdateRemotePlugins +qa
 ln -sf "$(which nvim)" ~/bin/vim
