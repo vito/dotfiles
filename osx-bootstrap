@@ -10,7 +10,7 @@ mkdir -p ~/bin ~/.config
 
 NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
 
-GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
+GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/darwin_amd64.tar.gz'
 
 function gimme() {
   local name=$(basename $1)
