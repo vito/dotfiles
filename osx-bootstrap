@@ -80,7 +80,7 @@ gimme postgresql
 ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 
 # install gui livelihood
-gimme_cask google-chrome iterm2 slack
+gimme_cask google-chrome iterm2
 
 # install Onsi's ShiftIt which supports sizing in thirds
 if ! [ -e /Applications/ShiftIt.app ]; then
@@ -90,8 +90,8 @@ fi
 
 # install cli livelihood
 gimme_all jq htop stress direnv the_silver_searcher lastpass-cli
-gimme_cask vagrant virtualbox
+gimme_cask virtualbox
 
 # install bosh + tooling
-gimme cloudfoundry/tap/bosh-cli --without-bosh2
+gimme cloudfoundry/tap/bosh-cli
 stow bosh
