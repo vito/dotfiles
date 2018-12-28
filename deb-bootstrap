@@ -65,4 +65,4 @@ sudo usermod -aG postgres $(whoami)
 yes "" | sudo su postgres -c "createuser -s -P $(whoami)" || true
 
 # misc tooling
-gimme htop silversearcher-ag direnv lastpass-cli pavucontrol curl jq
+gimme htop silversearcher-ag direnv lastpass-cli curl jq
