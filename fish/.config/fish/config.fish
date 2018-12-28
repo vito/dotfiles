@@ -37,6 +37,10 @@ if test -d /usr/lib/postgresql
   set -x PATH /usr/lib/postgresql/*/bin $PATH
 end
 
+if test -d /usr/local/go
+  set -x PATH /usr/local/go/bin $PATH
+end
+
 if test -d /opt/node/bin
   set -x PATH /opt/node/bin $PATH
 end
