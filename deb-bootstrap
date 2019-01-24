@@ -1,10 +1,14 @@
 #!/bin/bash
 
-set -e -x
+set -e -u -x
+set -o pipefail
 
 cd $(dirname $0)
 
+NEOVIM_RELEASE='https://github.com/neovim/neovim/releases/download/v0.3.4/nvim-linux64.tar.gz'
 NEOVIM_CONFIG='https://github.com/vito/dot-nvim.git'
+
+GO_RELEASE='https://dl.google.com/go/go1.11.5.linux-amd64.tar.gz'
 
 GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
 
@@ -12,57 +16,55 @@ function gimme() {
   sudo apt -y install "$@"
 }
 
-# useful for installing .deb with deps with -n; used for Slack install
-gimme gdebi
-
 # sync up everything
 sudo apt update
 
-# install neovim, + python for plugins, + xclip for copy/paste
-gimme \
-  neovim \
-  python-dev python-pip python3-dev python3-pip \
-  xclip
+# just in case...
+gimme curl
 
-# support for python3 plugins
+# install neovim
+curl -L "$NEOVIM_RELEASE" | sudo tar -zxf - --strip-components=1 -C /usr/local
+
+# set up python3 for neovim plugins
+gimme python3-pip
 sudo pip3 install neovim
 
 # set up neovim as vi/vim/editor
-sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-sudo update-alternatives --set vi /usr/bin/nvim
-sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-sudo update-alternatives --set vim /usr/bin/nvim
-sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-sudo update-alternatives --set editor /usr/bin/nvim
+sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 60
+sudo update-alternatives --set vi /usr/local/bin/nvim
+sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 60
+sudo update-alternatives --set vim /usr/local/bin/nvim
+sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 60
+sudo update-alternatives --set editor /usr/local/bin/nvim
 
 # bootstrap neovim config (`git pull` on your own)
 if ! [ -e ~/.config/nvim ]; then
   git clone "$NEOVIM_CONFIG" ~/.config/nvim --recursive
 fi
 
+# local tooling is installed here
+mkdir -p ~/bin
+
 # config orchestration
 gimme stow
 
 # shell
 gimme fish
-stow fish
+stow -t ~ fish
 sudo chsh -s /usr/bin/fish $(whoami)
 
 # git
 gimme git
-stow git
+stow -t ~ git
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 # golang
-gimme golang
+curl -L "$GO_RELEASE" | sudo tar -zxf - -C /usr/local
 vim --headless +GoInstallBinaries +qa
 
 # postgresql
 gimme postgresql
 sudo usermod -aG postgres $(whoami)
 
-# create superuser role for current user with empty password
-yes "" | sudo su postgres -c "createuser -s -P $(whoami)" || true
-
 # misc tooling
-gimme htop silversearcher-ag direnv lastpass-cli curl jq
+gimme htop silversearcher-ag lastpass-cli jq xclip
