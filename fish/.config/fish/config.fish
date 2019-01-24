@@ -100,12 +100,3 @@ set fish_pager_color_completion normal
 set fish_pager_color_description 555\x1eyellow
 set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
-
-# automatically run tmux when in st
-if test $TERM = "xterm-256color" -a -z "$ITERM_PROFILE"
-  if which tmux >/dev/null; and status --is-interactive
-    if test -z (echo $TMUX)
-      exec tmux
-    end
-  end
-end
