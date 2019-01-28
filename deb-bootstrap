@@ -27,7 +27,7 @@ curl -L "$NEOVIM_RELEASE" | sudo tar -zxf - --strip-components=1 -C /usr/local
 
 # set up python3 for neovim plugins
 gimme python3-pip
-sudo pip3 install neovim
+sudo pip3 install pynvim
 
 # set up neovim as vi/vim/editor
 sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 60
