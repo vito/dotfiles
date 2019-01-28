@@ -3,6 +3,7 @@ xmonad/.xmonad/xmonad.errors
 xmonad/.xmonad/xmonad.hi
 xmonad/.xmonad/xmonad.o
 fish/.config/fish/fish_history
+fish/.config/fish/fish_variables
 fish/.config/fish/fishd.*
 tmux/.tmux/plugins/*
 fonts/.fonts/.uuid
