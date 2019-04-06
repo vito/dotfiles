@@ -1,4 +1,6 @@
-base16 gruvbox-dark-soft
+if type -q base16
+  base16 gruvbox-dark-soft
+end
 
 if which direnv >/dev/null
   eval (direnv hook fish)
