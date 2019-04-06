@@ -34,3 +34,8 @@ sudo apt install golang-1.12
 vim --headless +GoInstallBinaries +qa
 
 sudo apt -t unstable install lastpass-cli
+
+stow -t ~ fonts
+
+stow -t ~ tilix
+sudo apt install tilix/testing
