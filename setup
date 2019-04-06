@@ -4,6 +4,9 @@ set -e -u -x
 
 GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
 
+# install curl from unstable for lastpass-cli
+sudo apt -t unstable install curl
+
 sudo apt install stow
 sudo stow -t / rootfs
 
@@ -17,7 +20,6 @@ fish -c 'fisher add rafaelrinaldi/pure smh/base16-shell-fish jethrokuan/z tuvist
 sudo chsh -s /usr/bin/fish $(whoami)
 
 stow -t ~ git
-sudo apt install curl
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 stow -t ~ nvim
