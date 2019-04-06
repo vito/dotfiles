@@ -19,7 +19,8 @@ stow -t ~ git
 sudo apt install curl
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
-sudo apt -t testing install neovim python3-pip
+stow -t ~ nvim
+sudo apt install neovim/testing python3-pip
 sudo pip3 install pynvim
 for alt in vi vim editor; do
   sudo update-alternatives --install /usr/bin/$alt $alt /usr/bin/nvim 60
