@@ -1,0 +1,8 @@
+deb http://http.us.debian.org/debian testing main non-free contrib
+deb-src http://http.us.debian.org/debian testing main non-free contrib
+
+deb http://security.debian.org/ testing/updates main contrib non-free
+deb-src http://security.debian.org/ testing/updates main contrib non-free
+
+deb http://http.us.debian.org/debian unstable main non-free contrib
+deb-src http://http.us.debian.org/debian unstable main non-free contrib
