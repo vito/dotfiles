@@ -1,3 +1,5 @@
 fishd.*
 fishfile
 fish_variables
+functions
+conf.d
