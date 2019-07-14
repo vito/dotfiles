@@ -4,15 +4,14 @@ set -e -u -x
 
 GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
 
-sudo apt install stow
-sudo stow -t / rootfs
-
 sudo apt update
+
+sudo apt install stow
 
 mkdir -p ~/bin
 
 stow -t ~ fish
-sudo apt -t testing install fish fonts-powerline
+sudo apt install fish fonts-powerline
 fish -c 'fisher add rafaelrinaldi/pure smh/base16-shell-fish jethrokuan/z tuvistavie/fish-ssh-agent'
 sudo chsh -s /usr/bin/fish $(whoami)
 
@@ -21,14 +20,17 @@ sudo apt install curl
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 stow -t ~ nvim
-sudo apt install neovim/testing python3-pip
+sudo apt install neovim python3-pip
 sudo pip3 install pynvim
 for alt in vi vim editor; do
   sudo update-alternatives --install /usr/bin/$alt $alt /usr/bin/nvim 60
   sudo update-alternatives --set $alt /usr/bin/nvim
 done
 
+sudo update-alternatives --install /usr/bin/yarn yarn /usr/bin/yarnpkg 60
+sudo update-alternatives --set yarn /usr/bin/yarnpkg
+
 sudo apt install golang-1.12
 vim --headless +GoInstallBinaries +qa
 
-sudo apt -t unstable install lastpass-cli
+sudo apt install lastpass-cli
