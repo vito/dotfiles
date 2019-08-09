@@ -1,5 +1,5 @@
 if type -q base16
-  base16 gruvbox-dark-soft
+  base16 onedark
 end
 
 if which direnv >/dev/null
