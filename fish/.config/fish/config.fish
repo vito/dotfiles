@@ -11,7 +11,9 @@ alias gst 'git status'
 # i have never ever wanted to run ghostscript
 alias gs 'git status'
 
-for path in $HOME/bin $HOME/go/bin /usr/lib/go-1.12/bin
+set -x GEM_HOME $HOME/.gems
+
+for path in $HOME/bin $HOME/go/bin $HOME/.yarn/bin $GEM_HOME/bin /usr/lib/go-1.12/bin /usr/lib/postgresql/11/bin
   if test -d $path
     set -x PATH $path $PATH
   end
