@@ -3,6 +3,7 @@
 set -e -u -x
 
 GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
+NVIM_NIGHTLY_RELEASE='https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage'
 
 sudo apt update
 
@@ -20,11 +21,11 @@ sudo apt install curl
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 stow -t ~ nvim
-sudo apt install neovim python3-pip
-sudo pip3 install pynvim
+sudo curl -L "$NVIM_NIGHTLY_RELEASE" -o /usr/bin/nvim.appimage
+sudo chmod +x /usr/bin/nvim.appimage
 for alt in vi vim editor; do
-  sudo update-alternatives --install /usr/bin/$alt $alt /usr/bin/nvim 60
-  sudo update-alternatives --set $alt /usr/bin/nvim
+  sudo update-alternatives --install /usr/bin/$alt $alt /usr/bin/nvim.appimage 60
+  sudo update-alternatives --set $alt /usr/bin/nvim.appimage
 done
 
 sudo update-alternatives --install /usr/bin/yarn yarn /usr/bin/yarnpkg 60
