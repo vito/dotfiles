@@ -1,0 +1,20 @@
+{
+    "percent": 0.9,
+    "swallows": [
+       {
+          "class": "^mpv$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "percent": 0.1,
+    "swallows": [
+       {
+          "class": "^google-chrome$"
+       }
+    ],
+    "type": "con"
+}
+

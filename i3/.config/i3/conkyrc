@@ -1,0 +1,19 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 2.0
+total_run_times 0
+override_utf8_locale yes
+
+TEXT
+
+[{ "full_text": "RAM", "color": "\#abb2bf" },
+ { "full_text": "${membar}", "color": ${if_match ${memperc}>50}"\#be5046"${else}"\#565c64"${endif} },
+ { "full_text": "CPU", "color": "\#abb2bf" },
+ { "full_text": "${cpubar}", "color": ${if_match ${cpu}>50}"\#be5046"${else}"\#565c64"${endif} },
+ { "full_text": "BAT", "color": "\#abb2bf" },
+ { "full_text": "${battery_bar}", "color": ${if_match ${battery_percent}<20}"\#be5046"${else}"\#565c64"${endif} },
+ { "full_text": "CLK", "color": "\#abb2bf" },
+ { "full_text": "${time %Y-%m-%d %I:%M%p}", "color": "\#c8ccd4" }],
