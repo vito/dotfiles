@@ -200,6 +200,6 @@ bar {
 
 bindsym $mod+Shift+b exec "bash -c 'pkill i3bar; i3bar --bar_id top-bar'"
 
-assign [class="google-chrome"] 2: web
+assign [class="Google-chrome"] 2: web
 assign [class="Slack"] 3: chat
 assign [class="discord"] 3: chat
