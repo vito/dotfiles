@@ -203,3 +203,10 @@ bindsym $mod+Shift+b exec "bash -c 'pkill i3bar; i3bar --bar_id top-bar'"
 assign [class="Google-chrome"] 2: web
 assign [class="Slack"] 3: chat
 assign [class="discord"] 3: chat
+
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# touchpad properties (s76 darter pro)
+exec xinput set-prop 11 288 1 # tap-to-click
+exec xinput set-prop 11 296 1 # natural scrolling
