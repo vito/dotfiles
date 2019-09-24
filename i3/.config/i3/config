@@ -201,6 +201,10 @@ assign [class="discord"] 3: chat
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
+bindsym --release Print exec "cd ~/scrots; scrot '%F@%T.png' -e 'ln -sf $f latest; xdg-open $f'"
+bindsym --release Shift+Print exec "cd ~/scrots; scrot '%F@%T.png' -u -e 'ln -sf $f latest; xdg-open $f'"
+bindsym --release Ctrl+Shift+Print exec "cd ~/scrots; scrot '%F@%T.png' -s -e 'ln -sf $f latest; xdg-open $f'"
+
 # touchpad properties (s76 darter pro)
 exec xinput set-prop 11 288 1 # tap-to-click
 exec xinput set-prop 11 296 1 # natural scrolling
