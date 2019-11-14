@@ -41,7 +41,7 @@ if ! which brew >/dev/null; then
 fi
 
 # install cask
-brew tap caskroom/cask
+brew tap homebrew/cask
 
 # install simple config manager
 gimme stow
