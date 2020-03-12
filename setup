@@ -16,7 +16,7 @@ mkdir -p ~/bin
 
 stow -t ~ fish
 sudo apt -t testing install fish fonts-powerline
-fish -c 'fisher add rafaelrinaldi/pure smh/base16-shell-fish jethrokuan/z tuvistavie/fish-ssh-agent'
+fish -c 'fisher add rafaelrinaldi/pure rkbk60/onedark-fish jethrokuan/z tuvistavie/fish-ssh-agent'
 sudo chsh -s /usr/bin/fish $(whoami)
 
 stow -t ~ git

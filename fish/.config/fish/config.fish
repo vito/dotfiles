@@ -1,17 +1,19 @@
 if type -q base16
-  base16 gruvbox-dark-soft
+  base16 onedark
 end
 
 if which direnv >/dev/null
   eval (direnv hook fish)
 end
 
+set -x GEM_HOME $HOME/.gem
+
 alias gst 'git status'
 
 # i have never ever wanted to run ghostscript
 alias gs 'git status'
 
-for path in $HOME/bin $HOME/go/bin /usr/lib/go-1.12/bin
+for path in $HOME/bin $HOME/.local/bin $HOME/go/bin $HOME/.yarn/bin $GEM_HOME/bin /usr/lib/go-1.13/bin /opt/google-cloud-sdk/bin /usr/lib/postgresql/11/bin
   if test -d $path
     set -x PATH $path $PATH
   end
