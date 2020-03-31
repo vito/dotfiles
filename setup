@@ -3,39 +3,37 @@
 set -e -u -x
 
 GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
+NEOVIM_RELEASE='https://github.com/neovim/neovim/releases/download/v0.4.3/nvim-linux64.tar.gz'
+GOLANG_RELEASE='https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz'
 
-# install curl from unstable for lastpass-cli
-sudo apt -t unstable install curl
+# bare necessities
+sudo apt install curl stow
 
-sudo apt install stow
-sudo stow -t / rootfs
-
-sudo apt update
-
+# local executables dir
 mkdir -p ~/bin
 
-stow -t ~ fish
-sudo apt -t testing install fish fonts-powerline
-fish -c 'fisher add rafaelrinaldi/pure rkbk60/onedark-fish jethrokuan/z tuvistavie/fish-ssh-agent'
-sudo chsh -s /usr/bin/fish $(whoami)
+# Go
+curl -L "$GOLANG_RELEASE" | sudo tar -C /usr/local -xzf -
 
+# Git
 stow -t ~ git
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
+# Fish
+stow -t ~ fish
+sudo apt install fish fonts-powerline
+fish -c 'fisher add rafaelrinaldi/pure rkbk60/onedark-fish jethrokuan/z tuvistavie/fish-ssh-agent'
+sudo chsh -s /usr/bin/fish $(whoami)
+
+# Neovim
 stow -t ~ nvim
-sudo apt install neovim/testing python3-pip
+sudo mkdir /usr/local/nvim
+curl -L "$NEOVIM_RELEASE" | sudo tar -C /usr/local/nvim -zxf - --strip-components=1
+
+# Python Neovim
+sudo apt install python3-pip
 sudo pip3 install pynvim
 for alt in vi vim editor; do
-  sudo update-alternatives --install /usr/bin/$alt $alt /usr/bin/nvim 60
-  sudo update-alternatives --set $alt /usr/bin/nvim
+  sudo update-alternatives --install /usr/bin/$alt $alt /usr/local/nvim/bin/nvim 60
+  sudo update-alternatives --set $alt /usr/local/nvim/bin/nvim
 done
-
-sudo apt install golang-1.12
-vim --headless +GoInstallBinaries +qa
-
-sudo apt -t unstable install lastpass-cli
-
-stow -t ~ fonts
-
-stow -t ~ tilix
-sudo apt install tilix/testing

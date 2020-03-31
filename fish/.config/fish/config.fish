@@ -13,11 +13,26 @@ alias gst 'git status'
 # i have never ever wanted to run ghostscript
 alias gs 'git status'
 
-for path in $HOME/bin $HOME/.local/bin $HOME/go/bin $HOME/.yarn/bin $GEM_HOME/bin /usr/lib/go-1.13/bin /opt/google-cloud-sdk/bin /usr/lib/postgresql/11/bin
-  if test -d $path
-    set -x PATH $path $PATH
+function install_path
+  for path in $argv
+    if test -d $path
+      set -x PATH $path $PATH
+    end
   end
 end
+
+# local software
+install_path ~/bin
+install_path ~/.local/bin
+install_path ~/go/bin
+install_path ~/.yarn/bin
+install_path ~/.gem/bin
+
+# system-wide software
+install_path /usr/local/nvim/bin
+install_path /usr/local/go/bin
+install_path /opt/google-cloud-sdk/bin
+install_path /usr/lib/postgresql/*/bin
 
 set fish_color_autosuggestion 555\x1ebrblack
 set fish_color_command \x2d\x2dbold
