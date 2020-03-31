@@ -32,7 +32,10 @@ install_path ~/.gem/bin
 install_path /usr/local/nvim/bin
 install_path /usr/local/go/bin
 install_path /opt/google-cloud-sdk/bin
-install_path /usr/lib/postgresql/*/bin
+
+if test -d /usr/lib/postgresql
+  install_path /usr/lib/postgresql/*/bin
+end
 
 set fish_color_autosuggestion 555\x1ebrblack
 set fish_color_command \x2d\x2dbold
