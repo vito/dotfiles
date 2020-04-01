@@ -5,39 +5,46 @@ set -e -u -x
 GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
 NEOVIM_RELEASE='https://github.com/neovim/neovim/releases/download/v0.4.3/nvim-linux64.tar.gz'
 GOLANG_RELEASE='https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz'
+RIPGREP_RELEASE='https://github.com/BurntSushi/ripgrep/releases/download/12.0.1/ripgrep-12.0.1-x86_64-unknown-linux-musl.tar.gz'
 
 # bare necessities
 sudo apt install curl stow
 
-# Node
+# node sources
 curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
 echo "deb https://deb.nodesource.com/node_12.x $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 echo "deb-src https://deb.nodesource.com/node_12.x $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
 
-# Yarn
+## yarn sources
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-# update all sources
+# update
 sudo apt update
+
+# install node and yarn
+sudo apt install nodejs yarn
 
 # local executables dir
 mkdir -p ~/bin
 
-# Go
+# go
 curl -L "$GOLANG_RELEASE" | sudo tar -C /usr/local -xzf -
 
-# Git
+# git
 stow -t ~ git
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
-# Fish
+# fish
 stow -t ~ fish
 sudo apt install fish fonts-powerline
 fish -c 'fisher add rafaelrinaldi/pure rkbk60/onedark-fish jethrokuan/z tuvistavie/fish-ssh-agent'
 sudo chsh -s /usr/bin/fish $(whoami)
 
-# Neovim
+# ripgrep
+curl -sSL "$RIPGREP_RELEASE" | tar -zxf - -C ~/bin --strip-components=1 --wildcards '*/rg'
+
+# nvim
 stow -t ~ nvim
 sudo mkdir -p /usr/local/nvim
 curl -L "$NEOVIM_RELEASE" | sudo tar -C /usr/local/nvim -zxf - --strip-components=1
@@ -46,9 +53,7 @@ for alt in vi vim editor; do
   sudo update-alternatives --set $alt /usr/local/nvim/bin/nvim
 done
 
-# Python Neovim
+## pynvim
 sudo apt install python3-pip
 sudo pip3 install pynvim
 
-# Yarn
-sudo apt install yarn
