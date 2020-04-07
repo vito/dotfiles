@@ -6,9 +6,14 @@ GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/l
 NEOVIM_RELEASE='https://github.com/neovim/neovim/releases/download/v0.4.3/nvim-linux64.tar.gz'
 GOLANG_RELEASE='https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz'
 RIPGREP_RELEASE='https://github.com/BurntSushi/ripgrep/releases/download/12.0.1/ripgrep-12.0.1-x86_64-unknown-linux-musl.tar.gz'
+HELM2_RELEASE='https://get.helm.sh/helm-v2.16.5-linux-amd64.tar.gz'
+HELM3_RELEASE='https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz'
 
 # bare necessities
 sudo apt install curl stow
+
+# for the following apt sources
+sudo apt-get install apt-transport-https ca-certificates gnupg
 
 # node sources
 curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
@@ -18,6 +23,10 @@ echo "deb-src https://deb.nodesource.com/node_12.x $(lsb_release -sc) main" | su
 ## yarn sources
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+# google cloud sdk
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
 # update
 sudo apt update
@@ -57,3 +66,10 @@ done
 sudo apt install python3-pip
 sudo pip3 install pynvim
 
+# google cloud sdk (+ kubectl, from google cloud apt source)
+sudo apt install google-cloud-sdk kubectl
+
+## helm & helm3
+curl -sSL "$HELM3_RELEASE" | tar -zxf - -C ~/bin --strip-components=1 --wildcards '*/helm'
+mv ~/bin/helm{,3}
+curl -sSL "$HELM2_RELEASE" | tar -zxf - -C ~/bin --strip-components=1 --wildcards '*/helm'
