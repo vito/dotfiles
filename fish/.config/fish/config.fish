@@ -8,6 +8,7 @@ end
 
 set -x GEM_HOME $HOME/.gem
 
+set -x GIT_DUET_CO_AUTHORED_BY 1
 alias gst 'git status'
 
 # i have never ever wanted to run ghostscript
