@@ -80,3 +80,5 @@ curl -sSL "$HELM2_RELEASE" | tar -zxf - -C ~/bin --strip-components=1 --wildcard
 
 # docker
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose
+# fix "Cannot autolaunch D-Bus without X11 $DISPLAY"
+sudo apt install gnupg2 pass
