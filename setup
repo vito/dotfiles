@@ -33,6 +33,10 @@ curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
 
+# gh cli sources
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-add-repository -u https://cli.github.com/packages
+
 # update
 sudo apt update
 
@@ -82,5 +86,12 @@ curl -sSL "$HELM2_RELEASE" | tar -zxf - -C ~/bin --strip-components=1 --wildcard
 
 # docker
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose
+
 # fix "Cannot autolaunch D-Bus without X11 $DISPLAY"
 sudo apt install gnupg2 pass
+
+# github cli
+sudo apt install gh
+
+# necessities
+sudo apt install jq
