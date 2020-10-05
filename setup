@@ -9,6 +9,8 @@ RIPGREP_RELEASE='https://github.com/BurntSushi/ripgrep/releases/download/12.0.1/
 HELM2_RELEASE='https://get.helm.sh/helm-v2.16.5-linux-amd64.tar.gz'
 HELM3_RELEASE='https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz'
 MOCKERY_RELEASE='https://github.com/vektra/mockery/releases/download/v2.2.1/mockery_2.2.1_Linux_x86_64.tar.gz'
+TERRAFORM_RELEASE='https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip'
+KAPP_RELEASE='https://github.com/k14s/kapp/releases/download/v0.34.0/kapp-linux-amd64'
 
 # bare necessities
 sudo apt install curl stow
@@ -95,3 +97,12 @@ sudo apt install gh
 
 # necessities
 sudo apt install jq
+
+# terraform
+curl -sSL "$TERRAFORM_RELEASE" -o /tmp/terraform.zip
+unzip -o -d ~/bin /tmp/terraform.zip
+rm /tmp/terraform.zip
+
+# kapp
+curl -sSL "$KAPP_RELEASE" -o ~/bin/kapp
+chmod +x ~/bin/kapp
