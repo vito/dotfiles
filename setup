@@ -37,7 +37,10 @@ echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -c
 
 # gh cli sources
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo apt-add-repository -u https://cli.github.com/packages
+sudo apt-add-repository https://cli.github.com/packages
+
+# fish sources
+sudo apt-add-repository ppa:fish-shell/release-3
 
 # update
 sudo apt update

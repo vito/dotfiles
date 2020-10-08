@@ -2,6 +2,8 @@ if which direnv >/dev/null
   eval (direnv hook fish)
 end
 
+set -x EDITOR vim
+
 set -x GEM_HOME $HOME/.gem
 
 set -x GIT_DUET_CO_AUTHORED_BY 1
