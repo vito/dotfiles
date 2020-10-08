@@ -37,16 +37,17 @@ echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -c
 
 # gh cli sources
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo apt-add-repository https://cli.github.com/packages
+sudo apt-add-repository -y https://cli.github.com/packages
 
 # fish sources
-sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt-add-repository -y ppa:fish-shell/release-3
 
 # update
 sudo apt update
 
-# install node and yarn
+# install node, yarn, and elm
 sudo apt install nodejs yarn
+sudo yarn global add @elm-tooling/elm-language-server
 
 # local executables dir
 mkdir -p ~/bin
@@ -99,7 +100,7 @@ sudo apt install gnupg2 pass
 sudo apt install gh
 
 # necessities
-sudo apt install jq
+sudo apt install jq zip unzip
 
 # terraform
 curl -sSL "$TERRAFORM_RELEASE" -o /tmp/terraform.zip
