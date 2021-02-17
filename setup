@@ -4,7 +4,7 @@ set -e -u -x
 
 GIT_DUET_RELEASE='https://github.com/git-duet/git-duet/releases/download/0.6.0/linux_amd64.tar.gz'
 NEOVIM_RELEASE='https://github.com/neovim/neovim/releases/download/v0.4.4/nvim-linux64.tar.gz'
-GOLANG_RELEASE='https://dl.google.com/go/go1.15.linux-amd64.tar.gz'
+GOLANG_RELEASE='https://golang.org/dl/go1.16.linux-amd64.tar.gz'
 RIPGREP_RELEASE='https://github.com/BurntSushi/ripgrep/releases/download/12.0.1/ripgrep-12.0.1-x86_64-unknown-linux-musl.tar.gz'
 HELM2_RELEASE='https://get.helm.sh/helm-v2.16.5-linux-amd64.tar.gz'
 HELM3_RELEASE='https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz'
