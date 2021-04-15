@@ -12,6 +12,11 @@ alias gst 'git status'
 # i have never ever wanted to run ghostscript
 alias gs 'git status'
 
+# X410 + WSL2 (assumes WSL is autoconfiguring resolv.conf)
+grep 'nameserver.*172\.' /etc/resolv.conf | while read _ hostip _
+  set -x DISPLAY $hostip:0.0
+end
+
 function install_path
   for path in $argv
     if test -d $path
@@ -26,6 +31,7 @@ install_path ~/.local/bin
 install_path ~/go/bin
 install_path ~/.yarn/bin
 install_path ~/.gem/bin
+install_path ~/.emacs.d/bin
 
 # system-wide software
 install_path /usr/local/nvim/bin
