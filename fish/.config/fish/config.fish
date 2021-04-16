@@ -17,6 +17,11 @@ grep 'nameserver.*172\.' /etc/resolv.conf | while read _ hostip _
   set -x DISPLAY $hostip:0.0
 end
 
+if status --is-interactive
+  set BASE16_SHELL "$HOME/.config/base16-shell/"
+  source "$BASE16_SHELL/profile_helper.fish"
+end
+
 function install_path
   for path in $argv
     if test -d $path
