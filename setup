@@ -12,6 +12,7 @@ MOCKERY_RELEASE='https://github.com/vektra/mockery/releases/download/v2.2.1/mock
 TERRAFORM_RELEASE='https://releases.hashicorp.com/terraform/0.15.3/terraform_0.15.3_linux_amd64.zip'
 KAPP_RELEASE='https://github.com/k14s/kapp/releases/download/v0.34.0/kapp-linux-amd64'
 FZF_RELEASE='https://github.com/junegunn/fzf/releases/download/0.27.0/fzf-0.27.0-linux_amd64.tar.gz'
+WIN32YANK_RELEASE='https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip'
 
 # bare necessities
 sudo apt install curl stow
@@ -114,3 +115,9 @@ rm /tmp/terraform.zip
 # kapp
 curl -sSL "$KAPP_RELEASE" -o ~/bin/kapp
 chmod +x ~/bin/kapp
+
+# win32yank.exe
+curl -sSL "$WIN32YANK_RELEASE" -o /tmp/win32yank.zip
+unzip -o -d ~/bin /tmp/win32yank.zip win32yank.exe
+rm /tmp/win32yank.zip
+chmod +x ~/bin/win32yank.exe
