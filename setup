@@ -44,6 +44,9 @@ sudo apt-add-repository -y https://cli.github.com/packages
 # fish sources
 sudo apt-add-repository -y ppa:fish-shell/release-3
 
+# wsl utilities (more recent wslview fixes 'web' in pprof)
+sudo add-apt-repository ppa:wslutilities/wslu
+
 # update
 sudo apt update
 
