@@ -36,3 +36,6 @@ go get golang.org/x/tools/gopls@latest
 brew tap homebrew/cask-fonts
 brew install --cask font-iosevka
 # NOTE: reboot for iTerm2 to pick it up
+
+# configure git
+./git/configure

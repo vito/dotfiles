@@ -65,7 +65,7 @@ curl -L "$GOLANG_RELEASE" | sudo tar -C /usr/local -xzf -
 curl -L "$MOCKERY_RELEASE" | tar -C ~/bin -zxf - --wildcards mockery
 
 # git
-stow -t ~ git
+./git/configure
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 # fish
