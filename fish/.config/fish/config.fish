@@ -12,11 +12,6 @@ alias gst 'git status'
 # i have never ever wanted to run ghostscript
 alias gs 'git status'
 
-if status --is-interactive
-  set BASE16_SHELL "$HOME/.config/base16-shell/"
-  source "$BASE16_SHELL/profile_helper.fish"
-end
-
 function install_path
   for path in $argv
     if test -d $path
