@@ -69,9 +69,9 @@ curl -L "$MOCKERY_RELEASE" | tar -C ~/bin -zxf - --wildcards mockery
 curl -L "$GIT_DUET_RELEASE" | tar -C ~/bin -zxf -
 
 # fish
+sudo apt install fish
 stow -t ~ fish
-sudo apt install fish fonts-powerline
-fish -c 'fisher add rafaelrinaldi/pure jethrokuan/z tuvistavie/fish-ssh-agent'
+fish -c 'fisher update'
 sudo chsh -s /usr/bin/fish $(whoami)
 
 # ripgrep
