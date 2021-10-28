@@ -45,3 +45,9 @@ brew install --cask font-iosevka
 
 # configure git
 ./git/configure
+
+# support holding hjkl
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+# disable weird cmd-tab monitor selection
+defaults write com.apple.Dock appswitcher-all-displays -bool true
