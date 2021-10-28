@@ -44,3 +44,6 @@ end
 if set -q base16_theme && test -d ~/src/base16-config/templates/fzf/fish
   source ~/src/base16-config/templates/fzf/fish/base16-$base16_theme.fish
 end
+
+# configure colors for bat
+set -x BAT_THEME base16-256
