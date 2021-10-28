@@ -2,6 +2,8 @@
 
 set -e -u -x
 
+cd $(dirname $0)
+
 # simple config manager
 brew install stow
 
@@ -23,6 +25,10 @@ ln -sf /usr/local/bin/nvim ~/bin/vim
 
 # install rg
 brew install ripgrep
+
+# fzf and friends
+brew install fzf bat
+$(brew --prefix)/opt/fzf/install
 
 # docker
 brew install --cask docker

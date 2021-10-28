@@ -40,3 +40,7 @@ function fish_prompt_loading_indicator
   echo (_pure_prompt_current_folder 0)' '(set_color brblack)'…'(set_color normal)
   echo (_pure_prompt_symbol 0)' '
 end
+
+if set -q base16_theme && test -d ~/src/base16-config/templates/fzf/fish
+  source ~/src/base16-config/templates/fzf/fish/base16-$base16_theme.fish
+end
