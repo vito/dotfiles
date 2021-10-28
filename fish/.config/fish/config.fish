@@ -4,8 +4,6 @@ end
 
 set -x EDITOR vim
 
-set -x GEM_HOME $HOME/.gem
-
 set -x GIT_DUET_CO_AUTHORED_BY 1
 alias gst 'git status'
 
@@ -24,9 +22,6 @@ end
 install_path ~/bin
 install_path ~/.local/bin
 install_path ~/go/bin
-install_path ~/.yarn/bin
-install_path ~/.gem/bin
-install_path ~/.emacs.d/bin
 
 # system-wide software
 install_path /usr/local/nvim/bin
