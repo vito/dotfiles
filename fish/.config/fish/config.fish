@@ -10,27 +10,22 @@ alias gst 'git status'
 # i have never ever wanted to run ghostscript
 alias gs 'git status'
 
-function install_path
+function add_path_if_exists
   for path in $argv
     if test -d $path
-      set -x PATH $path $PATH
+      fish_add_path -aP $path
     end
   end
 end
 
 # local software
-install_path ~/bin
-install_path ~/.local/bin
-install_path ~/go/bin
+add_path_if_exists ~/bin ~/.local/bin ~/go/bin ~/.yarn/bin
 
 # system-wide software
-install_path /usr/local/nvim/bin
-install_path /usr/local/go/bin
-install_path /opt/google-cloud-sdk/bin
-
-if test -d /usr/lib/postgresql
-  install_path /usr/lib/postgresql/*/bin
-end
+add_path_if_exists /usr/local/go/bin /usr/local/nvim/bin
+add_path_if_exists /opt/google-cloud-sdk/bin
+set postgres_paths /usr/lib/postgresql/*/bin # allow glob to match no directory
+add_path_if_exists $postgres_paths           # so we can pass empty args here
 
 # faster git prompt
 set -g async_prompt_functions _pure_prompt_git
