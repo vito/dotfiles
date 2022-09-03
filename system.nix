@@ -65,6 +65,9 @@
   # Enable Docker.
   virtualisation.docker.enable = true;
 
+  # Enable fish system-wide so that it sources necessary files.
+  programs.fish.enable = true;
+
   # My user account.
   users.users.vito = {
     isNormalUser = true;
@@ -72,44 +75,8 @@
     shell = pkgs.fish;
   };
 
-  # For 1password.
-  nixpkgs.config.allowUnfree = true;
-
   # Enable flakes and the new nix CLI.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # shell utils
-    fish
-    stow
-    ripgrep
-    jq
-    fzf
-    direnv
-
-    # dev
-    git
-    go_1_19
-    (neovim.override {
-      viAlias = true;
-      vimAlias = true;
-      configure = {
-        packages.myPlugins = with vimPlugins; {
-          start = [
-            (nvim-treesitter.withPlugins (plugins: tree-sitter.allGrammars))
-          ];
-        };
-      };
-    })
-
-    # gui
-    wezterm
-    firefox-wayland
-    _1password
-    _1password-gui
-  ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
