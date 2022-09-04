@@ -8,7 +8,3 @@ sudo ln -sf $PWD/system.nix /etc/nixos/personal-configuration.nix
 # nix home manager
 mkdir -p ~/.config/nixpkgs
 ln -sf $PWD/home.nix ~/.config/nixpkgs/home.nix
-
-# fix missing wezterm cursors
-mkdir -p ~/.icons/default
-curl -L https://github.com/manu-mannattil/adwaita-cursors/releases/download/v1.2/adwaita-cursors.tar.gz | tar -xzf - -C ~/.icons/default adwaita-cursors/Adwaita/cursors --strip-components=2
