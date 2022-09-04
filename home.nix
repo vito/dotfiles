@@ -229,51 +229,75 @@ in
     { command = "dbus-sway-environment"; }
     { command = "configure-gtk"; }
   ];
-  # configure colors and bars in extraConfig for convenient copy/paste from
-  # base16 templates
-  wayland.windowManager.sway.config.bars = [ ];
-  wayland.windowManager.sway.extraConfig = ''
-    # Rose Pine
-    set $base00 #191724
-    set $base01 #1f1d2e
-    set $base02 #26233a
-    set $base03 #555169
-    set $base04 #6e6a86
-    set $base05 #e0def4
-    set $base06 #f0f0f3
-    set $base07 #c5c3ce
-    set $base08 #eb6f92
-    set $base09 #f6c177
-    set $base0A #f6c177
-    set $base0B #31748f
-    set $base0C #ebbcba
-    set $base0D #9ccfd8
-    set $base0E #c4a7e7
-    set $base0F #e5e5e5
-
-    bar {
-      colors {
-        background $base00
-        separator  $base01
-        statusline $base04
-
-        #                   Border  BG      Text
-        focused_workspace   $base00 $base0D $base00
-        active_workspace    $base00 $base03 $base00
-        inactive_workspace  $base00 $base01 $base05
-        urgent_workspace    $base08 $base08 $base00
-        binding_mode        $base00 $base0A $base00
-      }
+  wayland.windowManager.sway.config.colors = {
+    focused = {
+      border = base05;
+      background = base0D;
+      text = base00;
+      indicator = base0D;
+      childBorder = base0D;
+    };
+    focusedInactive = {
+      border = base01;
+      background = base01;
+      text = base05;
+      indicator = base03;
+      childBorder = base01;
+    };
+    unfocused = {
+      border = base01;
+      background = base00;
+      text = base05;
+      indicator = base01;
+      childBorder = base01;
+    };
+    urgent = {
+      border = base08;
+      background = base08;
+      text = base00;
+      indicator = base08;
+      childBorder = base08;
+    };
+  };
+  wayland.windowManager.sway.config.bars = [
+    {
+      fonts = {
+        names = [ "Iosevka Term" ];
+        size = 12.0;
+      };
+      colors = {
+        background = base00;
+        separator = base01;
+        statusline = base04;
+        focusedWorkspace = {
+          border = base00;
+          background = base0D;
+          text = base00;
+        };
+        activeWorkspace = {
+          border = base00;
+          background = base03;
+          text = base00;
+        };
+        inactiveWorkspace = {
+          border = base00;
+          background = base01;
+          text = base05;
+        };
+        urgentWorkspace = {
+          border = base08;
+          background = base08;
+          text = base00;
+        };
+        bindingMode = {
+          border = base00;
+          background = base0A;
+          text = base00;
+        };
+      };
     }
-
-    #                       Border  BG      Text    Ind     Child Border
-    client.focused          $base05 $base0D $base00 $base0D $base0D
-    client.focused_inactive $base01 $base01 $base05 $base03 $base01
-    client.unfocused        $base01 $base00 $base05 $base01 $base01
-    client.urgent           $base08 $base08 $base00 $base08 $base08
-
-    output * bg $base00 solid_color
-  '';
+  ];
+  wayland.windowManager.sway.config.output."*".bg = "${base00} solid_color";
 
   services.swayidle = {
     enable = true;
