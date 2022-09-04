@@ -44,6 +44,7 @@ in
     discord
     firefox-wayland
     signal-desktop
+    spotify
 
     # misc shell utils
     ripgrep
