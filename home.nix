@@ -260,45 +260,247 @@ in
       childBorder = base08;
     };
   };
-  wayland.windowManager.sway.config.bars = [
-    {
-      fonts = {
-        names = [ "Iosevka Term" ];
-        size = 12.0;
-      };
-      colors = {
-        background = base00;
-        separator = base01;
-        statusline = base04;
-        focusedWorkspace = {
-          border = base00;
-          background = base0D;
-          text = base00;
-        };
-        activeWorkspace = {
-          border = base00;
-          background = base03;
-          text = base00;
-        };
-        inactiveWorkspace = {
-          border = base00;
-          background = base01;
-          text = base05;
-        };
-        urgentWorkspace = {
-          border = base08;
-          background = base08;
-          text = base00;
-        };
-        bindingMode = {
-          border = base00;
-          background = base0A;
-          text = base00;
-        };
-      };
-    }
-  ];
+  wayland.windowManager.sway.config.bars = []; # use waybar instead
   wayland.windowManager.sway.config.output."*".bg = "${base00} solid_color";
+
+  programs.waybar.enable = true;
+  programs.waybar.systemd.enable = true;
+  programs.waybar.systemd.target = "sway-session.target";
+  wayland.windowManager.sway.systemdIntegration = true;
+  programs.waybar.settings = {
+    main = {
+      layer = "top";
+      position = "top";
+      height = 24;
+      spacing = 4;
+      modules-left = [ "sway/workspaces" "sway/mode" ];
+      modules-center = [ "sway/window" ];
+      modules-right = [ "cpu" "memory" "network" "pulseaudio" "battery" "tray" "clock" ];
+
+      "sway/workspaces" = {
+        disable-scroll = true;
+        disable-markup = false;
+      };
+      "sway/mode" = {
+        format = "<span style=\"italic\">{}</span>";
+      };
+      "network" = {
+        format-wifi = "{essid} ";
+        format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
+        format-disconnected = "Disconnected ⚠";
+        interval = 7;
+      };
+      "cpu" = {
+        format = "{usage}% ";
+      };
+      "memory" = {
+        format = "{}% ";
+      };
+      "pulseaudio" = {
+        format = "{volume}% {icon}";
+        format-bluetooth = ": {volume}% {icon}";
+        format-muted = "";
+        format-icons.headphones = "";
+        format-icons.handsfree = "";
+        format-icons.headset = "";
+        format-icons.phone = "";
+        format-icons.portable = "";
+        format-icons.car = "";
+        format-icons.default = [ "" "" ];
+      };
+      "battery" = {
+        states = {
+          good = 95;
+          warning = 30;
+          critical = 15;
+        };
+        format = "{capacity}% {icon}";
+        format-icons = [ "" "" "" "" "" ];
+      };
+      "clock" = {
+        format = "{:%F %I:%M %p}";
+      };
+      "tray" = {
+        icon-size = 16;
+        spacing = 10;
+      };
+    };
+  };
+  programs.waybar.style = ''
+    * {
+        font-family: FontAwesome, Iosevka, monospace;
+        font-size: 14px;
+    }
+
+    window#waybar {
+        background-color: ${base00};
+        color: ${base05};
+        transition-property: background-color;
+        transition-duration: .5s;
+    }
+
+    window#waybar.hidden {
+        opacity: 0.2;
+    }
+
+    /*
+    window#waybar.empty {
+        background-color: transparent;
+    }
+    window#waybar.solo {
+        background-color: #FFFFFF;
+    }
+    */
+
+    #workspaces button {
+        padding: 0 5px;
+        background-color: transparent;
+        color: ${base05};
+        /* Use box-shadow instead of border so the text isn't offset */
+        box-shadow: inset 0 -3px transparent;
+        /* Avoid rounded borders under each workspace name */
+        border: none;
+        border-radius: 0;
+    }
+
+    #workspaces button:hover {
+        background: ${base01};
+        box-shadow: inset 0 3px ${base05};
+    }
+
+    #workspaces button.focused {
+        background-color: ${base0D};
+        color: ${base00};
+        box-shadow: inset 0 3px ${base05};
+    }
+
+    #workspaces button.urgent {
+        background-color: ${base08};
+    }
+
+    #mode {
+        background-color: #ff00ff;
+        border-bottom: 3px solid #ffffff;
+    }
+
+    #clock,
+    #battery,
+    #cpu,
+    #memory,
+    #disk,
+    #temperature,
+    #backlight,
+    #network,
+    #pulseaudio,
+    #custom-media,
+    #tray,
+    #mode,
+    #idle_inhibitor,
+    #mpd {
+        padding: 0 5px;
+        color: ${base00};
+        margin: 0;
+        border: 0;
+    }
+
+    #window,
+    #workspaces {
+        margin: 0 5px;
+    }
+
+    /* If workspaces is the leftmost module, omit left margin */
+    .modules-left > widget:first-child > #workspaces {
+        margin-left: 0;
+    }
+
+    /* If workspaces is the rightmost module, omit right margin */
+    .modules-right > widget:last-child > #workspaces {
+        margin-right: 0;
+    }
+
+    #clock {
+        background-color: ${base00};
+        color: ${base04};
+    }
+
+    #battery {
+        background-color: ${base09};
+    }
+
+    #battery.charging, #battery.plugged, #battery.good {
+        background-color: ${base0B};
+    }
+
+    @keyframes blink {
+        to {
+            color: ${base00};
+            background-color: ${base05};
+        }
+    }
+
+    #battery.critical:not(.charging) {
+        background-color: ${base08};
+        color: ${base00};
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    label:focus {
+        background-color: ${base00};
+    }
+
+    #cpu, #memory, #disk {
+        background-color: ${base0E};
+        color: ${base00};
+    }
+
+    #backlight {
+        background-color: ${base01};
+    }
+
+    #network {
+        background-color: ${base0B};
+    }
+
+    #network.disconnected {
+        background-color: ${base08};
+    }
+
+    #pulseaudio {
+        background-color: ${base0B};
+        color: ${base00};
+    }
+
+    #pulseaudio.muted {
+        background-color: ${base09};
+        color: ${base00};
+    }
+
+    #tray {
+        background-color: ${base00};
+    }
+
+    #tray > .passive {
+        -gtk-icon-effect: dim;
+    }
+
+    #tray > .needs-attention {
+        -gtk-icon-effect: highlight;
+        background-color: ${base08};
+    }
+
+    #idle_inhibitor {
+        background-color: ${base09};
+    }
+
+    #idle_inhibitor.activated {
+        background-color: ${base0E};
+        color: ${base00};
+    }
+  '';
 
   services.swayidle = {
     enable = true;

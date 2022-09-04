@@ -71,6 +71,7 @@ in
     swayidle
     swaylock
     swaybg
+    waybar
     wob # meters for brightness/volume
     dbus-sway-environment
     configure-gtk
@@ -146,6 +147,8 @@ in
           inherits = "ss08"
       '';
     })
+
+    font-awesome # for waybar
   ];
   fonts.enableDefaultFonts = true;
   fonts.fontconfig = {
