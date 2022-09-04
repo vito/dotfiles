@@ -427,7 +427,7 @@ in
         background-color: ${base09};
     }
 
-    #battery.charging, #battery.plugged, #battery.good {
+    #battery.charging, #battery.plugged {
         background-color: ${base0B};
     }
 
