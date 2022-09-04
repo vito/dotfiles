@@ -6,6 +6,24 @@ let
   ws3 = "3: chat";
   ws4 = "4: notes";
   ws5 = "5: music";
+
+  # Rose Pine
+  base00 = "#191724";
+  base01 = "#1f1d2e";
+  base02 = "#26233a";
+  base03 = "#555169";
+  base04 = "#6e6a86";
+  base05 = "#e0def4";
+  base06 = "#f0f0f3";
+  base07 = "#c5c3ce";
+  base08 = "#eb6f92";
+  base09 = "#f6c177";
+  base0A = "#f6c177";
+  base0B = "#31748f";
+  base0C = "#ebbcba";
+  base0D = "#9ccfd8";
+  base0E = "#c4a7e7";
+  base0F = "#e5e5e5";
 in
 {
   # Home Manager needs a bit of information about you and the
@@ -257,8 +275,42 @@ in
     output * bg $base00 solid_color
   '';
 
-  # TODO: verify this has sane defaults
-  services.swayidle.enable = true;
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      { timeout = 600; command = "${pkgs.swaylock}/bin/swaylock -f"; }
+      {
+        timeout = 900;
+        command = ''${pkgs.sway}/bin/swaymsg "output * dpms off"'';
+        resumeCommand = ''${pkgs.sway}/bin/swaymsg "output * dpms on"'';
+      }
+    ];
+  };
+
+  programs.swaylock.settings = {
+    font = "Iosevka Term";
+    font-size = 18;
+
+    indicator-radius = 100;
+    indicator-thickness = 10;
+
+    color = base00;
+
+    ring-color = base0D;
+    inside-color = base00;
+    text-color = base05;
+
+    ring-ver-color = base09;
+    inside-ver-color = base00;
+    text-ver-color = base05;
+
+    ring-wrong-color = base08;
+    inside-wrong-color = base08;
+    text-wrong-color = base00;
+
+    line-uses-inside = true;
+    line-uses-ring = true;
+  };
 
   services.kanshi = {
     enable = true;
