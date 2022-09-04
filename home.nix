@@ -164,7 +164,7 @@ in
     lib.mkOptionDefault {
       "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
       "${mod}+Shift+q" = "kill";
-      "${mod}+d" = "exec ${pkgs.bemenu}/bin/bemenu-run | ${pkgs.findutils}/bin/xargs ${pkgs.sway}/bin/swaymsg exec --";
+      "${mod}+d" = "exec ${pkgs.bemenu}/bin/bemenu-run -p run -c -B 3 -W 0.8 --fn 'Iosevka Term 18' --hp 5 --bdr '${base0D}' --tb '${base00}' --tf '${base0D}' --fb '${base00}' --ff '${base05}' --nb '${base00}' --ab '${base00}' --hb '${base0D}' --hf '${base00}' | ${pkgs.findutils}/bin/xargs ${pkgs.sway}/bin/swaymsg exec --";
       "${mod}+Shift+r" = "reload";
       "${mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
