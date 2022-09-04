@@ -8,6 +8,9 @@
   # Fix broken GDM/Gnome on Framework
   boot.kernelPackages = pkgs.linuxPackages_5_18;
 
+  # Fix brightness keys.
+  boot.kernelParams = [ "module_blacklist=hid_sensor_hub" ];
+
   # Configure networking.
   networking.hostName = "nixwerk";
   networking.networkmanager.enable = true;
