@@ -554,6 +554,15 @@ in
     defaultTimeout = 10000;
   };
 
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      font = {
+        size = 12;
+      };
+    };
+  };
+
   services.kanshi = {
     enable = true;
     profiles = {
