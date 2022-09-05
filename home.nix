@@ -41,7 +41,7 @@ in
     # gui
     _1password
     _1password-gui
-    discord
+    (discord.override { nss = nss_latest; }) # override fixes links
     firefox-wayland
     signal-desktop
     spotify
@@ -55,6 +55,9 @@ in
     # language server providers
     rnix-lsp
     nixpkgs-fmt
+
+    # necessary for discord et al. to be able to open links
+    xdg-utils
   ];
 
   programs.git = {
