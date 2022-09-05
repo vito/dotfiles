@@ -50,6 +50,7 @@ in
     ripgrep
     jq
     fzf
+    wget
 
     # language server providers
     rnix-lsp
