@@ -41,11 +41,14 @@ let
         export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
         gnome_schema=org.gnome.desktop.interface
         gsettings set $gnome_schema gtk-theme 'Rose-Pine'
-        gsettings set $gnome_schema cursor-theme 'Adwaita'
       '';
   };
 in
 {
+  imports = [
+    ./modules/cursor.nix
+  ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -206,4 +209,8 @@ in
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Set the default mouse cursor theme for Alacritty etc.
+  environment.defaultCursor.enable = true;
+  environment.defaultCursor.theme = "Adwaita";
 }
