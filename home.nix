@@ -166,7 +166,7 @@ in
     lib.mkOptionDefault {
       "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
       "${mod}+Shift+q" = "kill";
-      "${mod}+d" = "exec ${pkgs.bemenu}/bin/bemenu-run -p run -c -B 3 -W 0.8 --fn 'Iosevka Term 18' --hp 5 --bdr '${base0D}' --tb '${base00}' --tf '${base0D}' --fb '${base00}' --ff '${base05}' --nb '${base00}' --ab '${base00}' --hb '${base0D}' --hf '${base00}' | ${pkgs.findutils}/bin/xargs ${pkgs.sway}/bin/swaymsg exec --";
+      "${mod}+d" = "exec ${pkgs.bemenu}/bin/bemenu-run -p run -c -B 3 -W 0.8 --fn 'Iosevka Term 18' --hp 5 --bdr '${base0E}' --tb '${base00}' --tf '${base0E}' --fb '${base00}' --ff '${base05}' --nb '${base00}' --ab '${base00}' --hb '${base0E}' --hf '${base00}' | ${pkgs.findutils}/bin/xargs ${pkgs.sway}/bin/swaymsg exec --";
       "${mod}+Shift+r" = "reload";
       "${mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
@@ -538,6 +538,14 @@ in
 
     line-uses-inside = true;
     line-uses-ring = true;
+  };
+
+  programs.mako = {
+    enable = true;
+    backgroundColor = base02;
+    borderColor = base0B;
+    borderSize = 2;
+    defaultTimeout = 10000;
   };
 
   services.kanshi = {
