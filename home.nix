@@ -132,8 +132,8 @@ in
     source = pkgs.fetchFromGitHub {
       owner = "vito";
       repo = "dot-nvim";
-      rev = "65032c08a1bb0e0af7908291f3f594553540b269";
-      sha256 = "sha256-Znh45z9mypOc3Max38vz8sMT1pGTk9ErmqqiOP3O17Y=";
+      rev = "e28a36e6e0f793c719983fe38c3fb16a240813e9";
+      sha256 = "sha256-HQmheygKtiYpG/1fXNxxHZBLNrBIEw1wzE1+TV0AcKE=";
     };
     recursive = true;
   };
