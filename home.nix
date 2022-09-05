@@ -95,7 +95,6 @@ in
     gst = "git status";
     gs = "git status"; # i have never ever wanted to run ghostscript
   };
-  programs.fish.shellInit = "set -x EDITOR vim";
   programs.fish.plugins = [
     {
       name = "pure";
@@ -131,6 +130,8 @@ in
   programs.neovim.plugins = with pkgs.vimPlugins; [
     (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
   ];
+
+  home.sessionVariables.EDITOR = "vim";
 
   xdg.configFile."nvim" = {
     source = pkgs.fetchFromGitHub {
