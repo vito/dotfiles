@@ -575,7 +575,7 @@ in
             position = "0,0";
           }
           {
-            criteria = "Ancor Communications Inc ROG PG279Q #ASM6IrOLXMDd";
+            criteria = "Ancor Communications Inc ROG PG279Q HCLMQS118715";
             status = "enable";
             mode = "2560x1440@60Hz"; # TODO: 165hz doesnt work :(
             position = "2560,0";
