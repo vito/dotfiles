@@ -120,6 +120,7 @@ in
 
   # For Neovim fzf.
   programs.fzf.enable = true;
+  programs.fzf.defaultOptions = [ "--color 16" ];
   programs.bat.enable = true;
   programs.bat.config = { theme = "base16-256"; };
 
