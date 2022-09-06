@@ -169,14 +169,22 @@ in
   };
   wayland.windowManager.sway.config.workspaceAutoBackAndForth = true;
   wayland.windowManager.sway.config.modifier = "Mod4";
+  wayland.windowManager.sway.config.menu = "${pkgs.bemenu}/bin/bemenu-run -p run -c -B 3 -W 0.8 --fn 'Iosevka Term 18' --hp 5 --bdr '${base0E}' --tb '${base00}' --tf '${base0E}' --fb '${base00}' --ff '${base05}' --nb '${base00}' --ab '${base00}' --hb '${base0E}' --hf '${base00}' | ${pkgs.findutils}/bin/xargs ${pkgs.sway}/bin/swaymsg exec --";
+  wayland.windowManager.sway.config.terminal = "${pkgs.alacritty}/bin/alacritty";
+  wayland.windowManager.sway.config.gaps = {
+    inner = 5;
+    smartGaps = true;
+  };
   wayland.windowManager.sway.config.keybindings =
     let
       mod = config.wayland.windowManager.sway.config.modifier;
+      menu = config.wayland.windowManager.sway.config.menu;
+      term = config.wayland.windowManager.sway.config.terminal;
     in
     lib.mkOptionDefault {
-      "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+      "${mod}+Return" = "exec ${term}";
       "${mod}+Shift+q" = "kill";
-      "${mod}+d" = "exec ${pkgs.bemenu}/bin/bemenu-run -p run -c -B 3 -W 0.8 --fn 'Iosevka Term 18' --hp 5 --bdr '${base0E}' --tb '${base00}' --tf '${base0E}' --fb '${base00}' --ff '${base05}' --nb '${base00}' --ab '${base00}' --hb '${base0E}' --hf '${base00}' | ${pkgs.findutils}/bin/xargs ${pkgs.sway}/bin/swaymsg exec --";
+      "${mod}+d" = "exec ${menu}";
       "${mod}+Shift+r" = "reload";
       "${mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
@@ -242,6 +250,7 @@ in
       "${mod}+f" = "fullscreen";
       "${mod}+Shift+space" = "floating toggle";
       "${mod}+p" = "focus parent";
+      "${mod}+r" = "mode resize";
     };
   wayland.windowManager.sway.config.startup = [
     { command = "dbus-sway-environment"; }
@@ -277,7 +286,7 @@ in
       childBorder = base08;
     };
   };
-  wayland.windowManager.sway.config.bars = []; # use waybar instead
+  wayland.windowManager.sway.config.bars = [ ]; # use waybar instead
   wayland.windowManager.sway.config.output."*".bg = "${base00} solid_color";
 
   programs.waybar.enable = true;
@@ -295,11 +304,8 @@ in
       modules-right = [ "cpu" "memory" "network" "pulseaudio" "battery" "tray" "clock" ];
 
       "sway/workspaces" = {
-        disable-scroll = true;
+        disable-scroll = false;
         disable-markup = false;
-      };
-      "sway/mode" = {
-        format = "<span style=\"italic\">{}</span>";
       };
       "network" = {
         format-wifi = "{essid} ";
@@ -396,8 +402,8 @@ in
     }
 
     #mode {
-        background-color: #ff00ff;
-        border-bottom: 3px solid #ffffff;
+        background-color: ${base0C};
+        font-style: italic;
     }
 
     #clock,
@@ -558,10 +564,21 @@ in
 
   programs.mako = {
     enable = true;
-    backgroundColor = base02;
-    borderColor = base0B;
+    backgroundColor = base00;
+    textColor = base05;
+    borderColor = base0D;
     borderSize = 2;
+    font = "Iosevka Term 11";
+    margin = "5";
+    maxIconSize = 48;
     defaultTimeout = 10000;
+    groupBy = "app-name";
+    extraConfig = ''
+      [urgency=high]
+      background-color=${base00}
+      text-color=${base08}
+      border-color=${base0D}
+    '';
   };
 
   programs.alacritty = {
