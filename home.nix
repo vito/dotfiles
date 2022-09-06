@@ -567,6 +567,7 @@ in
     backgroundColor = base00;
     textColor = base05;
     borderColor = base0D;
+    width = 500;
     borderSize = 2;
     font = "Iosevka Term 11";
     margin = "5";
