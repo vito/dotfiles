@@ -52,7 +52,12 @@ in
     fzf
     wget
 
-    # language server providers
+    ## languages & lsps for editing non-flake'd projects
+    # go
+    go_1_19
+    gopls
+    gotools
+    # nix
     rnix-lsp
     nixpkgs-fmt
 
