@@ -60,6 +60,9 @@ in
     # nix
     rnix-lsp
     nixpkgs-fmt
+    # js/ts
+    # typescript itself needs to be in each project(?!)
+    nodePackages.typescript-language-server
 
     # necessary for discord et al. to be able to open links
     xdg-utils
