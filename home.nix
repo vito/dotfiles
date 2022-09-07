@@ -77,10 +77,6 @@ in
       co = "checkout";
       st = "status";
     };
-    delta = {
-      # fancy syntax highlighting
-      enable = true;
-    };
     extraConfig = {
       push = {
         default = "simple";
