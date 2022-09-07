@@ -235,10 +235,10 @@ in
       "${mod}+Shift+0" = "move container to workspace 10";
 
       # Move between displays
-      "${mod}+Ctrl+Shift+Right" = "move workspace to output right";
-      "${mod}+Ctrl+Shift+Left" = "move workspace to output left";
-      "${mod}+Ctrl+Shift+Down" = "move workspace to output down";
-      "${mod}+Ctrl+Shift+Up" = "move workspace to output up";
+      "${mod}+Mod1+Ctrl+Right" = "move workspace to output right";
+      "${mod}+Mod1+Ctrl+Left" = "move workspace to output left";
+      "${mod}+Mod1+Ctrl+Down" = "move workspace to output down";
+      "${mod}+Mod1+Ctrl+Up" = "move workspace to output up";
 
       # Layout manipulation
       "${mod}+h" = "splith";
