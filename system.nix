@@ -131,6 +131,9 @@ in
   # Enable fingerprint reader.
   services.fprintd.enable = true;
 
+  # For corefonts
+  nixpkgs.config.allowUnfree = true;
+
   # Font configuration.
   fonts.fonts = with pkgs; [
     iosevka
@@ -152,6 +155,7 @@ in
     })
 
     font-awesome # for waybar
+    corefonts # common Microsoft fonts
   ];
   fonts.enableDefaultFonts = true;
   fonts.fontconfig = {
