@@ -51,6 +51,12 @@ in
     jq
     fzf
     wget
+    htop
+    lsof
+
+    # screenshots
+    slurp
+    grim
 
     ## languages & lsps for editing non-flake'd projects
     # go
@@ -186,6 +192,9 @@ in
       "${mod}+d" = "exec ${menu}";
       "${mod}+Shift+r" = "reload";
       "${mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+
+      # Screenshot
+      "Print" = "exec 'grim -g \"$(slurp -b \"${base00}80\" -c \"${base0C}\")\" - | wl-copy'";
 
       # Brightness
       "XF86MonBrightnessDown" = "exec light -U 10";
