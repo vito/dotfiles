@@ -43,6 +43,15 @@ let
         gsettings set $gnome_schema gtk-theme 'Rose-Pine'
       '';
   };
+
+  v4l2-webcam = pkgs.writeTextFile {
+    name = "v4l2-webcam";
+    destination = "/bin/v4l2-webcam";
+    executable = true;
+    text = ''
+      ${pkgs.ffmpeg}/bin/ffmpeg -f v4l2 -i /dev/video1 -s:v 1280x720 -r 60 -vcodec rawvideo -pix_fmt yuv420p -f v4l2 /dev/video0
+    '';
+  };
 in
 {
   imports = [
@@ -58,6 +67,10 @@ in
 
   # Fix brightness keys.
   boot.kernelParams = [ "module_blacklist=hid_sensor_hub" ];
+
+  # For v4l2-webcam, which is needed for my Opal C1.
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+  boot.kernelModules = [ "v4l2loopback" ];
 
   # Configure networking.
   networking.hostName = "nixwerk";
@@ -86,6 +99,7 @@ in
     bemenu # wayland clone of dmenu
     mako # notification system developed by swaywm maintainer
     pulseaudio # until pw-cli has commands for volume control
+    v4l2-webcam # for making my Opal C1 webcam available via v4l2loopback
   ];
   environment.loginShellInit = ''
     [[ "$(tty)" == /dev/tty1 ]] && sway
