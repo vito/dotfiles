@@ -49,7 +49,7 @@ let
     destination = "/bin/v4l2-webcam";
     executable = true;
     text = ''
-      ${pkgs.ffmpeg}/bin/ffmpeg -f v4l2 -i /dev/video1 -s:v 1280x720 -r 60 -vcodec rawvideo -pix_fmt yuv420p -f v4l2 /dev/video0
+      ${pkgs.ffmpeg}/bin/ffmpeg -f v4l2 -i "$1" -s:v 1280x720 -r 60 -vcodec rawvideo -pix_fmt yuv420p -f v4l2 /dev/video0
     '';
   };
 in
