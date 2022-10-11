@@ -663,6 +663,54 @@ in
           }
         ];
       };
+      docked-uptown = {
+        outputs = [
+          {
+            criteria = "Dell Inc. DELL U3415W PXF7904J06YL";
+            status = "enable";
+            mode = "3440x1440@60Hz";
+            position = "0,0";
+          }
+          {
+            criteria = "eDP-1";
+            status = "enable";
+            scale = 1.0;
+            position = "592,1440";
+          }
+        ];
+      };
+      docked-home-secondary = {
+        outputs = [
+          {
+            criteria = "Dell Inc. DELL U2717D 67YGV71AA15L";
+            status = "enable";
+            mode = "2560x1440@60Hz";
+            position = "0,0";
+          }
+          {
+            criteria = "eDP-1";
+            status = "enable";
+            scale = 1.5;
+            position = "2560,0";
+          }
+        ];
+      };
+      docked-home-primary = {
+        outputs = [
+          {
+            criteria = "Ancor Communications Inc ROG PG279Q HCLMQS118715";
+            status = "enable";
+            mode = "2560x1440@60Hz"; # TODO: 165hz doesnt work :(
+            position = "0,0";
+          }
+          {
+            criteria = "eDP-1";
+            status = "enable";
+            scale = 1.5;
+            position = "2560,0";
+          }
+        ];
+      };
     };
   };
 
