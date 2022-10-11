@@ -231,4 +231,7 @@ in
   # Set the default mouse cursor theme for Alacritty etc.
   environment.defaultCursor.enable = true;
   environment.defaultCursor.theme = "Adwaita";
+
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 }
