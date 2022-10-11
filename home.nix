@@ -72,6 +72,8 @@ in
     # js/ts
     # typescript itself needs to be in each project(?!)
     nodePackages.typescript-language-server
+    # github copilot
+    nodejs-16_x
 
     # necessary for discord et al. to be able to open links
     xdg-utils
@@ -141,19 +143,33 @@ in
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
   programs.neovim.vimdiffAlias = true;
-  programs.neovim.plugins = with pkgs.vimPlugins; [
-    (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
-  ];
+  programs.neovim.plugins =
+    let
+      ts = pkgs.tree-sitter.override
+        {
+          extraGrammars = {
+            tree-sitter-bass = {
+              src = ~/src/tree-sitter-bass;
+            };
+          };
+        };
+    in
+    with pkgs.vimPlugins; [
+      (ts.withPlugins (_: ts.allGrammars))
+      markdown-preview-nvim
+      copilot-vim
+    ];
 
   home.sessionVariables.EDITOR = "vim";
 
   xdg.configFile."nvim" = {
-    source = pkgs.fetchFromGitHub {
-      owner = "vito";
-      repo = "dot-nvim";
-      rev = "e28a36e6e0f793c719983fe38c3fb16a240813e9";
-      sha256 = "sha256-HQmheygKtiYpG/1fXNxxHZBLNrBIEw1wzE1+TV0AcKE=";
-    };
+    source = ~/src/nvim;
+    /* pkgs.fetchFromGitHub { */
+    /*   owner = "vito"; */
+    /*   repo = "dot-nvim"; */
+    /*   rev = "0404651cecea87726304912d6e8ff6a195839f68"; */
+    /*   sha256 = "sha256-qE8beeAIw0o9YrorjKbC9SknSoF/jcziMKpCIVYRqgs="; */
+    /* }; */
     recursive = true;
   };
 
