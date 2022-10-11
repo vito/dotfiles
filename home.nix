@@ -54,6 +54,8 @@ in
     wget
     htop
     lsof
+    unzip
+    bc
 
     # screenshots
     slurp
