@@ -45,6 +45,7 @@ in
     firefox-wayland
     signal-desktop
     spotify
+    pavucontrol
 
     # misc shell utils
     ripgrep
