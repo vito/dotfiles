@@ -171,6 +171,7 @@ in
     ];
 
   home.sessionVariables.EDITOR = "vim";
+  home.sessionVariables.DO_NOT_TRACK = "1";
 
   xdg.configFile."nvim" = {
     source = ~/src/nvim;
