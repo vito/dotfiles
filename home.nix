@@ -79,6 +79,7 @@ in
     xdg-utils
   ];
 
+  # Configure git aliases and such.
   programs.git = {
     enable = true;
     userName = "Alex Suraci";
@@ -102,6 +103,15 @@ in
       };
     };
   };
+
+  # Configure SSH key commit signing.
+  programs.git.extraConfig.gpg.format = "ssh";
+  programs.git.extraConfig.gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+  programs.git.extraConfig.user.signingkey = "~/.ssh/id_ecdsa.pub";
+  programs.git.signing.key = null;
+  programs.git.signing.signByDefault = true;
+  home.file.".ssh/allowed_signers".text =
+    "* ${builtins.readFile /home/vito/.ssh/id_ecdsa.pub}";
 
   # Configure Fish, which is already installed system-wide but needs to be
   # enabled for these local configs to be respected.
