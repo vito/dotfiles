@@ -186,7 +186,7 @@ in
 
   wayland.windowManager.sway.enable = true;
   wayland.windowManager.sway.config.assigns = {
-    ws2 = [{ class = "^Firefox$"; }];
+    "2: web" = [{ app_id = "firefox"; }];
   };
   wayland.windowManager.sway.config.input = {
     "type:touchpad" = {
