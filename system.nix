@@ -63,7 +63,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Fix broken GDM/Gnome on Framework
-  boot.kernelPackages = pkgs.linuxPackages_5_18;
+  boot.kernelPackages = pkgs.linuxPackages_6_0;
 
   # Fix brightness keys.
   boot.kernelParams = [ "module_blacklist=hid_sensor_hub" ];
