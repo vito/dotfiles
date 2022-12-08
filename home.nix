@@ -46,6 +46,7 @@ in
     signal-desktop
     spotify
     pavucontrol
+    vlc
     google-chrome
 
     # misc shell utils
