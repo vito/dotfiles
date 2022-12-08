@@ -113,6 +113,8 @@ in
     pulse.enable = true;
   };
 
+  networking.firewall.enable = false;
+
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path

@@ -46,6 +46,7 @@ in
     signal-desktop
     spotify
     pavucontrol
+    google-chrome
 
     # misc shell utils
     ripgrep
