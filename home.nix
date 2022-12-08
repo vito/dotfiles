@@ -56,6 +56,7 @@ in
     lsof
     unzip
     bc
+    gnumake
 
     # screenshots
     slurp
@@ -66,6 +67,7 @@ in
     go_1_19
     gopls
     gotools
+    gcc
     # nix
     rnix-lsp
     nixpkgs-fmt
