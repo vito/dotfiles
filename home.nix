@@ -59,6 +59,7 @@ in
     unzip
     bc
     gnumake
+    ngrok
 
     # screenshots
     slurp
