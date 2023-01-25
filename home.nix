@@ -60,6 +60,7 @@ in
     bc
     gnumake
     ngrok
+    sqlite
 
     # screenshots
     slurp
@@ -77,6 +78,7 @@ in
     # js/ts
     # typescript itself needs to be in each project(?!)
     nodePackages.typescript-language-server
+    nodePackages.pnpm
     # github copilot
     nodejs-16_x
 
