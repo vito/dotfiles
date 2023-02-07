@@ -81,6 +81,8 @@ in
     nodePackages.pnpm
     # github copilot
     nodejs-16_x
+    # for compiling neovim grammars with TSInstall
+    tree-sitter
 
     # necessary for discord et al. to be able to open links
     xdg-utils
