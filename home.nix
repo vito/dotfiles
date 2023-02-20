@@ -399,15 +399,26 @@ in
   };
   programs.waybar.style = ''
     * {
-        font-family: FontAwesome, Iosevka, monospace;
+        border: none;
+        border-radius: 0;
+        font-family: FontAwesome, Iosevka, sans-serif;
         font-size: 14px;
+        min-height: 0;
+        transition: none;
+        text-shadow: none;
     }
 
     window#waybar {
         background-color: ${base00};
         color: ${base05};
-        transition-property: background-color;
-        transition-duration: .5s;
+    }
+
+    tooltip {
+      background: ${base08};
+      border: 1px solid ${base08};
+    }
+    tooltip label {
+      color: ${base05};
     }
 
     window#waybar.hidden {
@@ -427,8 +438,6 @@ in
         padding: 0 5px;
         background-color: transparent;
         color: ${base05};
-        /* Use box-shadow instead of border so the text isn't offset */
-        box-shadow: inset 0 -3px transparent;
         /* Avoid rounded borders under each workspace name */
         border: none;
         border-radius: 0;
@@ -436,13 +445,13 @@ in
 
     #workspaces button:hover {
         background: ${base01};
-        box-shadow: inset 0 3px ${base05};
+        font-weight: normal;
     }
 
     #workspaces button.focused {
         background-color: ${base0D};
         color: ${base00};
-        box-shadow: inset 0 3px ${base05};
+        font-weight: bold;
     }
 
     #workspaces button.urgent {
