@@ -97,6 +97,7 @@ in
       ci = "commit";
       co = "checkout";
       st = "status";
+      bs = "branch --sort=-committerdate";
     };
     extraConfig = {
       push = {
