@@ -43,6 +43,9 @@ let
         gsettings set $gnome_schema gtk-theme 'Rose-Pine'
       '';
   };
+
+  inherit (pkgs.callPackage ./packages/docker.nix { })
+    docker_23;
 in
 {
   imports = [
@@ -227,6 +230,10 @@ in
       </fontconfig>
     '';
   };
+
+  # Enable Docker.
+  virtualisation.docker.enable = true;
+  virtualisation.docker.package = docker_23;
 
   # Enable fish system-wide so that it sources necessary files.
   programs.fish.enable = true;
