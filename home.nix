@@ -41,7 +41,7 @@ in
     # gui
     _1password
     _1password-gui
-    (discord.override { nss = nss_latest; }) # override fixes links
+    (discord-canary.override { nss = nss_latest; }) # override fixes links
     firefox-wayland
     signal-desktop
     spotify
