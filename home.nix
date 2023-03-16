@@ -61,6 +61,7 @@ in
     gnumake
     ngrok
     sqlite
+    graphviz # dot, for go pprof
 
     # screenshots
     slurp
