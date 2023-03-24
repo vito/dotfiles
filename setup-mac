@@ -35,7 +35,7 @@ brew install --cask docker
 
 # setup go
 brew install go
-go get golang.org/x/tools/gopls@latest
+go install golang.org/x/tools/gopls@latest
 # NOTE: restart fish to pick up new $PATH
 
 # setup best font
