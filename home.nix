@@ -41,7 +41,7 @@ in
     # gui
     _1password
     _1password-gui
-    (discord-canary.override { nss = nss_latest; }) # override fixes links
+    webcord # discord, but actually browser mode, so screen sharing works
     firefox-wayland
     signal-desktop
     spotify
