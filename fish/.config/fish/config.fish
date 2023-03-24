@@ -13,7 +13,7 @@ alias gs 'git status'
 function add_path_if_exists
   for path in $argv
     if test -d $path
-      fish_add_path -aP $path
+      fish_add_path -pP $path
     end
   end
 end
