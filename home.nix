@@ -641,7 +641,7 @@ in
     line-uses-ring = true;
   };
 
-  programs.mako = {
+  services.mako = {
     enable = true;
     backgroundColor = base00;
     textColor = base05;
