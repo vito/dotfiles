@@ -63,6 +63,7 @@ in
     webcord # discord, but actually browser mode, so screen sharing works
     firefox-wayland
     signal-desktop
+    whatsapp-for-linux
     spotify
     pavucontrol
     vlc
