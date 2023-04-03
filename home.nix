@@ -201,9 +201,12 @@ in
       copilot-vim
     ];
 
+  programs.vscode.enable = true;
+
   home.sessionVariables.EDITOR = "vim";
   home.sessionVariables.DO_NOT_TRACK = "1";
   home.sessionVariables.GOTESTSUM_FORMAT = "dots";
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   xdg.configFile."nvim" = {
     source = ~/src/nvim;
