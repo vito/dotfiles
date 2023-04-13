@@ -213,17 +213,6 @@ in
   home.sessionVariables.GOTESTSUM_FORMAT = "dots";
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  xdg.configFile."nvim" = {
-    source = ~/src/nvim;
-    /* pkgs.fetchFromGitHub { */
-    /*   owner = "vito"; */
-    /*   repo = "dot-nvim"; */
-    /*   rev = "0404651cecea87726304912d6e8ff6a195839f68"; */
-    /*   sha256 = "sha256-qE8beeAIw0o9YrorjKbC9SknSoF/jcziMKpCIVYRqgs="; */
-    /* }; */
-    recursive = true;
-  };
-
   wayland.windowManager.sway.enable = true;
   wayland.windowManager.sway.config.assigns = {
     "2: web" = [{ app_id = "firefox"; }];
