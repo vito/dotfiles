@@ -212,6 +212,7 @@ in
   home.sessionVariables.DO_NOT_TRACK = "1";
   home.sessionVariables.GOTESTSUM_FORMAT = "dots";
   home.sessionVariables.NIXOS_OZONE_WL = "1";
+  home.sessionVariables._EXPERIMENTAL_DAGGER_TUI = "1";
 
   wayland.windowManager.sway.enable = true;
   wayland.windowManager.sway.config.assigns = {
