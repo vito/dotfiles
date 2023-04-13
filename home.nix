@@ -356,6 +356,10 @@ in
   };
   wayland.windowManager.sway.config.bars = [ ]; # use waybar instead
   wayland.windowManager.sway.config.output."*".bg = "${base00} solid_color";
+  wayland.windowManager.sway.extraConfig = ''
+    bindswitch lid:on output eDP-1 disable
+    bindswitch lid:off output eDP-1 enable
+  '';
 
   programs.waybar.enable = true;
   programs.waybar.systemd.enable = true;
