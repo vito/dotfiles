@@ -6,6 +6,11 @@ let
   ws3 = "3: chat";
   ws4 = "4: notes";
   ws5 = "5: music";
+  ws6 = "6: junk";
+  ws7 = "7: junk";
+  ws8 = "8: junk";
+  ws9 = "9: play";
+  ws10 = "10: video";
 
   # Rose Pine
   base00 = "#191724";
@@ -297,16 +302,16 @@ in
       "${mod}+Shift+4" = "move container to workspace ${ws4}";
       "${mod}+5" = "workspace ${ws5}";
       "${mod}+Shift+5" = "move container to workspace ${ws5}";
-      "${mod}+6" = "workspace 6";
-      "${mod}+Shift+6" = "move container to workspace 6";
-      "${mod}+7" = "workspace 7";
-      "${mod}+Shift+7" = "move container to workspace 7";
-      "${mod}+8" = "workspace 8";
-      "${mod}+Shift+8" = "move container to workspace 8";
-      "${mod}+9" = "workspace 9";
-      "${mod}+Shift+9" = "move container to workspace 9";
-      "${mod}+0" = "workspace 10";
-      "${mod}+Shift+0" = "move container to workspace 10";
+      "${mod}+6" = "workspace ${ws6}";
+      "${mod}+Shift+6" = "move container to workspace ${ws6}";
+      "${mod}+7" = "workspace ${ws7}";
+      "${mod}+Shift+7" = "move container to workspace ${ws7}";
+      "${mod}+8" = "workspace ${ws8}";
+      "${mod}+Shift+8" = "move container to workspace ${ws8}";
+      "${mod}+9" = "workspace ${ws9}";
+      "${mod}+Shift+9" = "move container to workspace ${ws9}";
+      "${mod}+0" = "workspace ${ws10}";
+      "${mod}+Shift+0" = "move container to workspace ${ws10}";
 
       # Move between displays
       "${mod}+Mod1+Ctrl+Right" = "move workspace to output right";
