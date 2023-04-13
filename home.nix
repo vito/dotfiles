@@ -195,7 +195,7 @@ in
         {
           extraGrammars = {
             tree-sitter-bass = {
-              src = _: ~/src/tree-sitter-bass;
+              src = ~/src/tree-sitter-bass;
             };
           };
         };
