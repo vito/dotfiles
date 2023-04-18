@@ -145,6 +145,10 @@ in
 
   ## END Sway config
 
+  programs._1password.enable = true;
+  programs._1password-gui.enable = true;
+  programs._1password-gui.polkitPolicyOwners = [ "vito" ];
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

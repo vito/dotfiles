@@ -63,8 +63,6 @@ in
 
   home.packages = with pkgs; [
     # gui
-    _1password
-    _1password-gui
     webcord # discord, but actually browser mode, so screen sharing works
     firefox-wayland
     signal-desktop
