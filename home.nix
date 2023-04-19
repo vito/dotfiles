@@ -13,22 +13,40 @@ let
   ws10 = "10: video";
 
   # Rose Pine
-  base00 = "#191724";
-  base01 = "#1f1d2e";
-  base02 = "#26233a";
-  base03 = "#555169";
+  /* base00 = "#191724"; */
+  /* base01 = "#1f1d2e"; */
+  /* base02 = "#26233a"; */
+  /* base03 = "#555169"; */
+  /* base04 = "#6e6a86"; */
+  /* base05 = "#e0def4"; */
+  /* base06 = "#f0f0f3"; */
+  /* base07 = "#c5c3ce"; */
+  /* base08 = "#eb6f92"; */
+  /* base09 = "#f6c177"; */
+  /* base0A = "#f6c177"; */
+  /* base0B = "#31748f"; */
+  /* base0C = "#ebbcba"; */
+  /* base0D = "#9ccfd8"; */
+  /* base0E = "#c4a7e7"; */
+  /* base0F = "#e5e5e5"; */
+
+  # Rose Pine Dawn
+  base00 = "#faf4ed";
+  base01 = "#fffaf3";
+  base02 = "#f2e9de";
+  base03 = "#9893a5";
   base04 = "#6e6a86";
-  base05 = "#e0def4";
-  base06 = "#f0f0f3";
-  base07 = "#c5c3ce";
-  base08 = "#eb6f92";
-  base09 = "#f6c177";
-  base0A = "#f6c177";
-  base0B = "#31748f";
-  base0C = "#ebbcba";
-  base0D = "#9ccfd8";
-  base0E = "#c4a7e7";
-  base0F = "#e5e5e5";
+  base05 = "#575279";
+  base06 = "#555169";
+  base07 = "#26233a";
+  base08 = "#b4637a";
+  base09 = "#ea9d34";
+  base0A = "#ea9d34";
+  base0B = "#286983";
+  base0C = "#d7827e";
+  base0D = "#56949f";
+  base0E = "#907aa9";
+  base0F = "#c5c3ce";
 
   # Black Metal (Bathory)
   /* base00 = "#000000"; */
