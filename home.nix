@@ -90,6 +90,11 @@ in
     vlc
     google-chrome
 
+    # for sway/waybar
+    gcalcli
+    python311
+    python311Packages.pip
+
     # misc shell utils
     ripgrep
     jq
@@ -387,7 +392,7 @@ in
       position = "top";
       height = 24;
       spacing = 4;
-      modules-left = [ "sway/workspaces" "sway/mode" ];
+      modules-left = [ "sway/workspaces" "sway/mode" "custom/agenda" ];
       modules-center = [ "sway/window" ];
       modules-right = [ "cpu" "memory" "network" "pulseaudio" "battery" "tray" "clock" ];
 
@@ -434,6 +439,16 @@ in
       "tray" = {
         icon-size = 16;
         spacing = 10;
+      };
+      "custom/agenda" = {
+        format = " {}";
+        exec = "nextmeeting --max-title-length 80 --waybar";
+        on-click = "nextmeeting --open-meet-url";
+        on-click-right = "kitty --class=GClock -- /bin/bash -c \"batz;echo;cal -3;echo;nextmeeting;read;\";";
+        interval = 59;
+        return-type = "json";
+        tooltip = "true";
+        tooltip-format = "{tooltip}";
       };
     };
   };
@@ -516,7 +531,8 @@ in
     #tray,
     #mode,
     #idle_inhibitor,
-    #mpd {
+    #mpd,
+    #custom-agenda {
         padding: 0 5px;
         color: ${base00};
         margin: 0;
@@ -619,6 +635,24 @@ in
     #idle_inhibitor.activated {
         background-color: ${base0E};
         color: ${base00};
+    }
+
+    #custom-agenda.future {
+        background-color: ${base0B};
+    }
+
+    #custom-agenda.current {
+        background-color: ${base0A};
+    }
+
+    #custom-agenda.soon {
+        background-color: ${base08};
+        color: ${base00};
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
     }
   '';
 
