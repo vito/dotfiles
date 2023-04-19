@@ -167,7 +167,7 @@ def ret_events(
 
             if (
                 not timeuntilstarting.days
-                and not timeuntilstarting.hour
+                and not timeuntilstarting.hours
                 and timeuntilstarting.minutes <= args.notify_min_before_events
             ):
                 notify(title, startdate, enddate, args.cache_dir)
