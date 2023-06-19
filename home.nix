@@ -247,6 +247,9 @@ in
       tap_button_map = "lrm";
       accel_profile = "adaptive";
     };
+    "type:keyboard" = {
+      xkb_options = "ctrl:nocaps";
+    };
   };
   wayland.windowManager.sway.config.fonts = {
     names = [ "Iosevka Term" ];
