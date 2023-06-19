@@ -188,10 +188,10 @@ in
         repo = "nerd-fonts";
         rev = "bde5c7def1775de187aae810e08d28a804e676da";
         sha256 = "nvqtakqdhzmBbycNGjSOki+my1/58PozDzJa9jcIvtU=";
-        sparseCheckout = ''
-          10-nerd-font-symbols.conf
-          patched-fonts/NerdFontsSymbolsOnly
-        '';
+        sparseCheckout = [
+          "10-nerd-font-symbols.conf"
+          "patched-fonts/NerdFontsSymbolsOnly"
+        ];
       };
       dontConfigure = true;
       dontBuild = true;
