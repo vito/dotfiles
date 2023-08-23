@@ -789,6 +789,7 @@ in
             status = "enable";
             mode = "2560x1440@60Hz"; # TODO: 165hz doesnt work :(
             position = "2560,0";
+            transform = "normal";
           }
           {
             criteria = "eDP-1";
