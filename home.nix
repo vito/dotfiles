@@ -144,6 +144,8 @@ in
     ngrok
     sqlite
     graphviz # dot, for go pprof
+    asciinema
+    bfs # faster (breadth-first) find
 
     # screenshots
     slurp
