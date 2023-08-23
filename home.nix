@@ -30,23 +30,59 @@ let
   /* base0E = "#c4a7e7"; */
   /* base0F = "#e5e5e5"; */
 
+  # Tokyo Night
+  base00 = "#24283b";
+  base01 = "#1f2335";
+  base02 = "#292e42";
+  base03 = "#565f89";
+  base04 = "#a9b1d6";
+  base05 = "#c0caf5";
+  base06 = "#c0caf5";
+  base07 = "#c0caf5";
+  base08 = "#f7768e";
+  base09 = "#ff9e64";
+  base0A = "#e0af68";
+  base0B = "#9ece6a";
+  base0C = "#1abc9c";
+  base0D = "#41a6b5";
+  base0E = "#bb9af7";
+  base0F = "#ff007c";
+
+  # Inkstained
+  # base00 = "#E7E5E2";
+  # base01 = "#D2D2D2";
+  # base02 = "#BDBFC1";
+  # base03 = "#A8ACB1";
+  # base04 = "#9498A0";
+  # base05 = "#7F8590";
+  # base06 = "#6A727F";
+  # base07 = "#555F6F";
+  # base08 = "#aa586e";
+  # base09 = "#c16c82";
+  # base0A = "#caac67";
+  # base0B = "#8ca368";
+  # base0C = "#5e99b1";
+  # base0D = "#7593bb";
+  # base0E = "#b0789b";
+  # base0F = "#91a8c9";
+
   # Rose Pine Dawn
-  base00 = "#faf4ed";
-  base01 = "#fffaf3";
-  base02 = "#f2e9de";
-  base03 = "#9893a5";
-  base04 = "#6e6a86";
-  base05 = "#575279";
-  base06 = "#555169";
-  base07 = "#26233a";
-  base08 = "#b4637a";
-  base09 = "#ea9d34";
-  base0A = "#ea9d34";
-  base0B = "#286983";
-  base0C = "#d7827e";
-  base0D = "#56949f";
-  base0E = "#907aa9";
-  base0F = "#c5c3ce";
+  # base00 = "#faf4ed";
+  # base01 = "#fffaf3";
+  # base02 = "#f2e9de";
+  # base03 = "#9893a5";
+  # base04 = "#6e6a86";
+  # base05 = "#575279";
+  # base06 = "#555169";
+  # base07 = "#26233a";
+  # base08 = "#b4637a";
+  # base09 = "#ea9d34";
+  # base0A = "#ea9d34";
+  # base0B = "#286983";
+  # base0C = "#d7827e";
+  # base0D = "#56949f";
+  # base0E = "#907aa9";
+  # base0F = "#c5c3ce";
 
   # Black Metal (Bathory)
   /* base00 = "#000000"; */
@@ -192,8 +228,8 @@ in
       src = pkgs.fetchFromGitHub {
         owner = "vito";
         repo = "base16-fish";
-        rev = "771ad22aff852be86fdbb8ca56f856f1134726b9";
-        sha256 = "sha256-0oJxrIjD1XZd349b4R6xIVvtrB9aXQEEvMG4mN8lTqU=";
+        rev = "65cc75e69497c567b90e4f63e8ec59fc9967b6e8";
+        sha256 = "sha256-rQcXJOmNxCVnU//2Y3TZ/Ul597wY23FJ2LLrqjU+IP4=";
       };
     }
   ];
