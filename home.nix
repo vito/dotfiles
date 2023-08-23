@@ -125,6 +125,7 @@ in
     pavucontrol
     vlc
     google-chrome
+    roam-research
 
     # for sway/waybar
     gcalcli
