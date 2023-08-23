@@ -321,9 +321,9 @@ in
       "XF86MonBrightnessUp" = "exec light -A 10";
 
       # Volume
-      "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +5%'";
-      "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -5%'";
-      "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+      "XF86AudioRaiseVolume" = "exec '${pkgs.swayosd}/bin/swayosd --output-volume raise'";
+      "XF86AudioLowerVolume" = "exec '${pkgs.swayosd}/bin/swayosd --output-volume lower'";
+      "XF86AudioMute" = "exec '${pkgs.swayosd}/bin/swayosd --output-volume mute-toggle'";
 
       # Media
       "XF86AudioPlay" = "exec 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'";
@@ -848,6 +848,8 @@ in
 
   services.keybase.enable = true;
   services.kbfs.enable = true;
+
+  services.swayosd.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
