@@ -278,6 +278,9 @@ in
   # needed for store VS Code auth token
   services.gnome.gnome-keyring.enable = true;
 
+  # for easyeffects
+  programs.dconf.enable = true;
+
   security.apparmor.enable = true;
   security.apparmor.policies = {
     "usr.sbin.dnsmasq".profile = ''

@@ -851,6 +851,8 @@ in
   services.keybase.enable = true;
   services.kbfs.enable = true;
 
+  services.easyeffects.enable = true;
+
   services.swayosd.enable = true;
 
   # This value determines the Home Manager release that your
