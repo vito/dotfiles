@@ -125,6 +125,7 @@ in
     pavucontrol
     vlc
     google-chrome
+    obs-studio # screen recording
     roam-research
 
     # for sway/waybar
