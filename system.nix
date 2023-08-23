@@ -210,6 +210,9 @@ in
       '';
       enableParallelBuilding = true;
     })
+
+    takao # Japanese
+    sarasa-gothic # Japanese Iosevka
   ];
   fonts.enableDefaultFonts = true;
   fonts.fontconfig = {
@@ -243,6 +246,14 @@ in
         <match target="font">
           <edit mode="assign" name="lcdfilter">
             <const>lcddefault</const>
+          </edit>
+        </match>
+        <match>
+          <test compare="contains" name="lang">
+            <string>jp</string>
+          </test>
+          <edit mode="prepend" name="family">
+            <string>Takao</string>
           </edit>
         </match>
       </fontconfig>
