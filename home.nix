@@ -426,7 +426,7 @@ in
   programs.waybar.enable = true;
   programs.waybar.systemd.enable = true;
   programs.waybar.systemd.target = "sway-session.target";
-  wayland.windowManager.sway.systemdIntegration = true;
+  wayland.windowManager.sway.systemd.enable = true;
   programs.waybar.settings = {
     main = {
       layer = "top";
