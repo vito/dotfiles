@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e -u -x
+
+# adcd034a6 a718935b1 5f033fca6 Merge branch 'services-v2' into vito-zenith
+# a718935b1 bc5703e7d 7d6231ee5 Merge branch 'import-layout' into vito-zenith
+# bc5703e7d 23be7ce76 f643fa891 Merge branch 'focus' into vito-zenith
+git log --merges upstream/main..HEAD --oneline --first-parent --pretty="%h %p %s" | \
+  sed -e "s/Merge branch '\\(.*\\)' into .*/\\1/" | \
+  while read merge base head branch; do
+    git push -f origin $head:$branch
+    git branch -D ${branch}-backup || true
+    git branch ${branch}-backup $branch
+    git branch -D $branch
+    git branch $branch $head
+  done
