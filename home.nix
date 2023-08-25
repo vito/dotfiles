@@ -127,6 +127,7 @@ in
     google-chrome
     obs-studio # screen recording
     roam-research
+    anki # weeaboo
 
     # for sway/waybar
     gcalcli
@@ -278,6 +279,9 @@ in
   wayland.windowManager.sway.config.assigns = {
     "2: web" = [{ app_id = "firefox"; }];
   };
+  wayland.windowManager.sway.config.floating.criteria = [
+    { app_id = "anki"; }
+  ];
   wayland.windowManager.sway.config.input = {
     "type:touchpad" = {
       scroll_factor = "0.76";
