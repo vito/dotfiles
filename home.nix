@@ -168,7 +168,7 @@ in
     nodePackages.typescript-language-server
     nodePackages.pnpm
     # github copilot
-    nodejs-16_x
+    nodejs-18_x
     # for compiling neovim grammars with TSInstall
     tree-sitter
 
