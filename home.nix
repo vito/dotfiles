@@ -171,6 +171,10 @@ in
     nodejs-18_x
     # for compiling neovim grammars with TSInstall
     tree-sitter
+    # python
+    python311Packages.python-lsp-server
+    python311Packages.python-lsp-black
+    python311Packages.python-lsp-ruff
 
     # necessary for discord et al. to be able to open links
     xdg-utils
