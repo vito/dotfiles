@@ -153,6 +153,7 @@ in
     # screenshots
     slurp
     grim
+    wf-recorder
 
     ## languages & lsps for editing non-flake'd projects
     # go
