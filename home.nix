@@ -102,6 +102,8 @@ let
   /* base0E = "#999999"; */
   /* base0F = "#444444"; */
 
+  # TODO: this is weird
+  nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { pkgs = pkgs; };
 in
 {
   # Home Manager needs a bit of information about you and the
@@ -118,7 +120,6 @@ in
   home.packages = with pkgs; [
     # gui
     webcord # discord, but actually browser mode, so screen sharing works
-    firefox-wayland
     signal-desktop
     whatsapp-for-linux
     spotify
@@ -180,6 +181,63 @@ in
     # necessary for discord et al. to be able to open links
     xdg-utils
   ];
+
+  programs.firefox.enable = true;
+  programs.firefox.package = pkgs.firefox-wayland;
+  programs.firefox.profiles.default.id = 0;
+  programs.firefox.profiles.default.name = "vito";
+  programs.firefox.profiles.default.settings = {
+    "general.smoothScroll" = true;
+    "browser.toolbars.bookmarks.visibility" = "never";
+    "privacy.webrtc.legacyGlobalIndicator" = false;
+    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+    "layers.acceleration.force-enabled" = true;
+    "gfx.webrender.all" = true;
+    "svg.context-properties.content.enabled" = true;
+    "browser.compactmode.show" = true;
+    "browser.search.region" = "us";
+    "distribution.searchplugins.defaultLocale" = "en-US";
+    "general.useragent.locale" = "en-US";
+  };
+  programs.firefox.profiles.default.extensions = with nur.repos.rycee.firefox-addons; [
+    # see: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
+    tree-style-tab
+    ublock-origin
+    dark-mode-website-switcher
+    onepassword-password-manager
+    tokyo-night-v2
+    kagi-search
+  ];
+  programs.firefox.profiles.default.userChrome = ''
+    #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #main-window:not([tabsintitlebar="true"]) #TabsToolbar {
+        visibility: collapse !important;
+    }
+    #titlebar {
+      appearance: none !important;
+      height: 0px;
+    }
+
+    #titlebar > #toolbar-menubar {
+      margin-top: 0px;
+    }
+
+    #TabsToolbar {
+      min-width: 0 !important;
+      min-height: 0 !important;
+    }
+
+    #TabsToolbar > .titlebar-buttonbox-container {
+      display: none;
+    }
+
+    #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+      display: none;
+    }
+  '';
 
   # Configure git aliases and such.
   programs.git = {
@@ -273,7 +331,7 @@ in
       copilot-vim
     ];
   programs.neovim.extraPython3Packages = (ps: with ps; [
-      openai
+    openai
   ]);
 
   programs.vscode.enable = true;
