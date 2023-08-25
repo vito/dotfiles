@@ -272,6 +272,9 @@ in
       markdown-preview-nvim
       copilot-vim
     ];
+  programs.neovim.extraPython3Packages = (ps: with ps; [
+      openai
+  ]);
 
   programs.vscode.enable = true;
 
