@@ -235,6 +235,7 @@ in
 
   # Enable Docker.
   virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_24;
 
   # Enable fish system-wide so that it sources necessary files.
   programs.fish.enable = true;
