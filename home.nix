@@ -12,6 +12,8 @@ let
   ws9 = "9: play";
   ws10 = "10: video";
 
+  font = "Iosevka Comfy";
+
   # Rose Pine
   /* base00 = "#191724"; */
   /* base01 = "#1f1d2e"; */
@@ -253,6 +255,7 @@ in
     extraConfig = {
       push = {
         default = "simple";
+        autoSetupRemote = "true";
       };
       url = {
         "git@github.com:" = {
@@ -361,13 +364,13 @@ in
     };
   };
   wayland.windowManager.sway.config.fonts = {
-    names = [ "Iosevka Term" ];
+    names = [ font ];
     style = "Bold";
     size = 12.0;
   };
   wayland.windowManager.sway.config.workspaceAutoBackAndForth = true;
   wayland.windowManager.sway.config.modifier = "Mod4";
-  wayland.windowManager.sway.config.menu = "${pkgs.bemenu}/bin/bemenu-run -p run -c -B 3 -W 0.8 --fn 'Iosevka Term 18' --hp 5 --bdr '${base0E}' --tb '${base00}' --tf '${base0E}' --fb '${base00}' --ff '${base05}' --nb '${base00}' --ab '${base00}' --hb '${base0E}' --hf '${base00}' | ${pkgs.findutils}/bin/xargs ${pkgs.sway}/bin/swaymsg exec --";
+  wayland.windowManager.sway.config.menu = "${pkgs.bemenu}/bin/bemenu-run -p run -c -B 3 -W 0.8 --fn '${font} 18' --hp 5 --bdr '${base0E}' --tb '${base00}' --tf '${base0E}' --fb '${base00}' --ff '${base05}' --nb '${base00}' --ab '${base00}' --hb '${base0E}' --hf '${base00}' | ${pkgs.findutils}/bin/xargs ${pkgs.sway}/bin/swaymsg exec --";
   wayland.windowManager.sway.config.terminal = "${pkgs.alacritty}/bin/alacritty";
   wayland.windowManager.sway.config.gaps = {
     inner = 5;
@@ -569,7 +572,7 @@ in
     * {
         border: none;
         border-radius: 0;
-        font-family: FontAwesome, Iosevka, sans-serif;
+        font-family: FontAwesome, ${font}, sans-serif;
         font-size: 14px;
         min-height: 0;
         transition: none;
@@ -782,7 +785,7 @@ in
   };
 
   programs.swaylock.settings = {
-    font = "Iosevka Term";
+    font = font;
     font-size = 18;
 
     indicator-radius = 100;
@@ -813,7 +816,7 @@ in
     borderColor = base0D;
     width = 500;
     borderSize = 2;
-    font = "Iosevka Term 11";
+    font = "${font} 11";
     margin = "5";
     maxIconSize = 48;
     defaultTimeout = 10000;
