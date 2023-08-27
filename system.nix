@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  font = "Iosevka Comfy";
-
   ## VIA https://nixos.wiki/wiki/Sway
   # bash script to let dbus know about important env variables and
   # propogate them to relevent services run at the end of sway config
@@ -157,9 +155,24 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # Font configuration.
-  fonts.packages = with pkgs; [
+  fonts.fonts = with pkgs; [
     iosevka
-    iosevka-comfy.comfy
+
+    # see https://typeof.net/Iosevka/customizer
+    (iosevka.override {
+      set = "term";
+      privateBuildPlan = ''
+        [buildPlans.iosevka-term]
+        family = "Iosevka Term"
+        spacing = "term"
+        serifs = "sans"
+        no-cv-ss = true
+        export-glyph-names = false
+
+          [buildPlans.iosevka-term.variants]
+          inherits = "ss08"
+      '';
+    })
 
     font-awesome # for waybar
     corefonts # common Microsoft fonts
@@ -198,10 +211,10 @@ in
     takao # Japanese
     sarasa-gothic # Japanese Iosevka
   ];
-  fonts.enableDefaultPackages = true;
+  fonts.enableDefaultFonts = true;
   fonts.fontconfig = {
     defaultFonts = {
-      monospace = [ font ];
+      monospace = [ "Iosevka Term" ];
     };
     localConf = ''
       <?xml version='1.0'?>
