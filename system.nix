@@ -155,7 +155,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # Font configuration.
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     iosevka
 
     # see https://typeof.net/Iosevka/customizer
@@ -211,7 +211,7 @@ in
     takao # Japanese
     sarasa-gothic # Japanese Iosevka
   ];
-  fonts.enableDefaultFonts = true;
+  fonts.enableDefaultPackages = true;
   fonts.fontconfig = {
     defaultFonts = {
       monospace = [ "Iosevka Term" ];
