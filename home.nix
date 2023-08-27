@@ -189,17 +189,18 @@ in
   programs.firefox.profiles.default.id = 0;
   programs.firefox.profiles.default.name = "vito";
   programs.firefox.profiles.default.settings = {
-    "general.smoothScroll" = true;
-    "browser.toolbars.bookmarks.visibility" = "never";
-    "privacy.webrtc.legacyGlobalIndicator" = false;
-    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-    "layers.acceleration.force-enabled" = true;
-    "gfx.webrender.all" = true;
-    "svg.context-properties.content.enabled" = true;
     "browser.compactmode.show" = true;
     "browser.search.region" = "us";
+    "browser.toolbars.bookmarks.visibility" = "never";
     "distribution.searchplugins.defaultLocale" = "en-US";
+    "general.smoothScroll" = true;
     "general.useragent.locale" = "en-US";
+    "gfx.webrender.all" = true;
+    "layers.acceleration.force-enabled" = true;
+    "media.ffmpeg.vaapi.enabled" = true;
+    "privacy.webrtc.legacyGlobalIndicator" = false;
+    "svg.context-properties.content.enabled" = true;
+    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
   };
   programs.firefox.profiles.default.extensions = with nur.repos.rycee.firefox-addons; [
     # see: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
