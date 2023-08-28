@@ -208,6 +208,7 @@ in
     onepassword-password-manager
     tokyo-night-v2
     kagi-search
+    zoom-redirector
   ];
   programs.firefox.profiles.default.userChrome = ''
     #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
