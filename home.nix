@@ -180,6 +180,9 @@ in
 
     # necessary for discord et al. to be able to open links
     xdg-utils
+
+    # changelog automation (Dagger)
+    changie
   ];
 
   programs.firefox.enable = true;
