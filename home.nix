@@ -258,6 +258,7 @@ in
     extraConfig = {
       push = {
         default = "simple";
+        autoSetupRemote = true;
       };
       url = {
         "git@github.com:" = {
