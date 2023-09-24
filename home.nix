@@ -158,7 +158,7 @@ in
 
     ## languages & lsps for editing non-flake'd projects
     # go
-    go_1_20
+    go_1_21
     gopls
     gotools
     gcc
