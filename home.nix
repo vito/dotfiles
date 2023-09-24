@@ -171,18 +171,24 @@ in
     nodePackages.pnpm
     # github copilot
     nodejs-18_x
+    # general dev
+    yarn
     # for compiling neovim grammars with TSInstall
     tree-sitter
     # python
     python311Packages.python-lsp-server
     python311Packages.python-lsp-black
     python311Packages.python-lsp-ruff
+    # elixir
+    elixir
+    elixir-ls
 
     # necessary for discord et al. to be able to open links
     xdg-utils
 
-    # changelog automation (Dagger)
-    changie
+    # dagger
+    capnproto # id protocol
+    changie # changelog automation
   ];
 
   programs.firefox.enable = true;
