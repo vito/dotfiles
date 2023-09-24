@@ -830,6 +830,7 @@ in
     maxIconSize = 48;
     defaultTimeout = 10000;
     groupBy = "app-name";
+    anchor = "bottom-right";
     extraConfig = ''
       [urgency=high]
       background-color=${base00}
