@@ -1,0 +1,19 @@
+/.local
+/.bashrc
+/.bash_profile
+/.bash_history
+/.bash_logout
+/.cache
+/Downloads
+/.wget-hsts
+/.var/app/
+/.ssh
+/.mozilla
+
+# filter out specific files under .config so we don't miss anything new
+/.config/fish/fish_variables
+/.config/cni/net.d/cni.lock
+/.config/dconf/user
+/.config/lxqt/lxqt.conf
+/.config/pulse/cookie
+/.config/toolbox/podman-system-migrate

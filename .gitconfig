@@ -1,0 +1,10 @@
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+[push]
+	default = simple
+[url "git@github.com:"]
+	pushInsteadOf = https://github.com/
+[trailer]
+	ifexsts = addIfDifferent

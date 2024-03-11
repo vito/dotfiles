@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# install basics, the rest of it is in $HOME already
+sudo dnf install -y neovim fish util-linux-user
+
+# for tree-sitter auto-compilation
+sudo dnf install -y gcc
+
+chsh -s $(which fish) $(whoami)
+
+# install neovim to the host
+distrobox-export --bin $(which nvim) --export-path ~/.bin
+ln -sf $HOME/.bin/nvim $HOME/.bin/vim

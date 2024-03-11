@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+set -e -u -x
+
+cd $HOME
+
+mkdir -p $HOME/.config
+mkdir -p $HOME/.bin
+
+### system-wide setup (requires reboot)
+
+# bootstrap distrobox + shell
+rpm-ostree install --idempotent distrobox fish
+
+# set up ntp
+if ! timedatectl status | grep "NTP service: active" >/dev/null; then
+  timedatectl set-ntp true
+fi
+
+# install flathub
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+## GUI apps
+
+# use Webcord over Discord until they get off their ass and support Wayland or upgrade Electron
+flatpak install --or-update io.github.spacingbat3.webcord # com.discordapp.Discord
+
+# install 1password from their official repo
+if ! flatpak list | grep OnePassword >/dev/null; then
+  flatpak install --or-update https://downloads.1password.com/linux/flatpak/1Password.flatpakref
+fi
+
+# Spotify
+flatpak install --or-update com.spotify.Client
+
+## dev env setup
+
+# best prompt
+if ! test -e $HOME/.bin/starship; then
+  curl -sS https://starship.rs/install.sh | env BIN_DIR=$HOME/.bin sh
+fi
+
+# best font
+if ! fc-list | grep 'Iosevka Term SS08' >/dev/null; then
+  fontdir=/usr/local/share/fonts/IosevkaTermSS08
+  sudo mkdir -p $fontdir
+  wget https://github.com/be5invis/Iosevka/releases/download/v29.0.1/PkgTTF-IosevkaTermSS08-29.0.1.zip -O /tmp/iosevka.zip
+  sudo unzip -d $fontdir /tmp/iosevka.zip
+  sudo fc-cache -v
+fi
+
+# install each distro
+for distro in distros/*; do
+  name=$(basename $distro)
+  if ! distrobox ls | grep $name >/dev/null; then
+    distrobox create -n $name
+  fi
+  distrobox enter $name -- ./distros/$name
+done
