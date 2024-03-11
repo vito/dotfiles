@@ -1,0 +1,90 @@
+[
+  {
+    "battery": {
+      "format": "{capacity}% {icon}",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "states": {
+        "critical": 15,
+        "good": 95,
+        "warning": 30
+      }
+    },
+    "clock": {
+      "format": "{:%F %I:%M %p}"
+    },
+    "cpu": {
+      "format": "{usage}% "
+    },
+    "custom/agenda": {
+      "exec": "env GCALCLI_DEFAULT_CALENDAR=alex@dagger.io nextmeeting --max-title-length 80 --waybar",
+      "format": "{}",
+      "interval": 59,
+      "on-click": "env GCALCLI_DEFAULT_CALENDAR=alex@dagger.io nextmeeting --open-meet-url",
+      "on-click-right": "kitty --class=GClock -- /bin/bash -c \"batz;echo;cal -3;echo;nextmeeting;read;\";",
+      "return-type": "json",
+      "tooltip": "true",
+      "tooltip-format": "{tooltip}"
+    },
+    "height": 24,
+    "layer": "top",
+    "memory": {
+      "format": "{}% "
+    },
+    "modules-center": [
+      "sway/window"
+    ],
+    "modules-left": [
+      "sway/workspaces",
+      "sway/mode",
+      "custom/agenda"
+    ],
+    "modules-right": [
+      "cpu",
+      "memory",
+      "network",
+      "pulseaudio",
+      "battery",
+      "tray",
+      "clock"
+    ],
+    "network": {
+      "format-disconnected": "Disconnected ⚠",
+      "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+      "format-wifi": "{essid} ",
+      "interval": 7
+    },
+    "position": "top",
+    "pulseaudio": {
+      "format": "{volume}% {icon}",
+      "format-bluetooth": ": {volume}% {icon}",
+      "format-icons": {
+        "car": "",
+        "default": [
+          "",
+          ""
+        ],
+        "handsfree": "",
+        "headphones": "",
+        "headset": "",
+        "phone": "",
+        "portable": ""
+      },
+      "format-muted": ""
+    },
+    "spacing": 4,
+    "sway/workspaces": {
+      "disable-markup": false,
+      "disable-scroll": false
+    },
+    "tray": {
+      "icon-size": 16,
+      "spacing": 10
+    }
+  }
+]

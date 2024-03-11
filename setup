@@ -9,8 +9,13 @@ mkdir -p $HOME/.bin
 
 ### system-wide setup (requires reboot)
 
-# bootstrap distrobox + shell
-rpm-ostree install --idempotent distrobox fish
+# bootstrap distrobox + shell, + pip for nextmeeting
+rpm-ostree install --idempotent distrobox fish python3-pip
+
+### (a reboot is required here on first setup)
+
+# set up CLIs for waybar
+sudo pip install nextmeeting gcalcli
 
 # set up ntp
 if ! timedatectl status | grep "NTP service: active" >/dev/null; then

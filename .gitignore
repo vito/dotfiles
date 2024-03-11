@@ -9,6 +9,8 @@
 /.var/app/
 /.ssh
 /.mozilla
+/.gcalcli_cache
+/.gcalcli_oauth
 
 # filter out specific files under .config so we don't miss anything new
 /.config/fish/fish_variables
