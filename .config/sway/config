@@ -51,6 +51,14 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg #191724 solid_color
 
+# Let Kanshi set up all the outputs.
+exec_always {
+  pkill kanshi
+  kanshi &
+}
+
+exec mako
+
 #
 # Example configuration:
 #

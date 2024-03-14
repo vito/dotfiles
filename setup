@@ -9,23 +9,33 @@ mkdir -p $HOME/.bin
 
 ### system-wide setup (requires reboot)
 
-# bootstrap distrobox + shell, + pip for nextmeeting
-rpm-ostree install --idempotent distrobox fish python3-pip
+## bootstrap system-wide stuff all at once since it's slow and requires reboot
+rpm-ostree install --idempotent \
+  fish \
+  distrobox \
+  python3-pip \
+  mako \
 
-### (a reboot is required here on first setup)
+## not idempotent; do this manually
+# rpm-ostree override remove firefox firefox-langpacks dunst
 
-# set up CLIs for waybar
-sudo pip install nextmeeting gcalcli
+## (a reboot is required here on first setup)
 
-# set up ntp
+## set up ntp
 if ! timedatectl status | grep "NTP service: active" >/dev/null; then
   timedatectl set-ntp true
+fi
+
+## set up CLIs for waybar
+if ! which nextmeeting >/dev/null; then
+  sudo pip install nextmeeting gcalcli
 fi
 
 # install flathub
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-## GUI apps
+
+### GUI apps
 
 # use Webcord over Discord until they get off their ass and support Wayland or upgrade Electron
 flatpak install --or-update io.github.spacingbat3.webcord # com.discordapp.Discord
@@ -38,7 +48,12 @@ fi
 # Spotify
 flatpak install --or-update com.spotify.Client
 
-## dev env setup
+## Firefox
+flatpak install --or-update org.mozilla.Firefox
+# more video streaming codecs
+flatpak install --or-update flathub org.freedesktop.Platform.ffmpeg-full
+
+### CLI setup
 
 # best prompt
 if ! test -e $HOME/.bin/starship; then
