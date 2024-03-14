@@ -3,6 +3,7 @@
 /Downloads/
 /Pictures/
 /src/
+/go/
 
 # things that don't belong in git
 /.local/
@@ -16,6 +17,8 @@
 /.gcalcli_cache
 /.gcalcli_oauth
 /.docker/cli-plugins/
+/.magefile/
+/.pki/
 
 # filter out specific files under .config so we don't miss anything new
 /.bashrc
@@ -27,3 +30,8 @@
 /.config/pulse/cookie
 /.config/toolbox/podman-system-migrate
 /.config/pavucontrol.ini
+/.config/github-copilot/
+/.config/go/telemetry/
+/.config/Roam Research/
+/.config/Thunar/
+/.config/xfce4/
