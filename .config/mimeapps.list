@@ -1,0 +1,5 @@
+[Default Applications]
+application/pdf=org.mozilla.firefox.desktop
+
+[Added Associations]
+application/pdf=org.mozilla.firefox.desktop;
