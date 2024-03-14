@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# distrobox create -n roam --image debian
+
+# for .desktop file (which we don't use anyway because it's broken due to spaces)
+sudo apt-get -y install desktop-file-utils libasound-dev
+
+if ! which roam-research 2>/dev/null; then
+  wget https://roam-electron-deploy.s3.us-east-2.amazonaws.com/roam-research_0.0.18_amd64.deb -O /tmp/roam.deb
+  sudo apt -y install /tmp/roam.deb
+fi
+
+distrobox-export --bin /usr/bin/roam-research --export-path ~/.bin
