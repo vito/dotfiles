@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+set -e -u -x
+
+if [ -z "$CONTAINER_ID" ]; then
+  echo "This script must be run from inside distrobox container."
+  exit 1
+fi
+
+cd $HOME
+
 # install basics, the rest of it is in $HOME already
 sudo dnf install -y neovim fish util-linux-user
 chsh -s $(which fish) $(whoami)
