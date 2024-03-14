@@ -93,6 +93,18 @@ exec mako
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input "type:keyboard" {
+  xkb_options ctrl:nocaps
+}
+
+input "type:touchpad" {
+  accel_profile adaptive
+  natural_scroll enabled
+  scroll_factor 0.76
+  tap enabled
+  tap_button_map lrm
+}
+
 ### Key bindings
 #
 # Basics:
@@ -262,4 +274,3 @@ bindsym $mod+r mode "resize"
 # the trick, it's all in the `wordexp(3)`.
 #
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
-
