@@ -16,9 +16,33 @@ chsh -s $(which fish) $(whoami)
 # for tree-sitter auto-compilation
 sudo dnf install -y gcc
 
+# faster grep
+sudo dnf install -y ripgrep
+
 # install neovim to the host
-distrobox-export --bin $(which nvim) --export-path ~/.bin
+distrobox-export --bin /usr/bin/nvim --export-path ~/.bin
 ln -sf $HOME/.bin/nvim $HOME/.bin/vim
+
+# install Go
+go_version=1.22.1
+if ! test -d /usr/local/go || /usr/local/go/bin/go version | grep -v go${go_version}; then
+  curl -sSL https://go.dev/dl/go${go_version}.linux-amd64.tar.gz | \
+    sudo tar -C /usr/local -xzf -
+fi
 
 # use host Docker
 sudo ln -sf /usr/bin/distrobox-host-exec /usr/local/bin/docker
+
+# install bat
+sudo dnf install -y bat
+
+# for copilot
+sudo dnf install -y nodejs
+
+# for gRPC + Go tooling
+sudo dnf install -y protobuf-compiler
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+# language servers
+go install github.com/nametake/golangci-lint-langserver@latest

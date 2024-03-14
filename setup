@@ -41,6 +41,9 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 # use Webcord over Discord until they get off their ass and support Wayland or upgrade Electron
 flatpak install --or-update io.github.spacingbat3.webcord # com.discordapp.Discord
 
+# official Signal app
+flatpak install --or-update org.signal.Signal
+
 # install 1password from their official repo
 if ! flatpak list | grep OnePassword >/dev/null; then
   flatpak install --or-update https://downloads.1password.com/linux/flatpak/1Password.flatpakref
