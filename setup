@@ -15,6 +15,7 @@ rpm-ostree install --idempotent \
   distrobox \
   python3-pip \
   mako \
+  docker
 
 ## not idempotent; do this manually
 # rpm-ostree override remove firefox firefox-langpacks dunst
@@ -77,3 +78,14 @@ for distro in distros/*; do
   fi
   distrobox enter $name -- ./distros/$name
 done
+
+## Docker; manual steps needed for rpm-ostree
+# see https://docs.fedoraproject.org/en-US/fedora-silverblue/troubleshooting/#_unable_to_add_user_to_group
+sudo sh -c "grep -E '^docker:' /usr/lib/group >> /etc/group"
+sudo usermod -aG docker $(whoami)
+# install docker-compose
+if ! test -f .docker/cli-plugins/docker-compose; then
+  mkdir -p .docker/cli-plugins
+  wget https://github.com/docker/compose/releases/download/v2.24.7/docker-compose-linux-x86_64 -O .docker/cli-plugins/docker-compose
+  chmod +x .docker/cli-plugins/docker-compose
+fi

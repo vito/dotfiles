@@ -1,20 +1,21 @@
 # human-facing directories
-/Documents
-/Downloads
-/Pictures
-/src
+/Documents/
+/Downloads/
+/Pictures/
+/src/
 
 # things that don't belong in git
-/.local
+/.local/
 /.bash_history
 /.bash_logout
-/.cache
+/.cache/
 /.wget-hsts
 /.var/app/
-/.ssh
-/.mozilla
+/.ssh/
+/.mozilla/
 /.gcalcli_cache
 /.gcalcli_oauth
+/.docker/cli-plugins/
 
 # filter out specific files under .config so we don't miss anything new
 /.bashrc

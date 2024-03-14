@@ -10,3 +10,6 @@ sudo dnf install -y gcc
 # install neovim to the host
 distrobox-export --bin $(which nvim) --export-path ~/.bin
 ln -sf $HOME/.bin/nvim $HOME/.bin/vim
+
+# use host Docker
+sudo ln -sf /usr/bin/distrobox-host-exec /usr/local/bin/docker
