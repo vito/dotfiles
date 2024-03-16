@@ -4,7 +4,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-font pango:Iosevka Term SS08 12.000000
+font pango:Iosevka Term SS08 10.000000
 default_border pixel 2
 default_floating_border pixel 2
 hide_edge_borders none

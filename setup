@@ -12,6 +12,8 @@ mkdir -p $HOME/.bin
 ## bootstrap system-wide stuff all at once since it's slow and requires reboot
 rpm-ostree install --idempotent \
   fish \
+  htop \
+  ripgrep \
   distrobox \
   python3-pip \
   mako \

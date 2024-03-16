@@ -10,7 +10,7 @@ fi
 cd $HOME
 
 # install basics, the rest of it is in $HOME already
-sudo dnf install -y neovim fish util-linux-user
+sudo dnf install -y fish util-linux-user
 chsh -s $(which fish) $(whoami)
 
 # for tree-sitter auto-compilation
@@ -19,7 +19,13 @@ sudo dnf install -y gcc
 # faster grep
 sudo dnf install -y ripgrep
 
+# basic CLI ops utils
+sudo dnf install -y htop
+# exporting is weird since it runs in a separate context than intended
+# distrobox-export --bin /usr/bin/htop --export-path ~/.bin
+
 # install neovim to the host
+sudo dnf install -y neovim
 distrobox-export --bin /usr/bin/nvim --export-path ~/.bin
 ln -sf $HOME/.bin/nvim $HOME/.bin/vim
 
