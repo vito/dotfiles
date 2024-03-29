@@ -8,3 +8,5 @@
 	pushInsteadOf = https://github.com/
 [trailer]
 	ifexsts = addIfDifferent
+[user]
+	name = Alex Suraci
