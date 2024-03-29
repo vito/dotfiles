@@ -52,3 +52,9 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
 # language servers
 go install github.com/nametake/golangci-lint-langserver@latest
+
+# Node tooling
+if ! which pnpm 2>&1 > /dev/null; then
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
+fi
+pnpm install -g typescript-language-server typescript
