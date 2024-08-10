@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e -u -x
+
+cd $(dirname $0)
+
+# simple config manager
+brew install stow
+
+# local executables dir
+mkdir -p ~/bin
+
+# setup fish
+brew install fish
+stow -t ~ fish
+fish -c 'fisher update'
+fish -c 'fisher install rose-pine/fish'
+
+# install rg
+brew install ripgrep
+
+# setup go
+brew install go
+
+# configure git
+./git/configure
