@@ -15,7 +15,11 @@ if status is-interactive
 
   set -x BAT_THEME base16
 
-  fish_config theme choose "Rosé Pine"
+  if set -q LIGHT
+    fish_config theme choose "Rosé Pine Dawn"
+  else
+    fish_config theme choose "Rosé Pine"
+  end
 
   starship init fish | source
 

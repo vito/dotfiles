@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # sensible aliases
-git config --global alias.ci commit
+git config --global alias.ci 'commit -s'
+git config --global alias.rv 'revert -s'
 git config --global alias.co checkout
 git config --global alias.st status
 
