@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e -u -x
+
+cd $(dirname $0)
+
+function install() {
+  sudo pacman -Sy --needed "$@"
+}
+
+# simple config manager
+install stow
+
+# local executables dir
+mkdir -p ~/.local/bin
+
+# setup fish
+install fish fisher starship direnv
+stow -t ~ fish
+fish -c 'fisher update'
+fish -c 'fisher install rose-pine/fish'
+
+# install rg
+install ripgrep
+
+# setup go
+install go
+
+# set up ghostty
+install ghostty
+stow -t ~ ghostty
+
+# basic utils
+install xclip bat jq
+
+# configure git
+./git/configure

@@ -1,5 +1,3 @@
-eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
 set -x EDITOR vim
 
 # git shorthand
