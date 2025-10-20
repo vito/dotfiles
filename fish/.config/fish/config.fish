@@ -6,7 +6,7 @@ alias gs 'git status'
 alias gpl 'git pull'
 
 # local software
-fish_add_path ~/bin ~/.local/bin ~/go/bin ~/.yarn/bin
+fish_add_path ~/bin ~/.local/bin ~/go/bin ~/.yarn/bin ~/.lmstudio/bin
 
 if status is-interactive
   set fish_greeting
