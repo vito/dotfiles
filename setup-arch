@@ -31,7 +31,7 @@ install ghostty
 stow -t ~ ghostty
 
 # basic utils
-install xclip bat jq
+install wl-clipboard bat jq
 
 # configure git
 ./git/configure
