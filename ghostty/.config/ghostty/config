@@ -27,7 +27,9 @@
 # # separated by equals signs.
 font-family = "Iosevka Term SS08"
 # window-padding-x = 2
-#
+
+theme = TokyoNight
+
 # # Spacing around the equals sign does not matter.
 # # All of these are identical:
 # key=value
