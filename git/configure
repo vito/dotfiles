@@ -10,8 +10,9 @@ git config --global alias.bs "!r() { refbranch=\${1:-origin/main} count=\$2; git
 # sane push default
 git config --global push.default simple
 
-# auto-convert remotes to github SSH
+# auto-convert remotes to SSH
 git config --global url.git@github.com:.pushInsteadOf "https://github.com/"
+git config --global url.ssh://git@codeberg.org/.pushInsteadOf "https://codeberg.org/"
 
 # prevent adding redundant Co-authored-by: lines
 git config --global trailer.ifexsts addIfDifferent
