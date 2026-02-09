@@ -72,3 +72,7 @@ keybind = ctrl+shift+w=close_surface
 
 # Toggle split zoom (maximize/restore pane)
 keybind = alt+shift+enter=toggle_split_zoom
+
+# pi agent
+keybind = alt+backspace=text:\x1b\x7f
+keybind = shift+enter=text:\n
