@@ -6,7 +6,7 @@ alias gs 'git status'
 alias gpl 'git pull'
 
 # local software
-fish_add_path ~/bin ~/.local/bin ~/go/bin ~/.yarn/bin ~/.lmstudio/bin ~/.local/share/pnpm
+fish_add_path ~/bin ~/.local/bin ~/go/bin ~/.yarn/bin ~/.lmstudio/bin ~/.local/share/pnpm ~/.bun/bin
 
 if status is-interactive
   set fish_greeting
@@ -24,4 +24,15 @@ if status is-interactive
   if which direnv >/dev/null
     eval (direnv hook fish)
   end
+
+  if which mise >/dev/null
+    eval (mise activate fish)
+  end
 end
+
+# pnpm
+set -gx PNPM_HOME "/home/vito/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
