@@ -35,3 +35,6 @@ install wl-clipboard bat jq
 
 # configure git
 ./git/configure
+
+# utility kit
+stow -t ~ utils
