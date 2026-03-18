@@ -16,3 +16,6 @@ git config --global url.ssh://git@codeberg.org/.pushInsteadOf "https://codeberg.
 
 # prevent adding redundant Co-authored-by: lines
 git config --global trailer.ifexsts addIfDifferent
+
+# wire up difftastic
+git config --global diff.external difft
