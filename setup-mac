@@ -8,46 +8,46 @@ cd $(dirname $0)
 brew install stow
 
 # local executables dir
-mkdir -p ~/bin
+mkdir -p ~/.local/bin
 
 # setup fish
-brew install fish
+brew install fish fisher starship direnv
 stow -t ~ fish
 fish -c 'fisher update'
-
-# NOTE: be sure to run base16-* before starting vim so it doesn't detonate
-
-# setup vim
-brew install neovim
-stow -t ~ nvim
-ln -sf /usr/local/bin/nvim ~/bin/vim
-# NOTE: be sure to change login shell in iTerm2
+fish -c 'fisher install rose-pine/fish'
 
 # install rg
 brew install ripgrep
 
-# fzf and friends
-brew install fzf bat
-$(brew --prefix)/opt/fzf/install
-
-# docker
-brew install --cask docker
-
 # setup go
 brew install go
-go install golang.org/x/tools/gopls@latest
-# NOTE: restart fish to pick up new $PATH
 
 # setup best font
-brew tap homebrew/cask-fonts
-brew install --cask font-iosevka
-# NOTE: reboot for iTerm2 to pick it up
+brew install font-iosevka-ss08
+
+# set up ghostty
+brew install --cask ghostty
+stow -t ~ ghostty
+
+# fzf and friends
+brew install bat jq
 
 # configure git
+brew install difftastic
 ./git/configure
+
+# utility kit
+stow -t ~ utils
 
 # support holding hjkl
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
 # disable weird cmd-tab monitor selection
 defaults write com.apple.Dock appswitcher-all-displays -bool true
+
+# setup vim
+brew install neovim
+ln -sf /usr/local/bin/nvim ~/.local/bin/vim
+
+# docker
+brew install --cask docker
