@@ -47,7 +47,7 @@ defaults write com.apple.Dock appswitcher-all-displays -bool true
 
 # setup vim
 brew install neovim
-ln -sf /usr/local/bin/nvim ~/.local/bin/vim
+ln -sf "$(which nvim)" ~/.local/bin/vim
 
 # docker
 brew install --cask docker
