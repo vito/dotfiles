@@ -1,6 +1,7 @@
 #!/bin/bash
 
 what=$1
+who=${2:-vito}
 
-go get github.com/vito/${what}@$(git -C ~/src/${what} rev-parse HEAD | tr -d '[:space:]')
+go get github.com/${who}/${what}@$(git -C ~/src/${what} rev-parse HEAD | tr -d '[:space:]')
 go mod tidy
