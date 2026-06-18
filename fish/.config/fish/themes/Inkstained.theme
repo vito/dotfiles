@@ -1,0 +1,41 @@
+# Inkstained (light) — ink on warm, aged paper.
+# After yuttie's inkstained-vim; strings get the signature teal box.
+# syntax highlighting variables
+# https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables
+fish_color_normal 555f6f
+fish_color_command 56759a --bold
+fish_color_keyword 7c6a93 --bold
+fish_color_quote 608f8e --background=cfd9d9
+fish_color_redirection 447487
+fish_color_end 929cad
+fish_color_error aa586e
+fish_color_param 555f6f
+fish_color_comment 929cad
+fish_color_match --background=d3d1cc
+fish_color_selection 555f6f --background=d3d1cc
+fish_color_operator a05b89
+fish_color_escape 447487
+fish_color_autosuggestion bdbbb6
+fish_color_cwd 608f8e
+fish_color_user 8a7a35
+fish_color_host 447487
+fish_color_host_remote 7c6a93
+fish_color_cancel aa586e
+fish_color_search_match --background=d7d3dc
+fish_color_valid_path --underline
+
+# pager color variables
+# https://fishshell.com/docs/current/interactive.html#pager-color-variables
+fish_pager_color_progress 8a7a35
+fish_pager_color_background --background=dfddd7
+fish_pager_color_prefix 447487 --bold
+fish_pager_color_completion 555f6f
+fish_pager_color_description 697383
+fish_pager_color_secondary_background
+fish_pager_color_secondary_prefix
+fish_pager_color_secondary_completion
+fish_pager_color_secondary_description
+fish_pager_color_selected_background --background=d3d1cc
+fish_pager_color_selected_prefix 447487 --bold
+fish_pager_color_selected_completion 555f6f
+fish_pager_color_selected_description 555f6f

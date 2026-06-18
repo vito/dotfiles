@@ -1,0 +1,83 @@
+[dark]
+# Inkstained Dark — ink at night: a deep slate ground, pale cool ink.
+# syntax highlighting variables
+# https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables
+fish_color_normal c2c7d0
+fish_color_command 8fb3d6 --bold
+fish_color_keyword ac99c4 --bold
+fish_color_quote 9ec7c4 --background=243531
+fish_color_redirection 6f9db0
+fish_color_end 7e8898
+fish_color_error d2899a
+fish_color_param c2c7d0
+fish_color_comment 7e8898
+fish_color_match --background=313742
+fish_color_selection c2c7d0 --background=313742
+fish_color_operator cf94b4
+fish_color_escape 8fc0d4
+fish_color_autosuggestion 515a6a
+fish_color_cwd 88b5b1
+fish_color_user c9b96b
+fish_color_host 6f9db0
+fish_color_host_remote ac99c4
+fish_color_cancel d2899a
+fish_color_search_match --background=2a2735
+fish_color_valid_path --underline
+
+# pager color variables
+# https://fishshell.com/docs/current/interactive.html#pager-color-variables
+fish_pager_color_progress c9b96b
+fish_pager_color_background --background=222732
+fish_pager_color_prefix 6f9db0 --bold
+fish_pager_color_completion c2c7d0
+fish_pager_color_description 7e8898
+fish_pager_color_secondary_background
+fish_pager_color_secondary_prefix
+fish_pager_color_secondary_completion
+fish_pager_color_secondary_description
+fish_pager_color_selected_background --background=313742
+fish_pager_color_selected_prefix 6f9db0 --bold
+fish_pager_color_selected_completion c2c7d0
+fish_pager_color_selected_description c2c7d0
+
+[light]
+# Inkstained — ink on warm, aged paper.
+# syntax highlighting variables
+# https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables
+fish_color_normal 555f6f
+fish_color_command 56759a --bold
+fish_color_keyword 7c6a93 --bold
+fish_color_quote 608f8e --background=cfd9d9
+fish_color_redirection 447487
+fish_color_end 929cad
+fish_color_error aa586e
+fish_color_param 555f6f
+fish_color_comment 929cad
+fish_color_match --background=d3d1cc
+fish_color_selection 555f6f --background=d3d1cc
+fish_color_operator a05b89
+fish_color_escape 447487
+fish_color_autosuggestion bdbbb6
+fish_color_cwd 608f8e
+fish_color_user 8a7a35
+fish_color_host 447487
+fish_color_host_remote 7c6a93
+fish_color_cancel aa586e
+fish_color_search_match --background=d7d3dc
+fish_color_valid_path --underline
+
+# pager color variables
+# https://fishshell.com/docs/current/interactive.html#pager-color-variables
+fish_pager_color_progress 8a7a35
+fish_pager_color_background --background=dfddd7
+fish_pager_color_prefix 447487 --bold
+fish_pager_color_completion 555f6f
+fish_pager_color_description 697383
+fish_pager_color_secondary_background
+fish_pager_color_secondary_prefix
+fish_pager_color_secondary_completion
+fish_pager_color_secondary_description
+fish_pager_color_selected_background --background=d3d1cc
+fish_pager_color_selected_prefix 447487 --bold
+fish_pager_color_selected_completion 555f6f
+fish_pager_color_selected_description 555f6f
