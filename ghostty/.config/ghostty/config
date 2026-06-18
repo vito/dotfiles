@@ -28,7 +28,7 @@
 font-family = "Iosevka Term SS08"
 # window-padding-x = 2
 
-theme = "Rose Pine"
+theme = light:inkstained,dark:inkstained-dark
 
 # # Spacing around the equals sign does not matter.
 # # All of these are identical:
