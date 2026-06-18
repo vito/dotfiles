@@ -1,0 +1,33 @@
+# Inkstained (light) — a Ghostty theme
+#
+# Ink on warm, aged paper, after yuttie's inkstained-vim
+# (https://github.com/yuttie/inkstained-vim). The greyscale ends and the
+# red/teal/cyan/blue/violet accents come straight from that palette; yellow is
+# a muted gold (inkstained has no native yellow), and the bright accents are
+# lighter variants. Mapped to a conventional 16-colour ANSI layout (0 darkest →
+# 15 lightest) so it stays usable beyond a base16 consumer.
+
+background = #e7e5e2
+foreground = #555f6f
+cursor-color = #555f6f
+selection-background = #d3d1cc
+selection-foreground = #555f6f
+
+# normal
+palette = 0=#2b313a
+palette = 1=#aa586e
+palette = 2=#608f8e
+palette = 3=#8a7a35
+palette = 4=#56759a
+palette = 5=#a05b89
+palette = 6=#447487
+palette = 7=#bdbbb6
+# bright
+palette = 8=#697383
+palette = 9=#c77d90
+palette = 10=#7fb0ac
+palette = 11=#a4923f
+palette = 12=#7593bb
+palette = 13=#c190ae
+palette = 14=#6f9db0
+palette = 15=#f4f2ef

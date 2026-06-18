@@ -1,0 +1,31 @@
+# Inkstained Dark — a Ghostty theme
+#
+# The dark companion to inkstained: ink at night. A deep slate ground with pale
+# cool ink and inkstained's accents lifted to their lighter variants (the same
+# palette as the inkstained-dark Vim colorscheme). Mapped to a conventional
+# 16-colour ANSI layout (0 darkest → 15 lightest).
+
+background = #1a1e26
+foreground = #c2c7d0
+cursor-color = #c2c7d0
+selection-background = #313742
+selection-foreground = #c2c7d0
+
+# normal
+palette = 0=#1a1e26
+palette = 1=#d2899a
+palette = 2=#88b5b1
+palette = 3=#c9b96b
+palette = 4=#8fb3d6
+palette = 5=#cf94b4
+palette = 6=#6f9db0
+palette = 7=#c2c7d0
+# bright
+palette = 8=#515a6a
+palette = 9=#e0a3b2
+palette = 10=#9ec7c4
+palette = 11=#dccf8e
+palette = 12=#a8c2e0
+palette = 13=#d8aecb
+palette = 14=#8fc0d4
+palette = 15=#e6e8ec
