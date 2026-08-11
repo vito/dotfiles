@@ -1,5 +1,7 @@
 set -x EDITOR vim
 
+set -x RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/config
+
 # git shorthand
 alias gst 'git status'
 alias gs 'git status'

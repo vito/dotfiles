@@ -22,6 +22,7 @@ fish -c 'fisher install rose-pine/fish'
 
 # install rg
 install ripgrep
+stow -t ~ ripgrep
 
 # setup go
 install go
