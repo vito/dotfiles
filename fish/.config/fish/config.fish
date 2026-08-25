@@ -13,6 +13,11 @@ fish_add_path ~/bin ~/.local/bin ~/go/bin ~/.yarn/bin ~/.lmstudio/bin ~/.local/s
 if status is-interactive
   set fish_greeting
 
+  # Teach Jujutsu equivalents while preserving real Git for scripts and subprocesses.
+  function git --wraps git --description 'Run Git and suggest the Jujutsu equivalent'
+    command git-jj $argv
+  end
+
   set -x BAT_THEME base16
 
   fish_config theme choose "Inkstained Auto"

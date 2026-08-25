@@ -1,0 +1,217 @@
+#!/usr/bin/env bash
+
+# Run Git as usual, but teach the equivalent Jujutsu command along the way.
+# Unknown invocations are translated by Codex once and cached verbatim.
+
+set -u
+
+readonly wrapper_path="$(readlink -f "${BASH_SOURCE[0]}")"
+readonly wrapper_dir="$(dirname "$wrapper_path")"
+readonly learned_file="${GIT_JJ_LEARNED_FILE:-$wrapper_dir/.git-jj-learned.tsv}"
+
+find_real_git() {
+  if [[ -n ${GIT_JJ_REAL_GIT:-} ]]; then
+    printf '%s\n' "$GIT_JJ_REAL_GIT"
+    return
+  fi
+
+  local candidate
+  while IFS= read -r candidate; do
+    [[ -x $candidate ]] || continue
+    [[ $(readlink -f "$candidate") == "$wrapper_path" ]] && continue
+    printf '%s\n' "$candidate"
+    return
+  done < <(type -aP git 2>/dev/null)
+}
+
+shell_join() {
+  local arg out= quoted
+  for arg in "$@"; do
+    printf -v quoted '%q' "$arg"
+    out+="${out:+ }$quoted"
+  done
+  printf '%s' "$out"
+}
+
+shell_suffix() {
+  (($#)) || return 0
+  printf ' %q' "$@"
+}
+
+learned_suggestion() {
+  [[ -r $learned_file ]] || return 1
+  awk -F '\t' -v key="$invocation" '$1 == key { value=$2 } END { if (value != "") print value; else exit 1 }' "$learned_file"
+}
+
+builtin_suggestion() {
+  local cmd=${1:-} arg=${2:-}
+  case "$cmd" in
+    '') echo 'jj help' ;;
+    --version|-v|version) echo 'jj --version' ;;
+    help|--help|-h) echo 'jj help' ;;
+    -C)
+      local directory=${2:-.}
+      shift 2
+      echo "jj -R $(printf %q "$directory") $(shell_join "$@")"
+      ;;
+    status|st) echo 'jj status' ;;
+    diff)
+      if [[ $arg == --cached || $arg == --staged ]]; then
+        echo 'jj show @  # jj has no staging area'
+      else
+        echo "jj $(shell_join "$@")"
+      fi
+      ;;
+    commit|ci)
+      shift
+      local -a kept=()
+      while (($#)); do
+        case "$1" in
+          -s|--signoff|--reset-author|-v|--verbose) ;;
+          --amend) echo 'jj squash  # or: jj describe -m <message>' ; return ;;
+          *) kept+=("$1") ;;
+        esac
+        shift
+      done
+      echo "jj commit$(shell_suffix "${kept[@]}")"
+      ;;
+    add)
+      echo 'jj status  # no add needed; jj tracks the working copy automatically'
+      ;;
+    checkout|co|switch)
+      shift
+      case ${1:-} in
+        -b|-B) echo "jj bookmark create $(shell_join "${@:2}")" ;;
+        -p|--patch) echo "jj restore --interactive $(shell_join "${@:2}")" ;;
+        --) echo "jj restore $(shell_join "${@:2}")" ;;
+        '') echo 'jj log' ;;
+        *)
+          if [[ " $* " == *' -- '* ]]; then
+            local source=${1}; shift
+            while (($#)) && [[ $1 != -- ]]; do shift; done
+            (($#)) && shift
+            echo "jj restore --from $(printf %q "$source") $(shell_join "$@")"
+          else
+            echo "jj edit $(shell_join "$@")"
+          fi
+          ;;
+      esac
+      ;;
+    reset)
+      if [[ " $* " == *' --hard '* ]]; then
+        echo "jj abandon @ && jj new $(printf %q "${*: -1}")"
+      elif [[ " $* " == *' -- '* || $# -gt 1 ]]; then
+        echo 'jj restore <paths>  # jj has no staging area; restore discards file changes'
+      else
+        echo "jj edit $(printf %q "${2:-@-}")"
+      fi
+      ;;
+    log) shift; echo "jj log$(shell_suffix "$@")" ;;
+    show) shift; echo "jj show$(shell_suffix "$@")" ;;
+    fetch)
+      shift
+      if [[ ${1:-} && ${1:-} != -* ]]; then echo "jj git fetch --remote $(printf %q "$1")"; else echo 'jj git fetch'; fi
+      ;;
+    pull) echo 'jj git fetch  # commits are already visible; rebase explicitly if desired' ;;
+    push)
+      if [[ " $* " == *' HEAD '* || " $*" == *' HEAD' ]]; then echo 'jj git push --change @'; else shift; echo "jj git push$(shell_suffix "$@")"; fi
+      ;;
+    rebase)
+      shift
+      case ${1:-} in
+        --continue|--skip) echo 'jj status  # jj rebases are immediate; resolve conflicts in place' ;;
+        --abort) echo 'jj undo' ;;
+        -i|--interactive) echo 'jj rebase -r <revision> -d <destination>' ;;
+        *) echo "jj rebase -s @ -d $(shell_join "$@")" ;;
+      esac
+      ;;
+    cherry-pick) shift; echo "jj duplicate $(shell_join "$@") -d @" ;;
+    merge) shift; echo "jj new @ $(shell_join "$@")" ;;
+    revert|rv) shift; echo "jj revert $(shell_join "$@")" ;;
+    rm) shift; echo "rm $(shell_join "$@")  # jj records the deletion automatically" ;;
+    mv) shift; echo "mv $(shell_join "$@")  # jj records the rename automatically" ;;
+    stash) echo 'jj new @-  # the previous change remains in history as your stash' ;;
+    clone) shift; echo "jj git clone $(shell_join "$@")" ;;
+    grep) shift; echo "rg $(shell_join "$@")" ;;
+    blame) shift; echo "jj file annotate $(shell_join "$@")" ;;
+    branch)
+      shift
+      case ${1:-} in
+        -d|-D|--delete) echo "jj bookmark delete $(shell_join "${@:2}")" ;;
+        -m|-M|--move) echo 'jj bookmark rename <old> <new>' ;;
+        '') echo 'jj bookmark list' ;;
+        *) echo "jj bookmark create $(shell_join "$@")" ;;
+      esac
+      ;;
+    tag)
+      shift
+      case ${1:-} in
+        -l|--list|'') echo 'jj tag list' ;;
+        -d|--delete) echo "jj tag delete $(shell_join "${@:2}")" ;;
+        *) echo "jj tag set $(shell_join "$@")" ;;
+      esac
+      ;;
+    worktree)
+      shift
+      case ${1:-} in
+        add) shift; echo "jj workspace add $(shell_join "$@")" ;;
+        list) echo 'jj workspace list' ;;
+        remove|prune) echo 'jj workspace forget <workspace>' ;;
+        *) return 1 ;;
+      esac
+      ;;
+    remote)
+      shift
+      case ${1:-} in
+        -v|'') echo 'jj git remote list' ;;
+        add) shift; echo "jj git remote add $(shell_join "$@")" ;;
+        remove|rm) shift; echo "jj git remote remove $(shell_join "$@")" ;;
+        rename) shift; echo "jj git remote rename $(shell_join "$@")" ;;
+        set-url) shift; echo "jj git remote set-url $(shell_join "$@")" ;;
+        *) return 1 ;;
+      esac
+      ;;
+    config) shift; echo "jj config $(shell_join "$@")" ;;
+    init) shift; echo "jj git init --colocate$(shell_suffix "$@")" ;;
+    *) return 1 ;;
+  esac
+}
+
+ask_codex() {
+  local codex=${GIT_JJ_CODEX:-codex} model=${GIT_JJ_CODEX_MODEL:-gpt-5.6-luna} answer_file prompt
+  command -v "$codex" >/dev/null 2>&1 || return 1
+  [[ $invocation != *$'\t'* && $invocation != *$'\n'* ]] || return 1
+  answer_file=$(mktemp "${TMPDIR:-/tmp}/git-jj.XXXXXX") || return 1
+  prompt="Translate this exact Git invocation to the closest Jujutsu (jj 0.43+) command: git $invocation
+
+Return exactly one line beginning with 'jj ' (or 'no jj equivalent:'). No Markdown, commentary, shell operators, redirects, command substitutions, or placeholders. Preserve quoted argument values. Do not modify any files."
+  "$codex" exec --model "$model" --ephemeral --sandbox read-only --skip-git-repo-check \
+    --color never --output-last-message "$answer_file" "$prompt" >/dev/null 2>&1 || { rm -f "$answer_file"; return 1; }
+  local answer
+  answer=$(tr -d '\r' < "$answer_file")
+  rm -f "$answer_file"
+  [[ $answer != *$'\n'* ]] || return 1
+  [[ $answer == 'jj '* || $answer == 'no jj equivalent:'* ]] || return 1
+  [[ $answer != *'$('* && $answer != *'`'* && $answer != *';'* && $answer != *'&&'* && $answer != *'||'* && $answer != *'>'* && $answer != *'<'* ]] || return 1
+
+  mkdir -p "$(dirname "$learned_file")" 2>/dev/null || return 1
+  printf '%s\t%s\n' "$invocation" "$answer" >> "$learned_file" || return 1
+  printf '%s\n' "$answer"
+}
+
+readonly real_git="$(find_real_git)"
+if [[ -z $real_git ]]; then
+  echo 'git-jj: could not find the real git executable' >&2
+  exit 127
+fi
+
+readonly invocation="$(shell_join "$@")"
+"$real_git" "$@"
+git_status=$?
+
+suggestion=$(learned_suggestion || builtin_suggestion "$@" || ask_codex || true)
+if [[ -n $suggestion ]]; then
+  printf '\033[2mtry jj: %s\033[0m\n' "$suggestion" >&2
+fi
+
+exit "$git_status"

@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+wrapper=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/git-jj
+tmp=$(mktemp -d "${TMPDIR:-/tmp}/git-jj-test.XXXXXX")
+trap 'rm -rf "$tmp"' EXIT
+
+cat > "$tmp/real-git" <<'EOF'
+#!/usr/bin/env bash
+printf 'real git:'
+printf ' <%s>' "$@"
+printf '\n'
+if [[ ${1:-} == fail ]]; then
+  exit 42
+fi
+exit 0
+EOF
+chmod +x "$tmp/real-git"
+
+cat > "$tmp/codex" <<'EOF'
+#!/usr/bin/env bash
+while (($#)); do
+  if [[ $1 == --output-last-message ]]; then
+    printf '%s\n' 'jj util gc' > "$2"
+    exit 0
+  fi
+  shift
+done
+exit 1
+EOF
+chmod +x "$tmp/codex"
+
+run() {
+  GIT_JJ_REAL_GIT="$tmp/real-git" GIT_JJ_LEARNED_FILE="$tmp/learned.tsv" \
+    GIT_JJ_CODEX=false "$wrapper" "$@" 2>&1
+}
+
+output=$(run status)
+[[ $output == *'try jj: jj status'* ]]
+[[ $output == *'real git: <status>'* ]]
+[[ $output == $'real git: <status>\n'* ]]
+
+output=$(run --version)
+[[ $output == *'try jj: jj --version'* ]]
+
+output=$(run ci -m 'hello world')
+[[ $output == *'try jj: jj commit -m hello\ world'* ]]
+[[ $output == *'real git: <ci> <-m> <hello world>'* ]]
+
+output=$(run add -p src)
+[[ $output == *'no add needed'* ]]
+
+output=$(run commit)
+[[ $output == *'try jj: jj commit'* ]]
+[[ $output != *"jj commit ''"* ]]
+
+printf '%s\t%s\n' 'frobnicate --thing' 'jj custom --thing' > "$tmp/learned.tsv"
+output=$(run frobnicate --thing)
+[[ $output == *'try jj: jj custom --thing'* ]]
+
+output=$(GIT_JJ_REAL_GIT="$tmp/real-git" GIT_JJ_LEARNED_FILE="$tmp/new.tsv" \
+  GIT_JJ_CODEX="$tmp/codex" "$wrapper" gc 2>&1)
+[[ $output == *'try jj: jj util gc'* ]]
+grep -F $'gc\tjj util gc' "$tmp/new.tsv" >/dev/null
+
+set +e
+output=$(run fail)
+status=$?
+set -e
+[[ $status == 42 ]]
+[[ $output == 'real git: <fail>' ]]
+
+echo 'git-jj wrapper tests passed'
