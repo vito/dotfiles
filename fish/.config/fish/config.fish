@@ -20,11 +20,11 @@ if status is-interactive
   starship init fish | source
 
   if which direnv >/dev/null
-    eval (direnv hook fish)
+    direnv hook fish | source
   end
 
   if which mise >/dev/null
-    eval (mise activate fish)
+    mise activate fish | source
   end
 end
 
